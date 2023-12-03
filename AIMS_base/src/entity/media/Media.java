@@ -49,7 +49,7 @@ public class Media {
         return updated_quantity;
     }
 
-    public Media getMediaById(int id) throws SQLException{
+    public Media getMediaById(int id) throws SQLException{ // data coupling
         String sql = "SELECT * FROM Media ;";
         Statement stm = AIMSDB.getConnection().createStatement();
         ResultSet res = stm.executeQuery(sql);

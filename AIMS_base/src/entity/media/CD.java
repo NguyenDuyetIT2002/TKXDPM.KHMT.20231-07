@@ -69,7 +69,7 @@ public class CD extends Media {
     }
 
     @Override
-    public Media getMediaById(int id) throws SQLException {
+    public Media getMediaById(int id) throws SQLException { //data coupling
         String sql = "SELECT * FROM "+
                      "aims.CD " +
                      "INNER JOIN aims.Media " +
