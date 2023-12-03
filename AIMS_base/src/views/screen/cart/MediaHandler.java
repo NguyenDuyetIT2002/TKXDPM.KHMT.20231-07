@@ -59,6 +59,7 @@ public class MediaHandler extends FXMLScreenHandler {
 	private Spinner<Integer> spinner;
 	private CartScreenHandler cartScreen;
 
+	// content coupling
 	public MediaHandler(String screenPath, CartScreenHandler cartScreen) throws IOException {
 		super(screenPath);
 		this.cartScreen = cartScreen;
@@ -70,6 +71,7 @@ public class MediaHandler extends FXMLScreenHandler {
 		setMediaInfo();
 	}
 
+	// content coupling, common coupling
 	private void setMediaInfo() {
 		title.setText(cartMedia.getMedia().getTitle());
 		price.setText(Utils.getCurrencyFormat(cartMedia.getPrice()));
@@ -96,6 +98,7 @@ public class MediaHandler extends FXMLScreenHandler {
 		initializeSpinner();
 	}
 
+	// control coupling
 	private void initializeSpinner(){
 		SpinnerValueFactory<Integer> valueFactory = //
 			new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, cartMedia.getQuantity());
