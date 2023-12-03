@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 /**
  * @author nguyenlm Contains helper functions
  */
-public class Utils {
+public class Utils { // common coupling
 
 	public static DateFormat DATE_FORMATER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	private static Logger LOGGER = getLogger(Utils.class.getName());
@@ -51,7 +51,7 @@ public class Utils {
 	 * @param message - plain text as {@link java.lang.String String}.
 	 * @return cipher text as {@link java.lang.String String}.
 	 */
-	public static String md5(String message) {
+	public static String md5(String message) { // control coupling
 		String digest = null;
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");

@@ -19,7 +19,7 @@ import views.screen.popup.PopupScreen;
  * This class controls the flow of place order usecase in our AIMS project
  * @author nguyenlm
  */
-public class PlaceOrderController extends BaseController{
+public class PlaceOrderController extends BaseController{ // common coupling
 
     /**
      * Just for logging purpose
