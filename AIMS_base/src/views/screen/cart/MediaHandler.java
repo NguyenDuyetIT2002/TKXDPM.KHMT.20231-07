@@ -70,7 +70,7 @@ public class MediaHandler extends FXMLScreenHandler {
 		setMediaInfo();
 	}
 
-	private void setMediaInfo() { // content coupling, common coupling
+	private void setMediaInfo() {
 		title.setText(cartMedia.getMedia().getTitle());
 		price.setText(Utils.getCurrencyFormat(cartMedia.getPrice()));
 		File file = new File(cartMedia.getMedia().getImageURL());
@@ -96,7 +96,7 @@ public class MediaHandler extends FXMLScreenHandler {
 		initializeSpinner();
 	}
 
-	private void initializeSpinner(){ // control coupling
+	private void initializeSpinner(){
 		SpinnerValueFactory<Integer> valueFactory = //
 			new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, cartMedia.getQuantity());
 		spinner = new Spinner<Integer>(valueFactory);

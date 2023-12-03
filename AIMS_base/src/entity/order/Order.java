@@ -52,7 +52,7 @@ public class Order {
         this.deliveryInfo = deliveryInfo;
     }
 
-    public int getAmount(){ // control coupling
+    public int getAmount(){
         double amount = 0;
         for (Object object : lstOrderMedia) {
             OrderMedia om = (OrderMedia) object;

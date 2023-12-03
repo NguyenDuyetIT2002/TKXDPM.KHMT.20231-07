@@ -1,6 +1,6 @@
 package entity.payment;
 
-public class PaymentTransaction { // common coupling
+public class PaymentTransaction {
 	private String errorCode;
 	private CreditCard card;
 	private String transactionId;

@@ -49,7 +49,7 @@ public class MediaHandler extends FXMLScreenHandler{
         super(screenPath);
         this.media = media;
         this.home = home;
-        addToCartBtn.setOnMouseClicked(event -> { // control coupling
+        addToCartBtn.setOnMouseClicked(event -> {
             try {
                 if (spinnerChangeNumber.getValue() > media.getQuantity()) throw new MediaNotAvailableException();
                 Cart cart = Cart.getCart();

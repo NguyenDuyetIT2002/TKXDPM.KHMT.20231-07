@@ -33,7 +33,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 		super(stage, screenPath);
 	}
 
-	public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice) throws IOException { // control coupling
+	public PaymentScreenHandler(Stage stage, String screenPath, Invoice invoice) throws IOException {
 		super(stage, screenPath);
 		this.invoice = invoice;
 		
@@ -62,7 +62,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 	@FXML
 	private TextField securityCode;
 
-	void confirmToPayOrder() throws IOException{ // content coupling
+	void confirmToPayOrder() throws IOException{
 		String contents = "pay order";
 		PaymentController ctrl = (PaymentController) getBController();
 		Map<String, String> response = ctrl.payOrder(invoice.getAmount(), contents, cardNumber.getText(), holderName.getText(),

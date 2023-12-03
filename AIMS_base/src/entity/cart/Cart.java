@@ -7,7 +7,7 @@ import java.util.List;
 import common.exception.MediaNotAvailableException;
 import entity.media.Media;
 
-public class Cart { // content coupling
+public class Cart {
     
     private List<CartMedia> lstCartMedia;
     private static Cart cartInstance;
@@ -55,7 +55,7 @@ public class Cart { // content coupling
         return total;
     }
 
-    public void checkAvailabilityOfProduct() throws SQLException{ // control coupling
+    public void checkAvailabilityOfProduct() throws SQLException{
         boolean allAvai = true;
         for (Object object : lstCartMedia) {
             CartMedia cartMedia = (CartMedia) object;

@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 /**
  * @author nguyenlm Contains helper functions
  */
-public class Utils { //common coupling, control coupling
+public class Utils {
 
 	public static DateFormat DATE_FORMATER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	private static Logger LOGGER = getLogger(Utils.class.getName());

@@ -4,7 +4,7 @@ import entity.cart.Cart;
 import entity.cart.CartMedia;
 import entity.media.Media;
 
-public class User { // common coupling
+public class User {
     
     private int id;
     private String name;

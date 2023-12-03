@@ -30,7 +30,7 @@ public class PlaceOrderController extends BaseController{
      * This method checks the avalibility of product when user click PlaceOrder button
      * @throws SQLException
      */
-    public void placeOrder() throws SQLException{ // control coupling,
+    public void placeOrder() throws SQLException{
         Cart.getCart().checkAvailabilityOfProduct();
     }
 
@@ -39,7 +39,7 @@ public class PlaceOrderController extends BaseController{
      * @return Order
      * @throws SQLException
      */
-    public Order createOrder() throws SQLException{ // content coupling
+    public Order createOrder() throws SQLException{
         Order order = new Order();
         for (Object object : Cart.getCart().getListMedia()) {
             CartMedia cartMedia = (CartMedia) object;
@@ -58,7 +58,7 @@ public class PlaceOrderController extends BaseController{
      */
     public Invoice createInvoice(Order order) {
         return new Invoice(order);
-    } //common coupling
+    }
 
     /**
      * This method takes responsibility for processing the shipping info from user
@@ -66,7 +66,7 @@ public class PlaceOrderController extends BaseController{
      * @throws InterruptedException
      * @throws IOException
      */
-    public void processDeliveryInfo(HashMap info) throws InterruptedException, IOException{ // stamp coupling
+    public void processDeliveryInfo(HashMap info) throws InterruptedException, IOException{
         LOGGER.info("Process Delivery Info");
         LOGGER.info(info.toString());
         validateDeliveryInfo(info);

@@ -19,7 +19,7 @@ public class BaseController {
      */
     public CartMedia checkMediaInCart(Media media){
         return Cart.getCart().checkMediaInCart(media);
-    } //control coupling
+    }
 
     /**
      * This method gets the list of items in cart
@@ -27,5 +27,5 @@ public class BaseController {
      */
     public List getListCartMedia(){
         return Cart.getCart().getListMedia();
-    } // control coupling
+    }
 }

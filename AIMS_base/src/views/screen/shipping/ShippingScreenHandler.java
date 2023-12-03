@@ -52,9 +52,9 @@ public class ShippingScreenHandler extends BaseScreenHandler implements Initiali
 	}
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) { // stamp coupling
+	public void initialize(URL arg0, ResourceBundle arg1) {
 		final BooleanProperty firstTime = new SimpleBooleanProperty(true); // Variable to store the focus on stage load
-		name.focusedProperty().addListener((observable,  oldValue,  newValue) -> { // control coupling
+		name.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
             if(newValue && firstTime.get()){
                 content.requestFocus(); // Delegate the focus to container
                 firstTime.setValue(false); // Variable value changed for future references

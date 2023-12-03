@@ -26,7 +26,7 @@ import views.screen.BaseScreenHandler;
 import views.screen.popup.PopupScreen;
 import views.screen.shipping.ShippingScreenHandler;
 
-public class CartScreenHandler extends BaseScreenHandler { // content coupling, control coupling, stamp coupling
+public class CartScreenHandler extends BaseScreenHandler {
 
 	private static Logger LOGGER = Utils.getLogger(CartScreenHandler.class.getName());
 

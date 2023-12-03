@@ -14,7 +14,7 @@ import subsystem.interbank.InterbankSubsystemController;
  * @author hieud
  *
  */
-public class InterbankSubsystem implements InterbankInterface { // content coupling
+public class InterbankSubsystem implements InterbankInterface {
 
 	/**
 	 * Represent the controller of the subsystem

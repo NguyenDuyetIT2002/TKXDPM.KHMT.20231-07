@@ -16,7 +16,7 @@ import utils.Configs;
 import utils.MyMap;
 import utils.Utils;
 
-public class InterbankSubsystemController { // content coupling, common coupling
+public class InterbankSubsystemController {
 
 	private static final String PUBLIC_KEY = "AQzdE8O/fR8=";
 	private static final String SECRET_KEY = "BUXj/7/gHHI=";
@@ -63,7 +63,7 @@ public class InterbankSubsystemController { // content coupling, common coupling
 		return makePaymentTransaction(response);
 	}
 
-	private PaymentTransaction makePaymentTransaction(MyMap response) { // control coupling
+	private PaymentTransaction makePaymentTransaction(MyMap response) {
 		if (response == null)
 			return null;
 		MyMap transcation = (MyMap) response.get("transaction");

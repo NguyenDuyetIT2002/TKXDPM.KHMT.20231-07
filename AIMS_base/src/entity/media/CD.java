@@ -18,7 +18,7 @@ public class CD extends Media {
 
     public CD(int id, String title, String category, int price, int quantity, String type, String artist,
             String recordLabel, String musicType, Date releasedDate) throws SQLException{
-        super(id, title, category, price, quantity, type); // content coupling
+        super(id, title, category, price, quantity, type);
         this.artist = artist;
         this.recordLabel = recordLabel;
         this.musicType = musicType;

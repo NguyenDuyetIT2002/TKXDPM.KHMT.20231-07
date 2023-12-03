@@ -122,7 +122,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         addMenuItem(2, "CD", splitMenuBtnSearch);
     }
 
-    public void setImage(){ // content coupling, common coupling
+    public void setImage(){
         // fix image path caused by fxml
         File file1 = new File(Configs.IMAGE_PATH + "/" + "Logo.png");
         Image img1 = new Image(file1.toURI().toString());

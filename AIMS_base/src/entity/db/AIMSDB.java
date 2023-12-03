@@ -13,7 +13,7 @@ public class AIMSDB {
 	private static Logger LOGGER = Utils.getLogger(Connection.class.getName());
 	private static Connection connect;
 
-    public static Connection getConnection() { // content coupling, control coupling
+    public static Connection getConnection() {
         if (connect != null) return connect;
         try {
 			Class.forName("org.sqlite.JDBC");
