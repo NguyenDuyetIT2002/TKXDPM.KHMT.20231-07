@@ -32,4 +32,13 @@
           - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/1<br>
           - Specific implementation details:<br>
     </details>
+    <details>
+        <summary>Đinh Hữu Hải</summary>
+        <br>
+        - Assigned tasks:<br>
+          - Detect coupling in views package<br>
+        - Implementation details:<br>
+          - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/5<br>
+          - Specific implementation details:<br>
+    </details>
 </details>
