@@ -23,4 +23,13 @@
           - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/3<br>
           - Specific implementation details:<br>
     </details>
+    <details>
+        <summary>Trần Đức Duy</summary>
+        <br>
+        - Assigned tasks:<br>
+          - Detect coupling of subsystem classes<br>
+        - Implementation details:<br>
+          - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/1<br>
+          - Specific implementation details:<br>
+    </details>
 </details>
