@@ -14,7 +14,7 @@ import java.util.Map;
  * @author hieud
  *
  */
-public class MyMap extends LinkedHashMap<String, Object> {
+public class MyMap extends LinkedHashMap<String, Object> { // common coupling
 	private static final long serialVersionUID = 1L;
 
 	/**
