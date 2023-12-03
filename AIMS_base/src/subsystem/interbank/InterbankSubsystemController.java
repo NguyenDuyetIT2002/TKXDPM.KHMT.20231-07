@@ -30,14 +30,14 @@ public class InterbankSubsystemController {
 	}
 	
 	private String generateData(Map<String, Object> data) {
-		return ((MyMap) data).toJSON();
+		return ((MyMap) data).toJSON(); // Data coupling
 	}
 
 	public PaymentTransaction payOrder(CreditCard card, int amount, String contents) {
 		Map<String, Object> transaction = new MyMap();
 
 		try {
-			transaction.putAll(MyMap.toMyMap(card));
+			transaction.putAll(MyMap.toMyMap(card)); // Data coupling
 		} catch (IllegalArgumentException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			throw new InvalidCardException();
@@ -45,13 +45,13 @@ public class InterbankSubsystemController {
 		transaction.put("command", PAY_COMMAND);
 		transaction.put("transactionContent", contents);
 		transaction.put("amount", amount);
-		transaction.put("createdAt", Utils.getToday());
+		transaction.put("createdAt", Utils.getToday()); // Data coupling
 
 		Map<String, Object> requestMap = new MyMap();
 		requestMap.put("version", VERSION);
 		requestMap.put("transaction", transaction);
 
-		String responseText = interbankBoundary.query(Configs.PROCESS_TRANSACTION_URL, generateData(requestMap));
+		String responseText = interbankBoundary.query(Configs.PROCESS_TRANSACTION_URL, generateData(requestMap));//Data coupling	
 		MyMap response = null;
 		try {
 			response = MyMap.toMyMap(responseText, 0);
@@ -66,14 +66,14 @@ public class InterbankSubsystemController {
 	private PaymentTransaction makePaymentTransaction(MyMap response) {
 		if (response == null)
 			return null;
-		MyMap transcation = (MyMap) response.get("transaction");
+		MyMap transcation = (MyMap) response.get("transaction");// Data coupling
 		CreditCard card = new CreditCard((String) transcation.get("cardCode"), (String) transcation.get("owner"),
 				Integer.parseInt((String) transcation.get("cvvCode")), (String) transcation.get("dateExpired"));
 		PaymentTransaction trans = new PaymentTransaction((String) response.get("errorCode"), card,
 				(String) transcation.get("transactionId"), (String) transcation.get("transactionContent"),
 				Integer.parseInt((String) transcation.get("amount")), (String) transcation.get("createdAt"));
 
-		switch (trans.getErrorCode()) {
+		switch (trans.getErrorCode()) { // Data coupling
 		case "00":
 			break;
 		case "01":

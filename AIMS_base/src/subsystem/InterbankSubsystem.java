@@ -19,7 +19,7 @@ public class InterbankSubsystem implements InterbankInterface {
 	/**
 	 * Represent the controller of the subsystem
 	 */
-	private InterbankSubsystemController ctrl;
+	private InterbankSubsystemController ctrl; // Data coupling
 
 	/**
 	 * Initializes a newly created {@code InterbankSubsystem} object so that it
@@ -27,7 +27,7 @@ public class InterbankSubsystem implements InterbankInterface {
 	 */
 	public InterbankSubsystem() {
 		String str = new String();
-		this.ctrl = new InterbankSubsystemController();
+		this.ctrl = new InterbankSubsystemController(); 
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class InterbankSubsystem implements InterbankInterface {
 	 *      java.lang.String)
 	 */
 	public PaymentTransaction payOrder(CreditCard card, int amount, String contents) {
-		PaymentTransaction transaction = ctrl.payOrder(card, amount, contents);
+		PaymentTransaction transaction = ctrl.payOrder(card, amount, contents); // Data coupling
 		return transaction;
 	}
 
@@ -44,7 +44,7 @@ public class InterbankSubsystem implements InterbankInterface {
 	 *      java.lang.String)
 	 */
 	public PaymentTransaction refund(CreditCard card, int amount, String contents) {
-		PaymentTransaction transaction = ctrl.refund(card, amount, contents);
+		PaymentTransaction transaction = ctrl.refund(card, amount, contents); // Data coupling
 		return transaction;
 	}
 }
