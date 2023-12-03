@@ -18,7 +18,7 @@
         <summary>Nguyễn Thế Duyệt</summary>
         <br>
         - Assigned tasks:<br>
-          - Detect coupling in controller package and utils package<br>
+          + Detect coupling in controller package and utils package<br>
         - Implementation details:<br>
           - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/3<br>
           - Specific implementation details:<br>
@@ -27,7 +27,7 @@
         <summary>Trần Đức Duy</summary>
         <br>
         - Assigned tasks:<br>
-          - Detect coupling of subsystem classes<br>
+          + Detect coupling of subsystem classes<br>
         - Implementation details:<br>
           - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/1<br>
           - Specific implementation details:<br>
@@ -36,7 +36,7 @@
         <summary>Đinh Hữu Hải</summary>
         <br>
         - Assigned tasks:<br>
-          - Detect coupling in views package<br>
+          + Detect coupling in views package<br>
         - Implementation details:<br>
           - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/5<br>
           - Specific implementation details:<br>
