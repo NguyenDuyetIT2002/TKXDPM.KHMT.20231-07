@@ -45,6 +45,7 @@ public class MediaHandler extends FXMLScreenHandler{
     private Media media;
     private HomeScreenHandler home;
 
+    // stamp coupling
     public MediaHandler(String screenPath, Media media, HomeScreenHandler home) throws SQLException, IOException{
         super(screenPath);
         this.media = media;
