@@ -41,4 +41,13 @@
           - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/5<br>
           - Specific implementation details:<br>
     </details>
+    <details>
+        <summary>Phạm Thị Hồng Hạnh</summary>
+        <br>
+        - Assigned tasks:<br>
+          + Detect coupling in entity package<br>
+        - Implementation details:<br>
+          - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/6<br>
+          - Specific implementation details:<br>
+    </details>
 </details>
