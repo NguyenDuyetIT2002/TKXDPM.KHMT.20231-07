@@ -55,7 +55,7 @@ public class Cart {
         return total;
     }
 
-    public void checkAvailabilityOfProduct() throws SQLException{ //control coupling
+    public void checkAvailabilityOfProduct() throws SQLException{
         boolean allAvai = true;
         for (Object object : lstCartMedia) {
             CartMedia cartMedia = (CartMedia) object;
@@ -66,7 +66,7 @@ public class Cart {
         if (!allAvai) throw new MediaNotAvailableException("Some media not available");
     }
 
-    public CartMedia checkMediaInCart(Media media){
+    public CartMedia checkMediaInCart(Media media){ // stamp coupling
         for (CartMedia cartMedia : lstCartMedia) {
             if (cartMedia.getMedia().getId() == media.getId()) return cartMedia;
         }
