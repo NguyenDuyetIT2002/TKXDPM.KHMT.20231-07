@@ -48,7 +48,7 @@
         - Assigned tasks:<br>
           + Detect coupling in entity package<br>
         - Implementation details:<br>
-          - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/6<br>
+          - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/6 + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/9<br>
           - Specific implementation details:<br>
     </details>
 </details>
