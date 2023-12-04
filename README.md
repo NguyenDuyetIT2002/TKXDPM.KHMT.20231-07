@@ -22,7 +22,7 @@
         - Implementation details:<br>
           - Pull request(s): <br>
             + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/3
-            + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/7
+            + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/7<br>
           - Specific implementation details:<br>
     </details>
     <details>
