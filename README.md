@@ -20,7 +20,9 @@
         - Assigned tasks:<br>
           + Detect coupling in controller package and utils package<br>
         - Implementation details:<br>
-          - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/3<br>
+          - Pull request(s): <br>
+            + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/3
+            + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/7
           - Specific implementation details:<br>
     </details>
     <details>
