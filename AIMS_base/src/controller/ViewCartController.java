@@ -7,6 +7,8 @@ import entity.media.Media;
 import entity.cart.Cart;
 import entity.cart.CartMedia;
 
+
+// stamp coupling
 /**
  * This class controls the flow of events when users view the Cart
  * @author nguyenlm
