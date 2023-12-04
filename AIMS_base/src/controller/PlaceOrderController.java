@@ -80,6 +80,8 @@ public class PlaceOrderController extends BaseController{
    * @throws InterruptedException
    * @throws IOException
    */
+
+    // procedural cohesion. those validate method should be in another component
     public void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{
     	
     }
@@ -100,6 +102,7 @@ public class PlaceOrderController extends BaseController{
     }
     
 
+    // procedural cohesion, this method can be another component with fast delivery option 
     /**
      * This method calculates the shipping fees of order
      * @param order
