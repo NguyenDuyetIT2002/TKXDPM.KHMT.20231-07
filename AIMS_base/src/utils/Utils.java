@@ -10,10 +10,12 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Logger;
 
+//control coupling
+
 /**
  * @author nguyenlm Contains helper functions
  */
-public class Utils { // common coupling
+public class Utils {
 
 	public static DateFormat DATE_FORMATER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	private static Logger LOGGER = getLogger(Utils.class.getName());

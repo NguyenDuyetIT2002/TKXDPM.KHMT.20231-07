@@ -14,6 +14,8 @@ import subsystem.InterbankInterface;
 import subsystem.InterbankSubsystem;
 
 
+//stamp coupling, control coupling
+
 /**
  * This {@code PaymentController} class control the flow of the payment process
  * in our AIMS Software.
@@ -21,7 +23,7 @@ import subsystem.InterbankSubsystem;
  * @author hieud
  *
  */
-public class PaymentController extends BaseController { // common coupling
+public class PaymentController extends BaseController { 
 
 	/**
 	 * Represent the card used for payment
@@ -44,7 +46,7 @@ public class PaymentController extends BaseController { // common coupling
 	 * @throws InvalidCardException - if the string does not represent a valid date
 	 *                              in the expected format
 	 */
-	private String getExpirationDate(String date) throws InvalidCardException { //content coupling, common coupling with payOrder
+	private String getExpirationDate(String date) throws InvalidCardException { 
 		String[] strs = date.split("/");
 		if (strs.length != 2) {
 			throw new InvalidCardException();
@@ -82,7 +84,7 @@ public class PaymentController extends BaseController { // common coupling
 	 *         message.
 	 */
 	public Map<String, String> payOrder(int amount, String contents, String cardNumber, String cardHolderName,
-			String expirationDate, String securityCode) { // common coupling with get ExpirationDate, control coupling
+			String expirationDate, String securityCode) { 
 		Map<String, String> result = new Hashtable<String, String>();
 		result.put("RESULT", "PAYMENT FAILED!");
 		try {

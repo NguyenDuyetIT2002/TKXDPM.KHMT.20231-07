@@ -15,11 +15,13 @@ import entity.order.Order;
 import entity.order.OrderMedia;
 import views.screen.popup.PopupScreen;
 
+
+//control coupling, stamp coupling
 /**
  * This class controls the flow of place order usecase in our AIMS project
  * @author nguyenlm
  */
-public class PlaceOrderController extends BaseController{ // common coupling
+public class PlaceOrderController extends BaseController{ 
 
     /**
      * Just for logging purpose
