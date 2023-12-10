@@ -9,6 +9,10 @@ import entity.cart.CartMedia;
 
 
 // stamp coupling
+
+/** cohesion tốt, 2 sub component là checkAvailabilityOfProduct() và getCartSubtotal dùng các phương thức đến từ cùng class Cart
+ * và đều phục vụ cho mục đích hiển thị giỏ hàng
+ * /
 /**
  * This class controls the flow of events when users view the Cart
  * @author nguyenlm
