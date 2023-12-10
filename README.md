@@ -24,3 +24,17 @@
           - Specific implementation details:<br>
     </details>
 </details>
+
+<details>
+    <summary>W14: 4/12/2023~11/12/2023</summary>
+    <br>
+    <details>
+        <summary>Trần Đức Duy</summary>
+        <br>
+        - Assigned tasks:<br>
+          - Detect cohesion <br>
+        - Implementation details:<br>
+          - Pull request(s): <br>
+          - Specific implementation details:<br>
+    </details>
+</details>
