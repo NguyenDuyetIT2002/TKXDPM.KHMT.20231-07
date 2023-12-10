@@ -58,6 +58,13 @@
     <br>
     <details>
         <summary>Nguyễn Thế Duyệt</summary>
+        <br>
+        - Assigned tasks:<br>
+          + Detect cohesion in ViewCartController and related class, like Cart, CardMedia and Media<br>
+        - Implementation details:<br>
+          - Pull request(s): <br>
+            + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/12<br>
+          - Specific implementation details:<br>
     </details>
     <details>
         <summary>Trần Đức Duy</summary>
