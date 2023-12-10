@@ -36,5 +36,8 @@
         - Implementation details:<br>
           - Pull request(s): <br>
           - Specific implementation details:<br>
+          - Image:<br>
+            https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/blob/duy/assets/PaymentControllerCohesion.png<br>
+            https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/blob/duy/assets/PlaceOrderControllerCohesion.png
     </details>
 </details>
