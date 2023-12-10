@@ -14,6 +14,7 @@ import subsystem.interbank.InterbankSubsystemController;
  * @author hieud
  *
  */
+// communicational cohension - các phương thức đều truy cập và thao tác cùng một cấu trúc dữ liệu InterbankSubsystemController
 public class InterbankSubsystem implements InterbankInterface {
 
 	/**
