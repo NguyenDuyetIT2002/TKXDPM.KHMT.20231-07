@@ -52,6 +52,7 @@
           - Specific implementation details:<br>
     </details>
 </details>
+
 <details>
     <summary>W14: 04/12/2023~10/12/2023</summary>
     <br>
@@ -74,3 +75,4 @@
         <summary>Phạm Thị Hồng Hạnh</summary>
     </details>
 </details>
+
