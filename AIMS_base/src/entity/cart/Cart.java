@@ -7,6 +7,8 @@ import java.util.List;
 import common.exception.MediaNotAvailableException;
 import entity.media.Media;
 
+//**Phương thức checkMediaInCart có thể được xem xét đặt ở một lớp khác, trường hợp này có thể là communicational cohesion*/
+
 public class Cart {
     
     private List<CartMedia> lstCartMedia;

@@ -15,11 +15,13 @@ import entity.order.Order;
 import entity.order.OrderMedia;
 import views.screen.popup.PopupScreen;
 
+
+//control coupling, stamp coupling
 /**
  * This class controls the flow of place order usecase in our AIMS project
  * @author nguyenlm
  */
-public class PlaceOrderController extends BaseController{ // common coupling
+public class PlaceOrderController extends BaseController{ 
 
     /**
      * Just for logging purpose
@@ -80,8 +82,9 @@ public class PlaceOrderController extends BaseController{ // common coupling
    * @throws InterruptedException
    * @throws IOException
    */
-    public void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{ //Temporal Cohesion
-    	//Cả hai phương thức này liên quan đến xử lý thông tin giao hàng và được gọi liên tiếp trong một quy trình nhất định.
+  
+    public void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{ //Temporal Cohesion 
+        //Cả hai phương thức này liên quan đến xử lý thông tin giao hàng và được gọi liên tiếp trong một quy trình nhất định.
         //Procedural Cohesion
         //validateDeliveryInfo, validatePhoneNumber, validateName, validateAddress: Các phương thức này đều liên quan đến việc kiểm tra thông tin giao hàng và thông tin người nhận.
     }
@@ -103,6 +106,7 @@ public class PlaceOrderController extends BaseController{ // common coupling
     }
     
 
+    // procedural cohesion, this method can be another component with fast delivery option 
     /**
      * This method calculates the shipping fees of order
      * @param order

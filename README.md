@@ -20,7 +20,8 @@
         - Assigned tasks:<br>
           + Detect coupling in controller package and utils package<br>
         - Implementation details:<br>
-          - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/3<br>
+          - Pull request(s): <br>
+            + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/3<br>
           - Specific implementation details:<br>
     </details>
     <details>
@@ -47,7 +48,38 @@
         - Assigned tasks:<br>
           + Detect coupling in entity package<br>
         - Implementation details:<br>
-          - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/6<br>
+          - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/6 + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/9<br>
           - Specific implementation details:<br>
     </details>
 </details>
+
+<details>
+    <summary>W14: 04/12/2023~10/12/2023</summary>
+    <br>
+    <details>
+        <summary>Nguyễn Thế Duyệt</summary>
+        <br>
+        - Assigned tasks:<br>
+          + Detect cohesion in ViewCartController and related class, like Cart, CardMedia and Media<br>
+        - Implementation details:<br>
+          - Pull request(s): <br>
+            + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/12<br>
+          - Specific implementation details:<br>
+    </details>
+    <details>
+        <summary>Trần Đức Duy</summary>
+    </details>
+    <details>
+        <summary>Đinh Hữu Hải</summary>
+        <br>
+        - Assigned tasks:<br>
+          + Detect cohension in subsystem package<br>
+        - Implementation details:<br>
+          - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/11<br>
+          - Specific implementation details:<br>
+    </details>
+    <details>
+        <summary>Phạm Thị Hồng Hạnh</summary>
+    </details>
+</details>
+
