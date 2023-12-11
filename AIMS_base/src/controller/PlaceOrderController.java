@@ -82,11 +82,10 @@ public class PlaceOrderController extends BaseController{
    * @throws InterruptedException
    * @throws IOException
    */
-  
-    public void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{ //Temporal Cohesion 
-        //Cả hai phương thức này liên quan đến xử lý thông tin giao hàng và được gọi liên tiếp trong một quy trình nhất định.
-        //Procedural Cohesion
-        //validateDeliveryInfo, validatePhoneNumber, validateName, validateAddress: Các phương thức này đều liên quan đến việc kiểm tra thông tin giao hàng và thông tin người nhận.
+
+    //Procedural cohesion
+    public void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{
+    	
     }
     
     public boolean validatePhoneNumber(String phoneNumber) { //Procedural Cohesion
