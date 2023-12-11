@@ -13,6 +13,7 @@ public class FXMLScreenHandler {
 	protected FXMLLoader loader;
 	protected AnchorPane content;
 
+	// control coupling
 	public FXMLScreenHandler(String screenPath) throws IOException {
 		this.loader = new FXMLLoader(getClass().getResource(screenPath));
 		// Set this class as the controller
@@ -28,6 +29,7 @@ public class FXMLScreenHandler {
 		return this.loader;
 	}
 
+	// control coupling
 	public void setImage(ImageView imv, String path){
 		File file = new File(path);
 		Image img = new Image(file.toURI().toString());

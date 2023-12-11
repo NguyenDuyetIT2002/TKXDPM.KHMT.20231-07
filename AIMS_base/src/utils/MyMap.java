@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+
+//control coupling
 /**
  * The {@link utils.MyMap JSON} class represents JSON objects. 
  * To create a new JSON object,
@@ -14,7 +16,7 @@ import java.util.Map;
  * @author hieud
  *
  */
-public class MyMap extends LinkedHashMap<String, Object> {
+public class MyMap extends LinkedHashMap<String, Object> { 
 	private static final long serialVersionUID = 1L;
 
 	/**

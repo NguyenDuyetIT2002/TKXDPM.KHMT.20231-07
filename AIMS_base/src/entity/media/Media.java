@@ -14,6 +14,8 @@ import utils.Utils;
  * The general media class, for another media it can be done by inheriting this class
  * @author nguyenlm
  */
+
+// functional cohesion, không chắc chắn về việc các phương thức getMediaById, getQuantity, getAllMedia có nên được đặt ở một lớp khác thực hiện chức năng riêng về truy vấn
 public class Media {
 
     private static Logger LOGGER = Utils.getLogger(Media.class.getName());
@@ -85,7 +87,7 @@ public class Media {
         return medium;
     }
 
-    public void updateMediaFieldById(String tbname, int id, String field, Object value) throws SQLException {
+    public void updateMediaFieldById(String tbname, int id, String field, Object value) throws SQLException { //data coupling
         Statement stm = AIMSDB.getConnection().createStatement();
         if (value instanceof String){
             value = "\"" + value + "\"";

@@ -104,7 +104,7 @@ public class Book extends Media {
     }
 
     @Override
-    public Media getMediaById(int id) throws SQLException {
+    public Media getMediaById(int id) throws SQLException { //data coupling
         String sql = "SELECT * FROM "+
                      "aims.Book " +
                      "INNER JOIN aims.Media " +

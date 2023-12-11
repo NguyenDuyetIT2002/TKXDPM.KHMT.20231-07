@@ -15,11 +15,13 @@ import entity.order.Order;
 import entity.order.OrderMedia;
 import views.screen.popup.PopupScreen;
 
+
+//control coupling, stamp coupling
 /**
  * This class controls the flow of place order usecase in our AIMS project
  * @author nguyenlm
  */
-public class PlaceOrderController extends BaseController{
+public class PlaceOrderController extends BaseController{ 
 
     /**
      * Just for logging purpose
@@ -30,7 +32,7 @@ public class PlaceOrderController extends BaseController{
      * This method checks the avalibility of product when user click PlaceOrder button
      * @throws SQLException
      */
-    public void placeOrder() throws SQLException{
+    public void placeOrder() throws SQLException{ //Functional cohesion
         Cart.getCart().checkAvailabilityOfProduct();
     }
 
@@ -39,7 +41,8 @@ public class PlaceOrderController extends BaseController{
      * @return Order
      * @throws SQLException
      */
-    public Order createOrder() throws SQLException{
+    public Order createOrder() throws SQLException{ //Sequential Cohesion
+        //createOrder và createInvoice: Cả hai phương thức này đều liên quan đến việc tạo đơn hàng và hóa đơn theo một thứ tự cụ thể.
         Order order = new Order();
         for (Object object : Cart.getCart().getListMedia()) {
             CartMedia cartMedia = (CartMedia) object;
@@ -58,7 +61,7 @@ public class PlaceOrderController extends BaseController{
      */
     public Invoice createInvoice(Order order) {
         return new Invoice(order);
-    }
+    } //Sequential Cohesion
 
     /**
      * This method takes responsibility for processing the shipping info from user
@@ -66,9 +69,10 @@ public class PlaceOrderController extends BaseController{
      * @throws InterruptedException
      * @throws IOException
      */
-    public void processDeliveryInfo(HashMap info) throws InterruptedException, IOException{
+    public void processDeliveryInfo(HashMap info) throws InterruptedException, IOException{ //Temporal Cohesion
         LOGGER.info("Process Delivery Info");
         LOGGER.info(info.toString());
+        //
         validateDeliveryInfo(info);
     }
     
@@ -78,33 +82,36 @@ public class PlaceOrderController extends BaseController{
    * @throws InterruptedException
    * @throws IOException
    */
+
     //Procedural cohesion
     public void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{
     	
     }
     
-    public boolean validatePhoneNumber(String phoneNumber) {
+    public boolean validatePhoneNumber(String phoneNumber) { //Procedural Cohesion
+        //
     	// TODO: your work
     	return false;
     }
     
-    public boolean validateName(String name) {
+    public boolean validateName(String name) { //Procedural Cohesion
     	// TODO: your work
     	return false;
     }
     
-    public boolean validateAddress(String address) {
+    public boolean validateAddress(String address) { //Procedural Cohesion
     	// TODO: your work
     	return false;
     }
     
 
+    // procedural cohesion, this method can be another component with fast delivery option 
     /**
      * This method calculates the shipping fees of order
      * @param order
      * @return shippingFee
      */
-    public int calculateShippingFee(Order order){
+    public int calculateShippingFee(Order order){ // Logical Cohesion
         Random rand = new Random();
         int fees = (int)( ( (rand.nextFloat()*10)/100 ) * order.getAmount() );
         LOGGER.info("Order Amount: " + order.getAmount() + " -- Shipping Fees: " + fees);

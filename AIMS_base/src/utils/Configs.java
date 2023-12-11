@@ -6,7 +6,7 @@ import javafx.scene.text.FontWeight;
 /**
  * @author nguyenlm Contains the configs for AIMS Project
  */
-public class Configs {
+public class Configs { 
 
 	// api constants
 	public static final String GET_BALANCE_URL = "https://ecopark-system-api.herokuapp.com/api/card/balance/118609_group1_2020";
