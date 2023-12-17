@@ -119,7 +119,7 @@
         - Assigned tasks:<br>
           - Detect SOLID violation in PlaceOrderController <br>
         - Implementation details:<br>
-          - Pull request(s): <br>
+          - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/14<br>
           - Specific implementation details:<br>
           - Image:<br>
             https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/blob/duy/assets/SOLID%20violation.png
