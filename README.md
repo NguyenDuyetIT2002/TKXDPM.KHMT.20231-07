@@ -74,3 +74,16 @@
         <summary>Phạm Thị Hồng Hạnh</summary>
     </details>
 </details>
+<details>
+    <summary>W14: 11/12/2023~18/12/2023</summary>
+    <br>
+    <details>
+        <summary>Đinh Hữu Hải</summary>
+        <br>
+        - Assigned tasks:<br>
+          + Detect SOLID in subsystem package<br>
+        - Implementation details:<br>
+          - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/15<br>
+          - Specific implementation details:<br>
+    </details>
+</details>
