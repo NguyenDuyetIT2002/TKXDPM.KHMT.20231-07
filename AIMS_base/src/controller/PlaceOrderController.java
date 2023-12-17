@@ -19,9 +19,13 @@ import views.screen.popup.PopupScreen;
 //control coupling, stamp coupling
 /**
  * This class controls the flow of place order usecase in our AIMS project
- * @author nguyenlm
  */
-public class PlaceOrderController extends BaseController{ 
+
+ // Vi phạm Single responsibility princible do lớp đang thực hiện cả chức năng 
+ // tính phí vận chuyển (method calculateShippingFee)
+ // kiểm tra thông tin đơn hàng (method validateDeliveryInfo)
+ // Cần tách các chức năng này ra 1 lớp riêng
+public class PlaceOrderController extends BaseController{
 
     /**
      * Just for logging purpose
