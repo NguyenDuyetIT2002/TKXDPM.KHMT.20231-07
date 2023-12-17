@@ -140,7 +140,7 @@
           + Detect cohesion in PlaceOrderController<br>
         - Implementation details:<br>
           - Pull request(s): <br>
-            + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/13<br>
+            + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/17<br>
           - Specific implementation details:
         <br>
     </details>
