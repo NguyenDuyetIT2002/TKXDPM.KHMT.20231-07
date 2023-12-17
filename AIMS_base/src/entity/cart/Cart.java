@@ -8,7 +8,7 @@ import common.exception.MediaNotAvailableException;
 import entity.media.Media;
 
 //**Phương thức checkMediaInCart có thể được xem xét đặt ở một lớp khác, trường hợp này có thể là communicational cohesion*/
-
+//Không vi phạm SOLID
 public class Cart {
     
     private List<CartMedia> lstCartMedia;
