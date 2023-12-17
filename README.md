@@ -41,3 +41,18 @@
             https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/blob/duy/assets/PlaceOrderControllerCohesion.png
     </details>
 </details>
+
+<details>
+    <summary>W14: 11/12/2023~18/12/2023</summary>
+    <br>
+    <details>
+        <summary>Trần Đức Duy</summary>
+        <br>
+        - Assigned tasks:<br>
+          - Detect SOLID violation <br>
+        - Implementation details:<br>
+          - Pull request(s): <br>
+          - Specific implementation details:<br>
+          - Image:<br>
+    </details>
+</details>
