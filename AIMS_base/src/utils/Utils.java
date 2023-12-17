@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Logger;
 
+//control coupling
+
 /**
  * @author nguyenlm Contains helper functions
  */
@@ -51,7 +53,7 @@ public class Utils {
 	 * @param message - plain text as {@link java.lang.String String}.
 	 * @return cipher text as {@link java.lang.String String}.
 	 */
-	public static String md5(String message) {
+	public static String md5(String message) { // control coupling
 		String digest = null;
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");

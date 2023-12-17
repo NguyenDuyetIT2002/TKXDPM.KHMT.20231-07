@@ -51,6 +51,7 @@ public class ShippingScreenHandler extends BaseScreenHandler implements Initiali
 		this.order = order;
 	}
 
+	// stamp coupling
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		final BooleanProperty firstTime = new SimpleBooleanProperty(true); // Variable to store the focus on stage load
@@ -95,6 +96,7 @@ public class ShippingScreenHandler extends BaseScreenHandler implements Initiali
 		InvoiceScreenHandler.show();
 	}
 
+	// common coupling
 	public PlaceOrderController getBController(){
 		return (PlaceOrderController) super.getBController();
 	}

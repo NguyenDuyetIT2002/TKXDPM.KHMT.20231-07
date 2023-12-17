@@ -57,6 +57,7 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 
 	private Invoice invoice;
 
+	// common coupling
 	public InvoiceScreenHandler(Stage stage, String screenPath, Invoice invoice) throws IOException {
 		super(stage, screenPath);
 		this.invoice = invoice;
@@ -88,6 +89,7 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 
 	}
 
+	// control coupling, common coupling
 	@FXML
 	void confirmInvoice(MouseEvent event) throws IOException {
 		BaseScreenHandler paymentScreen = new PaymentScreenHandler(this.stage, Configs.PAYMENT_SCREEN_PATH, invoice);

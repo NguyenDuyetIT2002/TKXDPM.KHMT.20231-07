@@ -122,6 +122,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         addMenuItem(2, "CD", splitMenuBtnSearch);
     }
 
+    // content coupling, common coupling
     public void setImage(){
         // fix image path caused by fxml
         File file1 = new File(Configs.IMAGE_PATH + "/" + "Logo.png");
@@ -133,6 +134,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         cartImage.setImage(img2);
     }
 
+    // control coupling, common coupling
     public void addMediaHome(List items){
         ArrayList mediaItems = (ArrayList)((ArrayList) items).clone();
         hboxMedia.getChildren().forEach(node -> {
@@ -153,6 +155,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         }
     }
 
+    // controller coupling
     private void addMenuItem(int position, String text, MenuButton menuButton){
         MenuItem menuItem = new MenuItem();
         Label label = new Label();

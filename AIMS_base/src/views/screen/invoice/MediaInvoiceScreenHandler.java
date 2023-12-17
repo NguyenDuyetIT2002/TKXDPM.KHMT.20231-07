@@ -46,6 +46,7 @@ public class MediaInvoiceScreenHandler extends FXMLScreenHandler{
         super(screenPath);
     }
 
+    // content coupling, stamp coupling
     public void setOrderMedia(OrderMedia orderMedia) throws SQLException{
         this.orderMedia = orderMedia;
         setMediaInfo();

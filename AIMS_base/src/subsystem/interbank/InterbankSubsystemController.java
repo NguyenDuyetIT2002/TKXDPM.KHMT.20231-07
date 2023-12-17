@@ -16,6 +16,7 @@ import utils.Configs;
 import utils.MyMap;
 import utils.Utils;
 
+// communicational cohension - các phương thức đều có cùng output cấu trúc dữ liệu PaymentTransaction
 public class InterbankSubsystemController {
 
 	private static final String PUBLIC_KEY = "AQzdE8O/fR8=";
