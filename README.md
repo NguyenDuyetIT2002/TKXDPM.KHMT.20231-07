@@ -124,13 +124,13 @@
           - Image:<br>
             https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/blob/duy/assets/SOLID%20violation.png
     </details>
-    <details>
+     <details>
         <summary>Đinh Hữu Hải</summary>
         <br>
         - Assigned tasks:<br>
-          + Detect cohension in subsystem package<br>
+          + Detect SOLID in subsystem package<br>
         - Implementation details:<br>
-          - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/11<br>
+          - Pull request(s): https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/15<br>
           - Specific implementation details:<br>
     </details>
     <details>
@@ -145,4 +145,3 @@
         <br>
     </details>
 </details>
-
