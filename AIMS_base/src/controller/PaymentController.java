@@ -13,7 +13,11 @@ import entity.payment.PaymentTransaction;
 import subsystem.InterbankInterface;
 import subsystem.InterbankSubsystem;
 
-
+/*
+SRP: vì nó đảm nhận nhiều trách nhiệm.
+OCP: vì lớp này có thể cần được sửa đổi khi phương thức thanh toán mới được giới thiệu.
+DIP: phụ thuộc trực tiếp vào lớp cụ thể InterbankSubsystem thay vì sử dụng một giao diện.
+ */
 //stamp coupling, control coupling
 
 /**
