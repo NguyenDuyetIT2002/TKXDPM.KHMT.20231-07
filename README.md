@@ -137,7 +137,7 @@
         <summary>Phạm Thị Hồng Hạnh</summary>
         <br>
         - Assigned tasks:<br>
-          + Detect cohesion in PlaceOrderController<br>
+          + Detect cohesion in PaymentController<br>
         - Implementation details:<br>
           - Pull request(s): <br>
             + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/17<br>
