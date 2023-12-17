@@ -19,9 +19,13 @@ import views.screen.popup.PopupScreen;
 //control coupling, stamp coupling
 /**
  * This class controls the flow of place order usecase in our AIMS project
- * @author nguyenlm
  */
-public class PlaceOrderController extends BaseController{ 
+
+ // Vi phạm Single responsibility princible do lớp đang thực hiện cả chức năng 
+ // tính phí vận chuyển (method calculateShippingFee)
+ // kiểm tra thông tin đơn hàng (method validateDeliveryInfo)
+ // Cần tách các chức năng này ra 1 lớp riêng
+public class PlaceOrderController extends BaseController{
 
     /**
      * Just for logging purpose
@@ -82,11 +86,10 @@ public class PlaceOrderController extends BaseController{
    * @throws InterruptedException
    * @throws IOException
    */
-  
-    public void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{ //Temporal Cohesion 
-        //Cả hai phương thức này liên quan đến xử lý thông tin giao hàng và được gọi liên tiếp trong một quy trình nhất định.
-        //Procedural Cohesion
-        //validateDeliveryInfo, validatePhoneNumber, validateName, validateAddress: Các phương thức này đều liên quan đến việc kiểm tra thông tin giao hàng và thông tin người nhận.
+
+    //Procedural cohesion
+    public void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{
+    	
     }
     
     public boolean validatePhoneNumber(String phoneNumber) { //Procedural Cohesion

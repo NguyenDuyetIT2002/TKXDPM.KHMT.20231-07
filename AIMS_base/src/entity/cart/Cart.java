@@ -8,7 +8,8 @@ import common.exception.MediaNotAvailableException;
 import entity.media.Media;
 
 //**Phương thức checkMediaInCart có thể được xem xét đặt ở một lớp khác, trường hợp này có thể là communicational cohesion*/
-//Không vi phạm SOLID
+// SOLID: không rõ ràng, có thể đã có sự vi phạm nguyên lí D: Dependency inversion principle giữa Cart và SQLException cũng như MediaNotAvailable Exception
+// Có thể tạo ra một  interface để xử lý conception và để cart phụ thuộc vào interface này
 public class Cart {
     
     private List<CartMedia> lstCartMedia;

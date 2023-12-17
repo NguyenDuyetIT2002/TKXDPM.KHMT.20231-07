@@ -17,6 +17,9 @@ import utils.MyMap;
 import utils.Utils;
 
 // communicational cohension - các phương thức đều có cùng output cấu trúc dữ liệu PaymentTransaction
+
+// vi phạm single responsibility  do thực hiện cả nhiều chức năng như là refund, payorder và makePaymentTransaction
+// giải pháp: cần tách ra thành các lớp riêng như là refundController, payOrderController, makePaymentTransactionController
 public class InterbankSubsystemController {
 
 	private static final String PUBLIC_KEY = "AQzdE8O/fR8=";

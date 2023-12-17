@@ -16,6 +16,7 @@ import utils.Utils;
  */
 
 // functional cohesion, không chắc chắn về việc các phương thức getMediaById, getQuantity, getAllMedia có nên được đặt ở một lớp khác thực hiện chức năng riêng về truy vấn
+// SOLID: Single Responsibility Principlem class Media thực hiện rất nhiều chức năng, có thể xem xét tách một số chức năng ra riêng
 public class Media {
 
     private static Logger LOGGER = Utils.getLogger(Media.class.getName());

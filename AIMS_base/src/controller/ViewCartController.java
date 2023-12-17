@@ -13,6 +13,9 @@ import entity.cart.CartMedia;
 /** cohesion tốt, 2 sub component là checkAvailabilityOfProduct() và getCartSubtotal dùng các phương thức đến từ cùng class Cart
  * và đều phục vụ cho mục đích hiển thị giỏ hàng
  * /
+ * 
+ * SOLID: class ViewCartController thực hiện 2 nhiệm vụ là check product availability và getCartSubtotal, điều này có thể đã vi phạm đến nguyên lý
+ * S - Single Response Principle
 /**
  * This class controls the flow of events when users view the Cart
  * @author nguyenlm
