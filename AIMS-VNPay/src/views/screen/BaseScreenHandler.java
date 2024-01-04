@@ -6,9 +6,12 @@ import javafx.stage.Stage;
 import views.screen.home.HomeScreenHandler;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
 import java.util.Hashtable;
+import java.util.ResourceBundle;
 
-public class BaseScreenHandler extends FXMLScreenHandler {
+public abstract class BaseScreenHandler extends FXMLScreenHandler {
 
     protected final Stage stage;
     protected HomeScreenHandler homeScreenHandler;

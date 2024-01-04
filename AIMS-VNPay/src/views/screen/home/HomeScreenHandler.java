@@ -1,16 +1,14 @@
 package views.screen.home;
 
 import common.exception.ViewCartException;
+import controller.AuthenticationController;
 import controller.HomeController;
 import controller.ViewCartController;
 import entity.cart.Cart;
 import entity.media.Media;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -44,6 +42,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     @FXML
     private ImageView cartImage;
+
+    @FXML
+    private Button loginBtn;
 
     @FXML
     private VBox vboxMedia1;
@@ -120,6 +121,19 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 cartScreen.requestToViewCart(this);
             } catch (IOException | SQLException e1) {
                 throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
+            }
+        });
+
+        loginBtn.setOnMouseClicked(e -> {
+            LoginScreenHandler loginScreen;
+            try {
+                LOGGER.info("User click to login");
+                loginScreen = new LoginScreenHandler(this.stage, Configs.LOGIN_SCREEN_PATH);
+                loginScreen.setHomeScreenHandler(this);
+                loginScreen.setBController(new AuthenticationController());
+                loginScreen.show();
+            } catch (Exception e1) {
+                e1.printStackTrace();
             }
         });
         addMediaHome(this.homeItems);

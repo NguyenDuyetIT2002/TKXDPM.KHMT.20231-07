@@ -33,13 +33,15 @@ public class Media {
         stm = AIMSDB.getConnection().createStatement();
     }
 
-    public Media(int id, String title, String category, int price, int quantity, String type) throws SQLException {
+    public Media(int id, String title, String category, int price, int value, int quantity, String type) throws SQLException {
         this.id = id;
         this.title = title;
         this.category = category;
         this.price = price;
+        this.value = value;
         this.quantity = quantity;
         this.type = type;
+
 
         //stm = AIMSDB.getConnection().createStatement();
     }
@@ -76,7 +78,7 @@ public class Media {
      * @throws SQLException
      */
     public Media getMediaById(int id) throws SQLException {
-        String sql = "SELECT * FROM Media ;";
+        String sql = "SELECT * FROM Media WHERE id = " + id;
         Statement stm = AIMSDB.getConnection().createStatement();
         ResultSet res = stm.executeQuery(sql);
         if (res.next()) {
@@ -88,6 +90,7 @@ public class Media {
                     .setCategory(res.getString("category"))
                     .setMediaURL(res.getString("imageUrl"))
                     .setPrice(res.getInt("price"))
+                    .setValue(res.getInt("value"))
                     .setType(res.getString("type"));
         }
         return null;
@@ -109,7 +112,9 @@ public class Media {
                     .setCategory(res.getString("category"))
                     .setMediaURL(res.getString("imageUrl"))
                     .setPrice(res.getInt("price"))
+                    .setValue(res.getInt("value"))
                     .setType(res.getString("type"));
+//            LOGGER.info("Media" + media.quantity);
             medium.add(media);
         }
         return medium;
@@ -130,6 +135,16 @@ public class Media {
         stm.executeUpdate(" update " + tbname + " set" + " "
                 + field + "=" + value + " "
                 + "where id=" + id + ";");
+    }
+
+    public int getCountMedia(String type) throws SQLException {
+        int countData = 0;
+        Statement stm = AIMSDB.getConnection().createStatement();
+        ResultSet res = stm.executeQuery("SELECT COUNT(id) FROM Media WHERE type = '" + type + "'");
+        if (res.next()) {
+            countData = res.getInt("COUNT(id)");
+        }
+        return countData;
     }
 
     /**
@@ -197,6 +212,13 @@ public class Media {
         return this;
     }
 
+    public int getValue() { return this.value; }
+
+    public Media setValue(int value) {
+        this.value = value;
+        return this;
+    }
+
     /**
      * @return String
      */
@@ -238,6 +260,7 @@ public class Media {
                 " id='" + id + "'" +
                 ", title='" + title + "'" +
                 ", category='" + category + "'" +
+                ", value='" + value + "'" +
                 ", price='" + price + "'" +
                 ", quantity='" + quantity + "'" +
                 ", type='" + type + "'" +
