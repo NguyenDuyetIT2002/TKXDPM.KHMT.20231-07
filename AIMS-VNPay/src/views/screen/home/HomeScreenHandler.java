@@ -5,12 +5,10 @@ import controller.HomeController;
 import controller.ViewCartController;
 import entity.cart.Cart;
 import entity.media.Media;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -26,10 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class HomeScreenHandler extends BaseScreenHandler implements Initializable {
@@ -60,7 +55,15 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     @FXML
     private SplitMenuButton splitMenuBtnSearch;
 
+    @FXML
+    private TextField textFieldSearch;
+
+    @FXML
+    private SplitMenuButton splitMenuBtnSort;
+
     private List homeItems;
+
+    private List homeSearchItems;
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
@@ -122,10 +125,13 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
             }
         });
+        homeSearchItems = homeItems;
         addMediaHome(this.homeItems);
         addMenuItem(0, "Book", splitMenuBtnSearch);
         addMenuItem(1, "DVD", splitMenuBtnSearch);
         addMenuItem(2, "CD", splitMenuBtnSearch);
+        sortByAscendingPrice(0, "Price: Low to Hight", splitMenuBtnSort);
+        sortByDescendingPrice(1, "Price: Hight to Low", splitMenuBtnSort);
     }
 
     public void setImage() {
@@ -196,4 +202,38 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         menuButton.getItems().add(position, menuItem);
     }
 
+    @FXML
+    public void handleSearch (ActionEvent event) {
+        String text = textFieldSearch.getText();
+        homeSearchItems = SearchHandler.handleSearch(homeItems, text);
+        addMediaHome(homeSearchItems);
+    }
+
+    private void sortByAscendingPrice(int position, String text, MenuButton menuButton) {
+        List<MediaHandler> sortedItems = new ArrayList<>(homeItems);
+        MenuItem menuItem = new MenuItem();
+        Label label = new Label();
+        label.prefWidthProperty().bind(menuButton.widthProperty().subtract(31));
+        label.setText(text);
+        label.setTextAlignment(TextAlignment.RIGHT);
+        menuItem.setGraphic(label);
+        menuItem.setOnAction(e -> {
+            addMediaHome(SortHandler.sortByAscendingPrice(homeSearchItems));
+        });
+        menuButton.getItems().add(position,menuItem );
+    }
+
+    private void sortByDescendingPrice(int position, String text, MenuButton menuButton) {
+        List<MediaHandler> sortedItems = new ArrayList<>(homeItems);
+        MenuItem menuItem = new MenuItem();
+        Label label = new Label();
+        label.prefWidthProperty().bind(menuButton.widthProperty().subtract(31));
+        label.setText(text);
+        label.setTextAlignment(TextAlignment.RIGHT);
+        menuItem.setGraphic(label);
+        menuItem.setOnAction(e -> {
+            addMediaHome(SortHandler.sortByDescendingPrice(homeSearchItems));
+        });
+        menuButton.getItems().add(position,menuItem );
+    }
 }
