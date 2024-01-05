@@ -2,8 +2,11 @@ package entity.media;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 import java.util.List;
+
+import entity.db.AIMSDB;
 
 public class CD extends Media {
 
@@ -115,17 +118,19 @@ public class CD extends Media {
      * @throws SQLException
      */
     @Override
-    public Media getMediaById(int id) throws SQLException {
+    public CD getMediaById(int id) throws SQLException {
         String sql = "SELECT * FROM " +
-                "aims.CD " +
-                "INNER JOIN aims.Media " +
+                "CD " +
+                "INNER JOIN Media " +
                 "ON Media.id = CD.id " +
                 "where Media.id = " + id + ";";
+        Statement stm = AIMSDB.getConnection().createStatement();
         ResultSet res = stm.executeQuery(sql);
         if (res.next()) {
 
             // from media table
-            String title = "";
+            String title = res.getString("title");
+            String imageURL = res.getString("imageURL");
             String type = res.getString("type");
             int price = res.getInt("price");
             int value = res.getInt("value");
@@ -138,8 +143,10 @@ public class CD extends Media {
             String musicType = res.getString("musicType");
             Date releasedDate = res.getDate("releasedDate");
 
-            return new CD(id, title, category, price, value, quantity, type,
+            CD cd = new CD(id, title, category, price, value, quantity, type,
                     artist, recordLabel, musicType, releasedDate);
+            cd.imageURL = imageURL;
+            return cd;
 
         } else {
             throw new SQLException();
