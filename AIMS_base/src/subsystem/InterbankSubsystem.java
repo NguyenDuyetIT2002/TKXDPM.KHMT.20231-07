@@ -15,6 +15,10 @@ import subsystem.interbank.InterbankSubsystemController;
  *
  */
 // communicational cohension - các phương thức đều truy cập và thao tác cùng một cấu trúc dữ liệu InterbankSubsystemController
+/*
+OCP: lớp này cần được sửa đổi khi có chức năng mới liên quan đến Interbank.
+DIP: vì nó phụ thuộc trực tiếp vào lớp cụ thể InterbankSubsystemController thay vì sử dụng một giao diện.
+ */
 public class InterbankSubsystem implements InterbankInterface {
 
 	/**

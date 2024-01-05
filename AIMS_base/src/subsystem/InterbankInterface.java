@@ -12,6 +12,9 @@ import entity.payment.PaymentTransaction;
  * @author hieud
  * 
  */
+/*
+ISP: vì buộc phải triển khai cả hai phương thức payOrder và refund.
+ */
 public interface InterbankInterface {
 
 	/**
