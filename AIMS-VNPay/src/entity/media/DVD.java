@@ -175,7 +175,7 @@ public class DVD extends Media {
      * @throws SQLException
      */
     @Override
-    public Media getMediaById(int id) throws SQLException {
+    public DVD getMediaById(int id) throws SQLException {
         String sql = "SELECT * FROM " +
                 "aims.DVD " +
                 "INNER JOIN aims.Media " +

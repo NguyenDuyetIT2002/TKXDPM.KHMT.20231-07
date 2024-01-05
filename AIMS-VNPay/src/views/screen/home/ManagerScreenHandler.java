@@ -156,11 +156,11 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	private Label totalCD;
 
 	@FXML
-	private Label labelCdId, labelCdTitle, labelCdCategory, labelCdPrice, labelCdValue, labelCdQuantity, labelCdType,
+	private Label labelCdId, labelCdTitle, labelCdCategory, labelCdPrice, labelCdValue, labelCdQuantity,
 	            labelCdArtist, labelCdRecordLabel, labelCdReleasedDate, labelCdMusicType;
 
 	@FXML
-	private TextField cdId, cdTitle, cdCategory, cdPrice, cdValue, cdQuantity, cdType, cdArtist, cdRecordLabel, cdMusicType;
+	private TextField cdId, cdTitle, cdCategory, cdPrice, cdValue, cdQuantity, cdArtist, cdRecordLabel, cdMusicType;
 
 	@FXML
 	private DatePicker cdReleasedDate;
@@ -207,6 +207,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 			bookForm.setVisible(false);
 			cdForm.setVisible(true);
 			dvdForm.setVisible(false);
+			showAllCD();
 		} else if (e.getSource() == dvdBtn) {
 			homeForm.setVisible(false);
 			bookForm.setVisible(false);
@@ -318,7 +319,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
-	        cdType.setText(selectedCD.getType());
 	        cdArtist.setText(selectedCD.getArtist());
 	        cdRecordLabel.setText(selectedCD.getRecordLabel());
 	        cdMusicType.setText(selectedCD.getMusicType());
@@ -332,7 +332,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	    cdPrice.setVisible(true);
 	    cdValue.setVisible(true);
 	    cdQuantity.setVisible(true);
-	    cdType.setVisible(true);
 	    cdArtist.setVisible(true);
 	    cdRecordLabel.setVisible(true);
 	    cdMusicType.setVisible(true);
@@ -344,7 +343,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	    labelCdPrice.setVisible(true);
 	    labelCdValue.setVisible(true);
 	    labelCdQuantity.setVisible(true);
-	    labelCdType.setVisible(true);
 	    labelCdArtist.setVisible(true);
 	    labelCdRecordLabel.setVisible(true);
 	    labelCdMusicType.setVisible(true);
@@ -360,7 +358,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	    cdPrice.clear();
 	    cdValue.clear();
 	    cdQuantity.clear();
-	    cdType.clear();
 	    cdArtist.clear();
 	    cdRecordLabel.clear();
 	    cdMusicType.clear();
@@ -372,7 +369,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	    cdPrice.setVisible(false);
 	    cdValue.setVisible(false);
 	    cdQuantity.setVisible(false);
-	    cdType.setVisible(false);
 	    cdArtist.setVisible(false);
 	    cdRecordLabel.setVisible(false);
 	    cdMusicType.setVisible(false);
@@ -384,7 +380,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	    labelCdPrice.setVisible(false);
 	    labelCdValue.setVisible(false);
 	    labelCdQuantity.setVisible(false);
-	    labelCdType.setVisible(false);
 	    labelCdArtist.setVisible(false);
 	    labelCdRecordLabel.setVisible(false);
 	    labelCdMusicType.setVisible(false);
@@ -543,7 +538,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 		cdValueCol.setCellValueFactory(new PropertyValueFactory<CD, Integer>("value"));
 		cdPriceCol.setCellValueFactory(new PropertyValueFactory<CD, Integer>("price"));
 		cdQuantityCol.setCellValueFactory(new PropertyValueFactory<CD, Integer>("quantity"));
-		cdTypeCol.setCellValueFactory(new PropertyValueFactory<CD, String>("type"));
 		cdCategoryCol.setCellValueFactory(new PropertyValueFactory<CD, String>("category"));
 		cdTitleCol.setCellValueFactory(new PropertyValueFactory<CD, String>("title"));
 		cdArtistCol.setCellValueFactory(new PropertyValueFactory<CD, String>("artist"));
@@ -577,8 +571,8 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	                "cd",
 	                cdArtist.getText(),
 	                cdRecordLabel.getText(),
-	                java.sql.Date.valueOf(cdReleasedDate.getValue()),
 	                cdMusicType.getText(),
+	                java.sql.Date.valueOf(cdReleasedDate.getValue()),
 	                imageUrl
 	            );
 
@@ -620,8 +614,8 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	                "cd",
 	                cdArtist.getText(),
 	                cdRecordLabel.getText(),
-	                sqlReleasedDate,
-	                cdMusicType.getText()
+	                cdMusicType.getText(),
+	                sqlReleasedDate
 	            );
 
 	            hideCDFields();

@@ -80,6 +80,7 @@ public class CD extends Media {
                 "INNER JOIN Media " +
                 "ON Media.id = CD.id " +
                 "where Media.id = " + id + ";";
+        Statement stm = AIMSDB.getConnection().createStatement();
         ResultSet res = stm.executeQuery(sql);
         if (res.next()) {
             String title = res.getString("title");
@@ -149,18 +150,21 @@ public class CD extends Media {
 
     @Override
     public List getAllMedia() throws SQLException {
-        String sql = "SELECT * FROM " + "CD " + "INNER JOIN Media " + "ON Media.id = CD.id;";
+        String sql = "SELECT * FROM " + "CD " + "INNER JOIN Media " + "ON Media.id = CD.id " + ";";
         Statement stm = AIMSDB.getConnection().createStatement();
         ResultSet res = stm.executeQuery(sql);
         ArrayList cdList = new ArrayList<>();
         while (res.next()) {
-            int id = res.getInt("id");
+        	// from Media table
+            int id = res.getInt(1);
             String title = res.getString("title");
             String type = res.getString("type");
+//            String imageURL = res.getString("imageURL");
             int price = res.getInt("price");
             int value = res.getInt("value");
             String category = res.getString("category");
             int quantity = res.getInt("quantity");
+
             String artist = res.getString("artist");
             String recordLabel = res.getString("recordLabel");
             String musicType = res.getString("musicType");

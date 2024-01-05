@@ -46,43 +46,47 @@ public class ManagerHomeController extends BaseController {
 	}
 
 	public void createCD(int id, String title, String category, int price, int value, int quantity, String type,
-			String artist, String recordLabel, Date releaseDate, String musicGenre, String imageUrl)
-			throws SQLException {
-		new CD().createCD(id, title, category, price, value, quantity, type, artist, recordLabel, musicGenre,
-				releaseDate, imageUrl);
+	        String artist, String recordLabel, String musicType, Date releaseDate, String imageUrl) throws SQLException {
+	    // Tạo đối tượng CD mới và sử dụng hàm createCD trong lớp CD
+	    CD cd = new CD();
+	    cd.createCD(id, title, category, price, value, quantity, type, artist, recordLabel, musicType, releaseDate, imageUrl);
 	}
 
 	public void updateCD(int id, String title, String category, int price, int value, int quantity, String type,
-			String artist, String recordLabel, Date releaseDate, String musicGenre) throws SQLException {
-		new CD().updateCD(id, title, category, price, value, quantity, type, artist, recordLabel, musicGenre,
-				releaseDate);
+	        String artist, String recordLabel, String musicType, Date releaseDate) throws SQLException {
+	    // Tạo đối tượng CD mới và sử dụng hàm updateCD trong lớp CD
+	    CD cd = new CD();
+	    cd.updateCD(id, title, category, price, value, quantity, type, artist, recordLabel, musicType, releaseDate);
 	}
 
 	public void deleteCD(int id) throws SQLException {
-		new CD().deleteCD(id);
+	    // Tạo đối tượng CD mới và sử dụng hàm deleteCD trong lớp CD
+	    CD cd = new CD();
+	    cd.deleteCD(id);
 	}
+
 
 	// Methods for DVD
 	public List getAllDVD() throws SQLException {
 		return new DVD().getAllMedia();
 	}
 
-	public void createDVD(int id, String title, String category, int price, int value, int quantity, String type,
-			String director, int runtime, String studio, String subtitles, Date releasedDate, String filmType,
-			String imageUrl) throws SQLException {
-		new DVD().createDVD(id, title, category, price, value, quantity, type, director, runtime, studio, subtitles,
-				releasedDate, filmType, imageUrl);
-	}
-
-	public void updateDVD(int id, String title, String category, int price, int value, int quantity, String type,
-			String director, int runtime, String studio, String subtitles, Date releasedDate, String filmType)
-			throws SQLException {
-		new DVD().updateDVD(id, title, category, price, value, quantity, type, director, runtime, studio, subtitles,
-				releasedDate, filmType);
-	}
-
-	public void deleteDVD(int id) throws SQLException {
-		new DVD().deleteDVD(id);
-	}
+//	public void createDVD(int id, String title, String category, int price, int value, int quantity, String type,
+//			String director, int runtime, String studio, String subtitles, Date releasedDate, String filmType,
+//			String imageUrl) throws SQLException {
+//		new DVD().createDVD(id, title, category, price, value, quantity, type, director, runtime, studio, subtitles,
+//				releasedDate, filmType, imageUrl);
+//	}
+//
+//	public void updateDVD(int id, String title, String category, int price, int value, int quantity, String type,
+//			String director, int runtime, String studio, String subtitles, Date releasedDate, String filmType)
+//			throws SQLException {
+//		new DVD().updateDVD(id, title, category, price, value, quantity, type, director, runtime, studio, subtitles,
+//				releasedDate, filmType);
+//	}
+//
+//	public void deleteDVD(int id) throws SQLException {
+//		new DVD().deleteDVD(id);
+//	}
 
 }
