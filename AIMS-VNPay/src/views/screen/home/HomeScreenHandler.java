@@ -9,6 +9,7 @@ import entity.media.Book;
 import entity.media.CD;
 import entity.media.DVD;
 import entity.media.Media;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -25,6 +26,7 @@ import views.screen.cart.CartScreenHandler;
 import views.screen.mediaDetail.BookScreenHandler;
 import views.screen.mediaDetail.CDScreenHandler;
 import views.screen.mediaDetail.DVDScreenHandler;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -49,9 +51,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     private ImageView cartImage;
 
     @FXML
-    private Button loginBtn;
-
-    @FXML
     private VBox vboxMedia1;
 
     @FXML
@@ -64,9 +63,20 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     private HBox hboxMedia;
 
     @FXML
+    private Button loginBtn;
+
+    @FXML
     private SplitMenuButton splitMenuBtnSearch;
 
+    @FXML
+    private TextField textFieldSearch;
+
+    @FXML
+    private SplitMenuButton splitMenuBtnSort;
+
     private List homeItems;
+
+    private List homeSearchItems;
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
@@ -128,7 +138,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
             }
         });
-
+        homeSearchItems = homeItems;
         loginBtn.setOnMouseClicked(e -> {
             LoginScreenHandler loginScreen;
             try {
@@ -145,10 +155,11 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         addMenuItem(0, "Book", splitMenuBtnSearch);
         addMenuItem(1, "DVD", splitMenuBtnSearch);
         addMenuItem(2, "CD", splitMenuBtnSearch);
+        sortByAscendingPrice(0, "Price: Low to Hight", splitMenuBtnSort);
+        sortByDescendingPrice(1, "Price: Hight to Low", splitMenuBtnSort);
     }
-    
     public void openBookDetail(Book book) {
-    	BookScreenHandler bookScreen;
+        BookScreenHandler bookScreen;
         try {
             LOGGER.info("User clicked to view book");
             bookScreen = new BookScreenHandler(this.stage, Configs.MEDIA_DETAIL_PATH, book);
@@ -159,9 +170,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
         }
     }
-    
+
     public void openDVDDetail(DVD dvd) {
-    	DVDScreenHandler dvdScreen;
+        DVDScreenHandler dvdScreen;
         try {
             LOGGER.info("User clicked to view book");
             dvdScreen = new DVDScreenHandler(this.stage, Configs.MEDIA_DETAIL_PATH, dvd);
@@ -172,9 +183,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
         }
     }
-    
+
     public void openCDDetail(CD cd) {
-    	CDScreenHandler cdScreen;
+        CDScreenHandler cdScreen;
         try {
             LOGGER.info("User clicked to view book");
             cdScreen = new CDScreenHandler(this.stage, Configs.MEDIA_DETAIL_PATH, cd);
@@ -206,7 +217,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             VBox vBox = (VBox) node;
             vBox.getChildren().clear();
         });
-        
         while (!mediaItems.isEmpty()) {
             hboxMedia.getChildren().forEach(node -> {
                 int vid = hboxMedia.getChildren().indexOf(node);
@@ -255,4 +265,38 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         menuButton.getItems().add(position, menuItem);
     }
 
+    @FXML
+    public void handleSearch (ActionEvent event) {
+        String text = textFieldSearch.getText();
+        homeSearchItems = SearchHandler.handleSearch(homeItems, text);
+        addMediaHome(homeSearchItems);
+    }
+
+    private void sortByAscendingPrice(int position, String text, MenuButton menuButton) {
+        List<MediaHandler> sortedItems = new ArrayList<>(homeItems);
+        MenuItem menuItem = new MenuItem();
+        Label label = new Label();
+        label.prefWidthProperty().bind(menuButton.widthProperty().subtract(31));
+        label.setText(text);
+        label.setTextAlignment(TextAlignment.RIGHT);
+        menuItem.setGraphic(label);
+        menuItem.setOnAction(e -> {
+            addMediaHome(SortHandler.sortByAscendingPrice(homeSearchItems));
+        });
+        menuButton.getItems().add(position,menuItem );
+    }
+
+    private void sortByDescendingPrice(int position, String text, MenuButton menuButton) {
+        List<MediaHandler> sortedItems = new ArrayList<>(homeItems);
+        MenuItem menuItem = new MenuItem();
+        Label label = new Label();
+        label.prefWidthProperty().bind(menuButton.widthProperty().subtract(31));
+        label.setText(text);
+        label.setTextAlignment(TextAlignment.RIGHT);
+        menuItem.setGraphic(label);
+        menuItem.setOnAction(e -> {
+            addMediaHome(SortHandler.sortByDescendingPrice(homeSearchItems));
+        });
+        menuButton.getItems().add(position,menuItem );
+    }
 }
