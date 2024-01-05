@@ -2,11 +2,8 @@ package entity.media;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Date;
 import java.util.List;
-
-import entity.db.AIMSDB;
 
 public class DVD extends Media {
 
@@ -178,20 +175,18 @@ public class DVD extends Media {
      * @throws SQLException
      */
     @Override
-    public DVD getMediaById(int id) throws SQLException {
+    public Media getMediaById(int id) throws SQLException {
         String sql = "SELECT * FROM " +
-                "DVD " +
-                "INNER JOIN Media " +
+                "aims.DVD " +
+                "INNER JOIN aims.Media " +
                 "ON Media.id = DVD.id " +
                 "where Media.id = " + id + ";";
-        Statement stm = AIMSDB.getConnection().createStatement();
         ResultSet res = stm.executeQuery(sql);
         if (res.next()) {
 
             // from media table
-            String title = res.getString("title");
+            String title = "";
             String type = res.getString("type");
-            String imageURL = res.getString("imageURL");
             int price = res.getInt("price");
             int value = res.getInt("value");
             String category = res.getString("category");
@@ -206,10 +201,8 @@ public class DVD extends Media {
             Date releasedDate = res.getDate("releasedDate");
             String filmType = res.getString("filmType");
 
-            DVD dvd = new DVD(id, title, category, price, value, quantity, type, discType, director, runtime, studio, subtitles, releasedDate, filmType);
-            dvd.imageURL = imageURL;
-            
-            return dvd;
+            return new DVD(id, title, category, price, value, quantity, type, discType, director, runtime, studio, subtitles, releasedDate, filmType);
+
         } else {
             throw new SQLException();
         }

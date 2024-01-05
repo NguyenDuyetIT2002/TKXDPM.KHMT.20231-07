@@ -12,8 +12,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.jms.Connection;
-
 public class Book extends Media {
 
     private static Logger LOGGER = Utils.getLogger(Media.class.getName());
