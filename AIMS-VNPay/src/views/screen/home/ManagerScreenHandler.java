@@ -9,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
@@ -17,11 +16,12 @@ import views.screen.BaseScreenHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
+import java.util.Optional;
+
 
 import static java.lang.Integer.parseInt;
 
@@ -31,6 +31,8 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 		super(stage, screenPath);
 		// TODO Auto-generated constructor stub
 	}
+    
+	boolean isInfoDisplayed = false;
 
 	public static Logger LOGGER = Utils.getLogger(LoginScreenHandler.class.getName());
 
@@ -126,41 +128,13 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
     private TableColumn<Book, String> bookLanguageCol;
 
     @FXML
-    private TextField bookId;
+    private TextField bookId, bookTitle, bookValue, bookPrice, bookQuantity, 
+                      bookAuthor, bookPublisher, bookPages, bookLanguage, bookCategory;
 
     @FXML
-    private TextField bookCategory;
-
-    @FXML
-    private TextField bookTitle;
-
-    @FXML
-    private TextField bookValue;
-
-    @FXML
-    private TextField bookPrice;
-
-    @FXML
-    private TextField bookQuantity;
-
-    @FXML
-    private TextField bookAuthor;
-
-    @FXML
-    private ComboBox bookCover;
-
-    @FXML
-    private TextField bookPublisher;
-
+    private ComboBox<String> bookCover;
     @FXML
     private DatePicker bookPubDate;
-
-    @FXML
-    private TextField bookPages;
-
-    @FXML
-    private TextField bookLanguage;
-
     @FXML
     private Label totalBook;
 
@@ -169,7 +143,11 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 
     @FXML
     private Label totalDVD;
-
+    
+    @FXML
+    private Label labelBookId, labelBookTitle, labelBookValue, labelBookPrice, 
+                  labelBookQuantity, labelBookAuthor, labelBookCover, 
+                  labelBookPublisher, labelBookPubDate, labelBookPages, labelBookLanguage, labelBookCategory;
 
     public ManagerHomeController getBController() { return (ManagerHomeController) super.getBController(); }
 
@@ -211,6 +189,97 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
             dvdForm.setVisible(true);
         }
     }
+    
+    private void showAlert(Alert.AlertType alertType, String title, String header, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+    
+    private void setupTableViewSelection() {
+        bookTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                Book selectedBook = bookTableView.getSelectionModel().getSelectedItem();
+               
+            }
+        });
+    }
+    
+    public void hideBookFields() {
+        bookId.setVisible(false);
+        bookTitle.setVisible(false);
+        bookValue.setVisible(false);
+        bookPrice.setVisible(false);
+        bookQuantity.setVisible(false);
+        bookAuthor.setVisible(false);
+        bookPublisher.setVisible(false);
+        bookPages.setVisible(false);
+        bookLanguage.setVisible(false);
+        bookCategory.setVisible(false);
+
+        labelBookId.setVisible(false);
+        labelBookTitle.setVisible(false);
+        labelBookValue.setVisible(false);
+        labelBookPrice.setVisible(false);
+        labelBookQuantity.setVisible(false);
+        labelBookAuthor.setVisible(false);
+        labelBookCover.setVisible(false);
+        labelBookPublisher.setVisible(false);
+        labelBookPubDate.setVisible(false);
+        labelBookPages.setVisible(false);
+        labelBookLanguage.setVisible(false);
+        labelBookCategory.setVisible(false);
+
+        bookCover.setVisible(false);
+        bookPubDate.setVisible(false);
+        isInfoDisplayed = false;
+        resetBookData();
+    }
+    
+    public void showBookFields() throws SQLException {
+        Book selectedBook = bookTableView.getSelectionModel().getSelectedItem();
+        if (selectedBook != null) {
+            bookId.setText(String.valueOf(selectedBook.getId()));
+            bookTitle.setText(selectedBook.getTitle());
+            bookValue.setText(String.valueOf(selectedBook.getValue()));
+            bookPrice.setText(String.valueOf(selectedBook.getPrice()));
+            bookQuantity.setText(String.valueOf(selectedBook.getQuantity()));
+            bookAuthor.setText(selectedBook.getAuthor());
+            bookPublisher.setText(selectedBook.getPublisher());
+            bookPages.setText(String.valueOf(selectedBook.getNumOfPages()));
+            bookLanguage.setText(selectedBook.getLanguage());
+            bookCategory.setText(selectedBook.getCategory());
+        }
+        bookId.setVisible(true);
+        bookTitle.setVisible(true);
+        bookValue.setVisible(true);
+        bookPrice.setVisible(true);
+        bookQuantity.setVisible(true);
+        bookAuthor.setVisible(true);
+        bookPublisher.setVisible(true);
+        bookPages.setVisible(true);
+        bookLanguage.setVisible(true);
+        bookCategory.setVisible(true);
+
+        labelBookId.setVisible(true);
+        labelBookTitle.setVisible(true);
+        labelBookValue.setVisible(true);
+        labelBookPrice.setVisible(true);
+        labelBookQuantity.setVisible(true);
+        labelBookAuthor.setVisible(true);
+        labelBookCover.setVisible(true);
+        labelBookPublisher.setVisible(true);
+        labelBookPubDate.setVisible(true);
+        labelBookPages.setVisible(true);
+        labelBookLanguage.setVisible(true);
+        labelBookCategory.setVisible(true);
+
+        bookCover.setVisible(true);
+        bookPubDate.setVisible(true);
+    }
+    
 
     public void showAllMedia() throws SQLException {
         List<Media> listMedia = getBController().getAllMedia();
@@ -231,9 +300,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 
     public void showAllBook() throws SQLException {
         List<Book> listBook = getBController().getAllBook();
-//        for (Book book : listBook) {
-//            LOGGER.info("Media ID: " + book.getId() + ", Date: " + book.getPublishDate());
-//        }
         bookIDCol.setCellValueFactory(new PropertyValueFactory<Book, Integer>("id"));
         bookValueCol.setCellValueFactory(new PropertyValueFactory<Book, Integer>("value"));
         bookPriceCol.setCellValueFactory(new PropertyValueFactory<Book, Integer>("price"));
@@ -250,19 +316,120 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
         bookTableView.getItems().setAll(listBook);
     }
 
-    public void insertBook() throws SQLException {
-        getBController().createBook(parseInt(bookId.getText()), bookTitle.getText(), bookCategory.getText(), parseInt(bookPrice.getText()), parseInt(bookValue.getText()), parseInt(bookQuantity.getText()), "book", bookAuthor.getText(), (String) bookCover.getValue(), bookPublisher.getText(), java.sql.Date.valueOf(bookPubDate.getValue()), parseInt(bookPages.getText()), bookLanguage.getText(), bookCategory.getText(), "assets/images/book/book3.jpg");
-        showAllBook();
+
+    	
+    	public void createBook(ActionEvent event) throws SQLException {
+    	    if (!isInfoDisplayed) {
+    	        // Display information (first click)
+    	        showBookFields();
+
+    	        isInfoDisplayed = true;
+    	    } else {
+    	        // Create book (second click)
+    	        try {
+    	            int bookIdValue = safeParseInt(bookId.getText());
+    	            int bookPriceValue = safeParseInt(bookPrice.getText());
+    	            int bookValueValue = safeParseInt(bookValue.getText());
+    	            int bookQuantityValue = safeParseInt(bookQuantity.getText());
+    	            int bookPagesValue = safeParseInt(bookPages.getText());
+
+    	            getBController().createBook(bookIdValue, bookTitle.getText(), bookCategory.getText(),
+    	                bookPriceValue, bookValueValue, bookQuantityValue, "book", bookAuthor.getText(),
+    	                (String) bookCover.getValue(), bookPublisher.getText(), java.sql.Date.valueOf(bookPubDate.getValue()),
+    	                bookPagesValue, bookLanguage.getText(), bookCategory.getText(), "assets/images/book/book3.jpg");
+    	            System.out.println("Publish Date Value: " + bookPubDate.getValue());
+
+    	            hideBookFields();
+    	            showAllBook();
+
+    	            // Reset state for the next click
+    	            isInfoDisplayed = false;
+    	        } catch (NumberFormatException e) {
+    	            // Handle the exception (e.g., show error message)
+    	            e.printStackTrace();
+    	        }
+    	    }
+    	}
+
+    private int safeParseInt(String value) throws NumberFormatException {
+        if (value == null || value.trim().isEmpty()) {
+            throw new NumberFormatException("Input string is null or empty");
+        }
+        return Integer.parseInt(value.trim());
     }
 
     public void updateBook() throws SQLException {
-        getBController().updateBook(parseInt(bookId.getText()), bookTitle.getText(), bookCategory.getText(), parseInt(bookPrice.getText()), parseInt(bookValue.getText()), parseInt(bookQuantity.getText()), "book", bookAuthor.getText(), (String) bookCover.getValue(), bookPublisher.getText(), java.sql.Date.valueOf(bookPubDate.getValue()), parseInt(bookPages.getText()), bookLanguage.getText(), bookCategory.getText());
-        showAllBook();
+        // Get the selected book from the table view
+        Book selectedBook = bookTableView.getSelectionModel().getSelectedItem();
+
+        // Check if a book is selected
+        if (selectedBook == null) {
+            showAlert(Alert.AlertType.WARNING, "No Selection", "No Book Selected", "Please select a book in the table.");
+            return;
+        } else
+
+        try {
+        	if (!isInfoDisplayed) {
+        		showBookFields();
+        		isInfoDisplayed = true;
+        		
+        	} else {
+                // Parse input values
+        		int bookPriceValue = safeParseInt(bookPrice.getText());
+        	    int bookValueValue = safeParseInt(bookValue.getText());
+        	    int bookQuantityValue = safeParseInt(bookQuantity.getText());
+        	    int bookPagesValue = safeParseInt(bookPages.getText());
+        	    java.sql.Date sqlPubDate = java.sql.Date.valueOf(bookPubDate.getValue()); // Chuyển LocalDate thành java.sql.Date
+
+        	    // Gọi phương thức updateBook với các giá trị đã được chuyển đổi
+        	    getBController().updateBook(
+        	        selectedBook.getId(),
+        	        bookTitle.getText(),
+        	        bookCategory.getText(),
+        	        bookPriceValue,
+        	        bookValueValue,
+        	        bookQuantityValue,
+        	        "book",
+        	        bookAuthor.getText(),
+        	        (String) bookCover.getValue(),
+        	        bookPublisher.getText(),
+        	        sqlPubDate,
+        	        bookPagesValue,
+        	        bookLanguage.getText(),
+        	        bookCategory.getText()
+        	    );
+
+                // Hide book fields after update
+                hideBookFields();
+
+                // Refresh the book table
+                showAllBook();
+        	}
+        } catch (NumberFormatException e) {
+            // Handle number format exception (e.g., show an alert)
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Input Error", "Please enter valid numeric values.");
+            e.printStackTrace(); // Log the exception for debugging
+        }
     }
 
+
     public void deleteBook() throws SQLException {
-        getBController().deleteBook(parseInt(bookId.getText()));
-        showAllBook();
+        Book selectedBook = bookTableView.getSelectionModel().getSelectedItem();
+        if (selectedBook == null) {
+            showAlert(Alert.AlertType.WARNING, "No Selection", "No Book Selected", "Please select a book in the table.");
+            return;
+        }
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this book?", ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+        if (result.get() == ButtonType.YES) {
+            try {
+                getBController().deleteBook(selectedBook.getId());
+                showAllBook();
+                showAlert(Alert.AlertType.INFORMATION, "Deletion Successful", "Book Deleted", "Book has been deleted successfully.");
+            } catch (SQLException ex) {
+                showAlert(Alert.AlertType.ERROR, "Deletion Failed", "Error Deleting Book", "There was an error deleting the book.");
+            }
+        }
     }
 
     public void resetBookData() {
@@ -289,23 +456,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
         totalDVD.setText(String.valueOf(totalDVDCount));
     }
 
-//    @FXML
-//    void uploadMediaImage(ActionEvent event) {
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.getExtensionFilters().addAll(
-//                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
-//        );
-//
-//        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-//        File selectedFile = fileChooser.showOpenDialog(stage);
-//
-//        if (selectedFile != null) {
-//            String imagePath = selectedFile.getAbsolutePath();
-//            // Save the imagePath to the database
-//            saveImagePathToDatabase(imagePath);
-//            System.out.println("Image Path: " + imagePath);
-//        }
-//    }
 
     @FXML
     void logout() throws IOException, InterruptedException, SQLException {

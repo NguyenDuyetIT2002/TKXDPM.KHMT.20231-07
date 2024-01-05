@@ -34,7 +34,7 @@ CREATE TABLE "aims"."Book"
     "author"       VARCHAR(45) NOT NULL,
     "coverType"    VARCHAR(45) NOT NULL,
     "publisher"    VARCHAR(45) NOT NULL,
-    "publishDate"  DATETIME    NOT NULL,
+    "publishDate"  DATE    NOT NULL,
     "numOfPages"   INTEGER     NOT NULL,
     "language"     VARCHAR(45) NOT NULL,
     "bookCategory" VARCHAR(45) NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE "aims"."DVD"
     "runtime"      INTEGER             NOT NULL,
     "studio"       VARCHAR(45)         NOT NULL,
     "subtitle"     VARCHAR(45)         NOT NULL,
-    "releasedDate" DATETIME,
+    "releasedDate" DATE,
     "filmType"     VARCHAR(45)         NOT NULL,
     CONSTRAINT "fk_dvd_media"
         FOREIGN KEY ("id")

@@ -145,71 +145,71 @@
                         <TableColumn fx:id="bookQuantityCol" minWidth="0.0" prefWidth="104.0" text="Quantity" />
                      </columns>
                   </TableView>
-                  <Label alignment="CENTER" layoutX="27.0" layoutY="400.0" prefHeight="20.0" prefWidth="59.0" text="ID :">
+                  <Label fx:id="labelBookId" alignment="CENTER" layoutX="27.0" layoutY="400.0" prefHeight="20.0" prefWidth="59.0" text="ID :" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="bookId" layoutX="94.0" layoutY="397.0" />
-                  <Label alignment="CENTER" layoutX="21.0" layoutY="448.0" prefHeight="20.0" prefWidth="65.0" text="Title :">
+                  <TextField fx:id="bookId" layoutX="94.0" layoutY="397.0" visible="false" />
+                  <Label fx:id="labelBookTitle" alignment="CENTER" layoutX="21.0" layoutY="448.0" prefHeight="20.0" prefWidth="65.0" text="Title :" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="bookTitle" layoutX="94.0" layoutY="445.0" />
-                  <Label alignment="CENTER" layoutX="21.0" layoutY="509.0" prefHeight="20.0" prefWidth="65.0" text="Value :">
+                  <TextField fx:id="bookTitle" layoutX="94.0" layoutY="445.0" visible="false"/>
+                  <Label fx:id="labelBookValue" alignment="CENTER" layoutX="21.0" layoutY="509.0" prefHeight="20.0" prefWidth="65.0" text="Value :" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="bookValue" layoutX="95.0" layoutY="506.0" />
-                  <Label alignment="CENTER" layoutX="21.0" layoutY="559.0" prefHeight="20.0" prefWidth="65.0" text="Price :">
+                  <TextField fx:id="bookValue" layoutX="95.0" layoutY="506.0" visible="false" />
+                  <Label fx:id="labelBookPrice" alignment="CENTER" layoutX="21.0" layoutY="559.0" prefHeight="20.0" prefWidth="65.0" text="Price :" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="bookPrice" layoutX="95.0" layoutY="556.0" />
-                  <Label alignment="CENTER" layoutX="2.0" layoutY="608.0" prefHeight="20.0" prefWidth="84.0" text="Quantity :">
+                  <TextField fx:id="bookPrice" layoutX="95.0" layoutY="556.0" visible="false"/>
+                  <Label fx:id="labelBookQuantity" alignment="CENTER" layoutX="2.0" layoutY="608.0" prefHeight="20.0" prefWidth="84.0" text="Quantity :" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="bookQuantity" layoutX="95.0" layoutY="605.0" />
-                  <Label alignment="CENTER" layoutX="342.0" layoutY="400.0" prefHeight="20.0" prefWidth="59.0" text="Author :">
+                  <TextField fx:id="bookQuantity" layoutX="95.0" layoutY="605.0" visible="false"/>
+                  <Label fx:id="labelBookAuthor" alignment="CENTER" layoutX="342.0" layoutY="400.0" prefHeight="20.0" prefWidth="59.0" text="Author :" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="bookAuthor" layoutX="409.0" layoutY="397.0" />
-                  <Label alignment="CENTER" layoutX="316.0" layoutY="448.0" prefHeight="20.0" prefWidth="84.0" text="Cover Type :">
+                  <TextField fx:id="bookAuthor" layoutX="409.0" layoutY="397.0" visible="false"/>
+                  <Label fx:id="labelBookCover" alignment="CENTER" layoutX="316.0" layoutY="448.0" prefHeight="20.0" prefWidth="84.0" text="Cover Type :" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="325.0" layoutY="510.0" prefHeight="20.0" prefWidth="76.0" text="Publisher :">
+                  <Label fx:id="labelBookPublisher" alignment="CENTER" layoutX="325.0" layoutY="510.0" prefHeight="20.0" prefWidth="76.0" text="Publisher :" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="bookPublisher" layoutX="409.0" layoutY="507.0" />
-                  <Label alignment="CENTER" layoutX="306.0" layoutY="559.0" prefHeight="20.0" prefWidth="95.0" text="Publish Date :">
+                  <TextField fx:id="bookPublisher" layoutX="409.0" layoutY="507.0" visible="false"/>
+                  <Label fx:id="labelBookPubDate" alignment="CENTER" layoutX="306.0" layoutY="559.0" prefHeight="20.0" prefWidth="95.0" text="Publish Date :" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="294.0" layoutY="608.0" prefHeight="20.0" prefWidth="107.0" text="Num of Pages :">
+                  <Label fx:id="labelBookPages" alignment="CENTER" layoutX="294.0" layoutY="608.0" prefHeight="20.0" prefWidth="107.0" text="Num of Pages :" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="bookPages" layoutX="409.0" layoutY="605.0" />
-                  <Label alignment="CENTER" layoutX="603.0" layoutY="401.0" prefHeight="20.0" prefWidth="84.0" text="Language :">
+                  <TextField fx:id="bookPages" layoutX="409.0" layoutY="605.0" visible="false"/>
+                  <Label fx:id="labelBookLanguage" alignment="CENTER" layoutX="603.0" layoutY="401.0" prefHeight="20.0" prefWidth="84.0" text="Language :" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="bookLanguage" layoutX="695.0" layoutY="398.0" />
-                  <ComboBox fx:id="bookCover" layoutX="409.0" layoutY="446.0" prefWidth="150.0" promptText="Select">
+                  <TextField fx:id="bookLanguage" layoutX="695.0" layoutY="398.0" visible="false"/>
+                  <ComboBox fx:id="bookCover" layoutX="409.0" layoutY="446.0" prefWidth="150.0" promptText="Select" visible="false">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="Paperback" />
@@ -217,8 +217,8 @@
                         </FXCollections>
                      </items>
                   </ComboBox>
-                  <DatePicker fx:id="bookPubDate" layoutX="409.0" layoutY="557.0" prefHeight="25.0" prefWidth="149.0" />
-                  <Button layoutX="931.0" layoutY="392.0" mnemonicParsing="false" onAction="#insertBook" prefHeight="25.0" prefWidth="95.0" text="INSERT">
+                  <DatePicker fx:id="bookPubDate" layoutX="409.0" layoutY="557.0" prefHeight="25.0" prefWidth="149.0" visible="false"/>
+                  <Button layoutX="931.0" layoutY="392.0" mnemonicParsing="false" onAction="#createBook" prefHeight="25.0" prefWidth="95.0" text="CREATE">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -233,12 +233,12 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Label alignment="CENTER" layoutX="603.0" layoutY="450.0" prefHeight="20.0" prefWidth="84.0" text="Category :">
+                  <Label fx:id="labelBookCategory" alignment="CENTER" layoutX="603.0" layoutY="450.0" prefHeight="20.0" prefWidth="84.0" text="Category :" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="bookCategory" layoutX="695.0" layoutY="447.0" />
+                  <TextField fx:id="bookCategory" layoutX="695.0" layoutY="447.0" visible="false"/>
                   <Button layoutX="931.0" layoutY="601.0" mnemonicParsing="false" onAction="#resetBookData" prefHeight="25.0" prefWidth="95.0" text="RESET ">
                      <font>
                         <Font size="16.0" />
