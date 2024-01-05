@@ -1,9 +1,13 @@
 package views.screen.home;
 
 import common.exception.ViewCartException;
+import controller.AuthenticationController;
 import controller.HomeController;
 import controller.ViewCartController;
 import entity.cart.Cart;
+import entity.media.Book;
+import entity.media.CD;
+import entity.media.DVD;
 import entity.media.Media;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,12 +23,18 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.cart.CartScreenHandler;
+import views.screen.mediaDetail.BookScreenHandler;
+import views.screen.mediaDetail.CDScreenHandler;
+import views.screen.mediaDetail.DVDScreenHandler;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 public class HomeScreenHandler extends BaseScreenHandler implements Initializable {
@@ -51,6 +61,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     @FXML
     private HBox hboxMedia;
+
+    @FXML
+    private Button loginBtn;
 
     @FXML
     private SplitMenuButton splitMenuBtnSearch;
@@ -126,12 +139,62 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             }
         });
         homeSearchItems = homeItems;
+        loginBtn.setOnMouseClicked(e -> {
+            LoginScreenHandler loginScreen;
+            try {
+                LOGGER.info("User click to login");
+                loginScreen = new LoginScreenHandler(this.stage, Configs.LOGIN_SCREEN_PATH);
+                loginScreen.setHomeScreenHandler(this);
+                loginScreen.setBController(new AuthenticationController());
+                loginScreen.show();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        });
         addMediaHome(this.homeItems);
         addMenuItem(0, "Book", splitMenuBtnSearch);
         addMenuItem(1, "DVD", splitMenuBtnSearch);
         addMenuItem(2, "CD", splitMenuBtnSearch);
         sortByAscendingPrice(0, "Price: Low to Hight", splitMenuBtnSort);
         sortByDescendingPrice(1, "Price: Hight to Low", splitMenuBtnSort);
+    }
+    public void openBookDetail(Book book) {
+        BookScreenHandler bookScreen;
+        try {
+            LOGGER.info("User clicked to view book");
+            bookScreen = new BookScreenHandler(this.stage, Configs.MEDIA_DETAIL_PATH, book);
+            bookScreen.setHomeScreenHandler(this);
+            //bookScreen.setBController(new ViewCartController());
+            bookScreen.requestToViewBook(this);
+        } catch (IOException | SQLException e1) {
+            throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
+        }
+    }
+
+    public void openDVDDetail(DVD dvd) {
+        DVDScreenHandler dvdScreen;
+        try {
+            LOGGER.info("User clicked to view book");
+            dvdScreen = new DVDScreenHandler(this.stage, Configs.MEDIA_DETAIL_PATH, dvd);
+            dvdScreen.setHomeScreenHandler(this);
+            //bookScreen.setBController(new ViewCartController());
+            dvdScreen.requestToViewDVD(this);
+        } catch (IOException | SQLException e1) {
+            throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
+        }
+    }
+
+    public void openCDDetail(CD cd) {
+        CDScreenHandler cdScreen;
+        try {
+            LOGGER.info("User clicked to view book");
+            cdScreen = new CDScreenHandler(this.stage, Configs.MEDIA_DETAIL_PATH, cd);
+            cdScreen.setHomeScreenHandler(this);
+            //bookScreen.setBController(new ViewCartController());
+            cdScreen.requestToViewCD(this);
+        } catch (IOException | SQLException e1) {
+            throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
+        }
     }
 
     public void setImage() {

@@ -19,9 +19,9 @@ public class DVD extends Media {
 
     }
 
-    public DVD(int id, String title, String category, int price, int quantity, String type, String discType,
+    public DVD(int id, String title, String category, int price, int value, int quantity, String type, String discType,
                String director, int runtime, String studio, String subtitles, Date releasedDate, String filmType) throws SQLException {
-        super(id, title, category, price, quantity, type);
+        super(id, title, category, price, value, quantity, type);
         this.discType = discType;
         this.director = director;
         this.runtime = runtime;
@@ -175,7 +175,7 @@ public class DVD extends Media {
      * @throws SQLException
      */
     @Override
-    public Media getMediaById(int id) throws SQLException {
+    public DVD getMediaById(int id) throws SQLException {
         String sql = "SELECT * FROM " +
                 "aims.DVD " +
                 "INNER JOIN aims.Media " +
@@ -188,6 +188,7 @@ public class DVD extends Media {
             String title = "";
             String type = res.getString("type");
             int price = res.getInt("price");
+            int value = res.getInt("value");
             String category = res.getString("category");
             int quantity = res.getInt("quantity");
 
@@ -200,7 +201,7 @@ public class DVD extends Media {
             Date releasedDate = res.getDate("releasedDate");
             String filmType = res.getString("filmType");
 
-            return new DVD(id, title, category, price, quantity, type, discType, director, runtime, studio, subtitles, releasedDate, filmType);
+            return new DVD(id, title, category, price, value, quantity, type, discType, director, runtime, studio, subtitles, releasedDate, filmType);
 
         } else {
             throw new SQLException();
