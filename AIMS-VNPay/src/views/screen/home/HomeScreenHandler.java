@@ -5,6 +5,9 @@ import controller.AuthenticationController;
 import controller.HomeController;
 import controller.ViewCartController;
 import entity.cart.Cart;
+import entity.media.Book;
+import entity.media.CD;
+import entity.media.DVD;
 import entity.media.Media;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,7 +22,9 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.cart.CartScreenHandler;
-
+import views.screen.mediaDetail.BookScreenHandler;
+import views.screen.mediaDetail.CDScreenHandler;
+import views.screen.mediaDetail.DVDScreenHandler;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -141,6 +146,45 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         addMenuItem(1, "DVD", splitMenuBtnSearch);
         addMenuItem(2, "CD", splitMenuBtnSearch);
     }
+    
+    public void openBookDetail(Book book) {
+    	BookScreenHandler bookScreen;
+        try {
+            LOGGER.info("User clicked to view book");
+            bookScreen = new BookScreenHandler(this.stage, Configs.MEDIA_DETAIL_PATH, book);
+            bookScreen.setHomeScreenHandler(this);
+            //bookScreen.setBController(new ViewCartController());
+            bookScreen.requestToViewBook(this);
+        } catch (IOException | SQLException e1) {
+            throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
+        }
+    }
+    
+    public void openDVDDetail(DVD dvd) {
+    	DVDScreenHandler dvdScreen;
+        try {
+            LOGGER.info("User clicked to view book");
+            dvdScreen = new DVDScreenHandler(this.stage, Configs.MEDIA_DETAIL_PATH, dvd);
+            dvdScreen.setHomeScreenHandler(this);
+            //bookScreen.setBController(new ViewCartController());
+            dvdScreen.requestToViewDVD(this);
+        } catch (IOException | SQLException e1) {
+            throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
+        }
+    }
+    
+    public void openCDDetail(CD cd) {
+    	CDScreenHandler cdScreen;
+        try {
+            LOGGER.info("User clicked to view book");
+            cdScreen = new CDScreenHandler(this.stage, Configs.MEDIA_DETAIL_PATH, cd);
+            cdScreen.setHomeScreenHandler(this);
+            //bookScreen.setBController(new ViewCartController());
+            cdScreen.requestToViewCD(this);
+        } catch (IOException | SQLException e1) {
+            throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
+        }
+    }
 
     public void setImage() {
         // fix image path caused by fxml
@@ -162,6 +206,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             VBox vBox = (VBox) node;
             vBox.getChildren().clear();
         });
+        
         while (!mediaItems.isEmpty()) {
             hboxMedia.getChildren().forEach(node -> {
                 int vid = hboxMedia.getChildren().indexOf(node);

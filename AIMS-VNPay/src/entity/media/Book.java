@@ -185,7 +185,7 @@ public class Book extends Media {
      * @throws SQLException
      */
     @Override
-    public Media getMediaById(int id) throws SQLException {
+    public Book getMediaById(int id) throws SQLException {
         String sql = "SELECT * FROM " +
                 "Book " +
                 "INNER JOIN Media " +
@@ -196,9 +196,9 @@ public class Book extends Media {
         if (res.next()) {
 
             // from Media table
-            String title = "";
+            String title = res.getString("title");
             String type = res.getString("type");
-//            String imageURL = res.getString("imageURL");
+            String imageURL = res.getString("imageURL");
             int price = res.getInt("price");
             int value = res.getInt("value");
             String category = res.getString("category");
@@ -213,8 +213,11 @@ public class Book extends Media {
             String language = res.getString("language");
             String bookCategory = res.getString("bookCategory");
 
-            return new Book(id, title, category, price, value, quantity, type,
+            Book book = new Book(id, title, category, price, value, quantity, type,
                     author, coverType, publisher, publishDate, numOfPages, language, bookCategory);
+            book.imageURL = imageURL;
+            
+            return book;
 
         } else {
             throw new SQLException();

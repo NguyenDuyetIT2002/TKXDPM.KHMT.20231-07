@@ -3,6 +3,9 @@ package views.screen.home;
 import common.exception.MediaNotAvailableException;
 import entity.cart.Cart;
 import entity.cart.CartMedia;
+import entity.media.Book;
+import entity.media.CD;
+import entity.media.DVD;
 import entity.media.Media;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,6 +21,7 @@ import views.screen.popup.PopupScreen;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 public class MediaHandler extends FXMLScreenHandler {
@@ -35,6 +39,10 @@ public class MediaHandler extends FXMLScreenHandler {
     protected Spinner<Integer> spinnerChangeNumber;
     @FXML
     protected Button addToCartBtn;
+    @FXML
+    protected Button viewBtn;
+    
+    
     private Media media;
     private HomeScreenHandler home;
 
@@ -44,6 +52,7 @@ public class MediaHandler extends FXMLScreenHandler {
         this.home = home;
         addToCartBtn.setOnMouseClicked(event -> {
             try {
+            	System.out.println(media.getQuantity());
                 if (spinnerChangeNumber.getValue() > media.getQuantity()) throw new MediaNotAvailableException();
                 Cart cart = Cart.getCart();
                 // if media already in cart then we will increase the quantity by 1 instead of create the new cartMedia
@@ -73,6 +82,39 @@ public class MediaHandler extends FXMLScreenHandler {
                 LOGGER.severe("Cannot add media to cart: ");
                 exp.printStackTrace();
             }
+        });
+        viewBtn.setOnMouseClicked(event -> {
+        	//System.out.print(media.getType());
+        	if (Objects.equals(media.getType(), "book")) {
+        		System.out.println("book");
+        		try {
+					Book book = new Book().getMediaById(this.media.getId());
+					home.openBookDetail(book);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        	}
+        	else if (Objects.equals(media.getType(), "dvd")) {
+        		System.out.println("dvd");
+        		try {
+					DVD dvd = new DVD().getMediaById(this.media.getId());
+					home.openDVDDetail(dvd);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        	}
+        	else if (Objects.equals(media.getType(), "cd")) {
+        		System.out.println("cd");
+        		try {
+					CD cd = new CD().getMediaById(this.media.getId());
+					home.openCDDetail(cd);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        	}
         });
         setMediaInfo();
     }
