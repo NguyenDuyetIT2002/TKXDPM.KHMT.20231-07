@@ -338,9 +338,9 @@
                         <TableColumn fx:id="cdPriceCol" prefWidth="110.0" text="Price" />
                         <TableColumn fx:id="cdValueCol" prefWidth="144.0" text="Value" />
                         <TableColumn fx:id="cdQuantityCol" prefWidth="112.0" text="Quantity" />
-                        <TableColumn fx:id="cdTypeCol" prefWidth="121.0" text="Music Type" />
                         <TableColumn fx:id="cdArtistCol" prefWidth="137.0" text="Artist" />
                         <TableColumn fx:id="cdRecordCol" prefWidth="155.0" text="Record Label" />
+                        <TableColumn fx:id="cdMusicTypeCol" prefWidth="121.0" text="Music Type" />
                         <TableColumn fx:id="cdReleasedCol" prefWidth="107.0" text="Released Date" />
                      </columns>
                   </TableView>
