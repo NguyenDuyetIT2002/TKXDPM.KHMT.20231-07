@@ -73,13 +73,16 @@
                                 <Spinner fx:id="spinnerChangeNumber" prefHeight="26.0" prefWidth="98.0"/>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="72.0" prefWidth="106.0">
+                        <VBox alignment="CENTER" prefHeight="72.0" prefWidth="106.0">
                             <children>
                                 <Button fx:id="addToCartBtn" alignment="CENTER" mnemonicParsing="false"
                                         prefHeight="35.0" prefWidth="97.0" style="-fx-cursor: hand;"
                                         text="Add to Cart"/>
+                                <Button fx:id="viewBtn" alignment="CENTER" mnemonicParsing="false"
+                                        prefHeight="35.0" prefWidth="97.0" style="-fx-cursor: hand;"
+                                        text="View item"/>
                             </children>
-                        </HBox>
+                        </VBox>
                     </children>
                 </VBox>
             </children>

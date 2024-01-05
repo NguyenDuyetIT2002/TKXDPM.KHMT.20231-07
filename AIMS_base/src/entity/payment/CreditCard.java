@@ -1,7 +1,7 @@
 package entity.payment;
 
 import java.sql.Timestamp;
-
+//Không vi phạm SOLID
 public class CreditCard {
 	private String cardCode;
 	private String owner;

@@ -101,16 +101,16 @@
 </details>
 
 <details>
-    <summary>W14: 11/12/2023~18/12/2023</summary>
+    <summary>W15: 11/12/2023~18/12/2023</summary>
     <br>
     <details>
         <summary>Nguyễn Thế Duyệt</summary>
         <br>
         - Assigned tasks:<br>
-          + Detect cohesion in ViewCartController and related class, like Cart, CardMedia and Media<br>
+          + Detect SOLID violation in ViewCartController and related class, like Cart, CardMedia and Media<br>
         - Implementation details:<br>
           - Pull request(s): <br>
-            + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/12<br>
+            + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/16<br>
           - Specific implementation details:<br>
     </details>
     <details>
@@ -137,10 +137,10 @@
         <summary>Phạm Thị Hồng Hạnh</summary>
         <br>
         - Assigned tasks:<br>
-          + Detect cohesion in PlaceOrderController<br>
+          + Detect cohesion in PaymentController<br>
         - Implementation details:<br>
           - Pull request(s): <br>
-            + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/13<br>
+            + https://github.com/NguyenDuyetIT2002/TKXDPM.KHMT.20231-07/pull/17<br>
           - Specific implementation details:
         <br>
     </details>
