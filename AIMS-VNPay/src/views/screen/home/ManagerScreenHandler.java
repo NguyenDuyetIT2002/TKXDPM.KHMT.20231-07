@@ -4,7 +4,6 @@ import controller.ManagerHomeController;
 import entity.media.Book;
 import entity.media.CD;
 import entity.media.Media;
-import entity.user.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,9 +38,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	public static Logger LOGGER = Utils.getLogger(LoginScreenHandler.class.getName());
 
 	@FXML
-	private Button userBtn;
-
-	@FXML
 	private Button homeBtn;
 
 	@FXML
@@ -64,9 +60,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 
 	@FXML
 	private AnchorPane dvdForm;
-
-	@FXML
-	private AnchorPane userForm;
 
 	// Media Table
 
@@ -179,21 +172,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	private Label labelBookId, labelBookTitle, labelBookValue, labelBookPrice, labelBookQuantity, labelBookAuthor,
 			labelBookCover, labelBookPublisher, labelBookPubDate, labelBookPages, labelBookLanguage, labelBookCategory;
 
-	@FXML
-	private  TableView<User> userTableView;
-	@FXML
-	private TableColumn<User, Integer> userIDCol;
-	@FXML
-	private TableColumn<User, String> userNameCol, userAddressCol, userPhoneNumberCol, userEmailCol;
-	@FXML
-	private TextField userAddressField, userEmailField, userPhoneNumberField, userNameField;
-	@FXML
-	private Label userLabelForm;
-	@FXML
-	private Button saveCreateUserBtn, saveUpdateUserBtn, banUserBtn, createUserBtn, updateUserBtn, deleteUserBtn;
-	@FXML
-	private AnchorPane subUserForm;
-
 	public ManagerHomeController getBController() {
 		return (ManagerHomeController) super.getBController();
 	}
@@ -216,7 +194,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 			bookForm.setVisible(false);
 			cdForm.setVisible(false);
 			dvdForm.setVisible(false);
-			userForm.setVisible(false);
 			showAllMedia();
 			displayTotalMedia();
 		} else if (e.getSource() == bookBtn) {
@@ -224,28 +201,18 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 			bookForm.setVisible(true);
 			cdForm.setVisible(false);
 			dvdForm.setVisible(false);
-			userForm.setVisible(false);
 			showAllBook();
 		} else if (e.getSource() == cdBtn) {
 			homeForm.setVisible(false);
 			bookForm.setVisible(false);
 			cdForm.setVisible(true);
 			dvdForm.setVisible(false);
-			userForm.setVisible(false);
 			showAllCD();
 		} else if (e.getSource() == dvdBtn) {
 			homeForm.setVisible(false);
 			bookForm.setVisible(false);
 			cdForm.setVisible(false);
 			dvdForm.setVisible(true);
-			userForm.setVisible(false);
-		}else if (e.getSource() == userBtn) {
-			homeForm.setVisible(false);
-			bookForm.setVisible(false);
-			cdForm.setVisible(false);
-			dvdForm.setVisible(false);
-			userForm.setVisible(true);
-			showAllUser();
 		}
 	}
 
@@ -421,29 +388,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 		isCDInfoDisplayed = false;
 	}
 
-	public void showAllUser() throws SQLException{
-		List<User> listUser = getBController().getAllUser();
-		userIDCol.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
-		userNameCol.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
-		userEmailCol.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
-		userAddressCol.setCellValueFactory(new PropertyValueFactory<User, String>("address"));
-		userPhoneNumberCol.setCellValueFactory(new PropertyValueFactory<User, String>("phone"));
-		userTableView.getItems().setAll(listUser);
-		subUserForm.setVisible(false);
-		userTableView.setRowFactory(tv -> new TableRow<User>() {
-			@Override
-			public void updateItem(User item, boolean empty) {
-				super.updateItem(item, empty) ;
-				if (item == null) {
-					setStyle("");
-				} else if (item.getBan()) {
-					setStyle("-fx-background-color: red;");
-				} else {
-					setStyle("");
-				}
-			}
-		});
-	}
 
 	public void showAllMedia() throws SQLException {
 		List<Media> listMedia = getBController().getAllMedia();
@@ -730,78 +674,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 		totalDVD.setText(String.valueOf(totalDVDCount));
 	}
 
-	public void setCreateUserBtn() {
-		userLabelForm.setText("Create User");
-		subUserForm.setVisible(true);
-		saveUpdateUserBtn.setVisible(false);
-		saveCreateUserBtn.setVisible(true);
 
-		userNameField.setText("");
-		userAddressField.setText("");
-		userPhoneNumberField.setText("");
-		userEmailField.setText("");
-	}
-
-	public void setUpdateUserBtn() {
-		User selectedUser = userTableView.getSelectionModel().getSelectedItem();
-		if (selectedUser != null) {
-			userLabelForm.setText("Edit User");
-			subUserForm.setVisible(true);
-			saveUpdateUserBtn.setVisible(true);
-			saveCreateUserBtn.setVisible(false);
-
-			userNameField.setText(selectedUser.getName());
-			userAddressField.setText(selectedUser.getAddress());
-			userPhoneNumberField.setText(selectedUser.getPhone());
-			userEmailField.setText(selectedUser.getEmail());
-		} else {
-			subUserForm.setVisible(false);
-		}
-	}
-
-	public void setBanUserBtn() throws SQLException {
-		subUserForm.setVisible(false);
-		User selectedUser = userTableView.getSelectionModel().getSelectedItem();
-		if (selectedUser != null) {
-			getBController().banUser(selectedUser.getId(), selectedUser.getBan());
-			showAllUser();
-		}
-	}
-
-	public void setDeleteUserBtn() throws SQLException {
-		subUserForm.setVisible(false);
-		User selectedUser = userTableView.getSelectionModel().getSelectedItem();
-		if (selectedUser != null) {
-			getBController().deleteUser(selectedUser.getId());
-			showAllUser();
-		}
-	}
-
-	public void setSaveCreateUserBtn() throws SQLException {
-		String name = userNameField.getText();
-		String address = userAddressField.getText();
-		String phone = userPhoneNumberField.getText();
-		String email = userEmailField.getText();
-
-		getBController().createUser(name, email, address, phone);
-		showAllUser();
-	}
-
-	public void setSaveUpdateUserBtn() throws SQLException{
-		User selectedUser = userTableView.getSelectionModel().getSelectedItem();
-		if (selectedUser != null) {
-			int id = selectedUser.getId();
-			String name = userNameField.getText();
-			String address = userAddressField.getText();
-			String phone = userPhoneNumberField.getText();
-			String email = userEmailField.getText();
-
-			getBController().updateUser(id, name, email, address, phone);
-			showAllUser();
-		} else {
-			subUserForm.setVisible(false);
-		}
-	}
 	@FXML
 	void logout() throws IOException, InterruptedException, SQLException {
 		this.homeScreenHandler.show();

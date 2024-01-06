@@ -1,6 +1,5 @@
 package controller;
 
-import entity.admin.Admin;
 import entity.media.Book;
 import entity.media.CD;
 import entity.media.DVD;
@@ -90,29 +89,29 @@ public class ManagerHomeController extends BaseController {
 //	public void deleteDVD(int id) throws SQLException {
 //		new DVD().deleteDVD(id);
 //	}
-	public List getAllUser() throws SQLException {
-		return new User().getAllUser();
-	}
-
-	public void createUser(String name, String address, String email, String phone) throws SQLException {
-		User  user = new User();
-		user.createUser(name, address, email, phone);
-	}
-
-	public void updateUser(int id, String name, String address, String email, String phone) throws SQLException {
-		User  user = new User();
-		user.updateUser(id, name, address, email, phone);
-	}
-
-	public void deleteUser(int id) throws SQLException {
-		User user = new User();
-		user.deleteUser(id);
-	}
-
-	public void banUser(int id, boolean gt) throws SQLException {
-		User user = new User();
-		user.banUser(id, gt);
-	}
+//	public List getAllUser() throws SQLException {
+//		return new User().getAllUser();
+//	}
+//
+//	public void createUser(String name, String address, String email, String phone) throws SQLException {
+//		User  user = new User();
+//		user.createUser(name, address, email, phone);
+//	}
+//
+//	public void updateUser(int id, String name, String address, String email, String phone) throws SQLException {
+//		User  user = new User();
+//		user.updateUser(id, name, address, email, phone);
+//	}
+//
+//	public void deleteUser(int id) throws SQLException {
+//		User user = new User();
+//		user.deleteUser(id);
+//	}
+//
+//	public void banUser(int id, boolean gt) throws SQLException {
+//		User user = new User();
+//		user.banUser(id, gt);
+//	}
 //
 //	public void update(int id, String title, String category, int price, int value, int quantity, String type,
 //						 String artist, String recordLabel, String musicType, Date releaseDate) throws SQLException {
