@@ -7,6 +7,7 @@ import entity.media.Media;
 import entity.user.User;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -68,6 +69,24 @@ public class ManagerHomeController extends BaseController {
 
 
 	// Methods for DVD
+	
+	public void createDVD(int id, String title, String category, int price, int value, int quantity, String type,
+			String discType, String director, int runtime, String studio, String subtitles,Date releasedDate,
+			String filmType, String imageUrl) throws SQLException {
+		DVD dvd = new DVD();
+		dvd.createDVD(id, title, category, price, value, quantity, type, discType, director, runtime, studio, subtitles, releasedDate, filmType, imageUrl);
+	}
+	public void updateDVD(int id, String title, String category, int price, int value, int quantity, String type,
+			String discType, String director, int runtime, String studio, String subtitles, Date releasedDate,
+			String filmType) throws SQLException {
+		DVD dvd = new DVD();
+		dvd.updateDVD(id, title, category, price, value, quantity, type, discType, director, runtime, studio, subtitles, releasedDate, filmType);
+	}
+	
+	public void deleteDVD(int id) throws SQLException {
+		DVD dvd = new DVD();
+		dvd.deleteDVD(id);
+	}
 	public List getAllDVD() throws SQLException {
 		return new DVD().getAllMedia();
 	}
