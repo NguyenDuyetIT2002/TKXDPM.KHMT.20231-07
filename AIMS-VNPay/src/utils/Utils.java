@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Logger;
 
+import javafx.scene.control.Alert;
+
 public class Utils {
 
     public static DateFormat DATE_FORMATER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -29,6 +31,13 @@ public class Utils {
     }
 
 
+	public static void showAlert(Alert.AlertType alertType, String title, String header, String content) {
+		Alert alert = new Alert(alertType);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		alert.setContentText(content);
+		alert.showAndWait();
+	}
     /**
      * @param num
      * @return String

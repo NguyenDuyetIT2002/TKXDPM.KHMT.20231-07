@@ -36,6 +36,7 @@ public class Configs {
 
     public static final String LOGIN_SCREEN_PATH = "/views/fxml/login.fxml";
     public static final String MANAGER_SCREEN_PATH = "/views/fxml/manager_screen.fxml";
+    public static final String MANAGER_USER_SCREEN_PATH = "/views/fxml/manager_user_screen.fxml";
     public static final String MEDIA_DETAIL_PATH = "/views/fxml/media_detail.fxml";
 	public static float PERCENT_VAT = 10;
     public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
