@@ -179,6 +179,7 @@ public class DVD extends Media {
 			int value = res.getInt("value");
 			String category = res.getString("category");
 			int quantity = res.getInt("quantity");
+            String imageURL = res.getString("imageURL");
 			// from DVD table
 			String discType = res.getString("discType");
 			String director = res.getString("director");
@@ -188,8 +189,10 @@ public class DVD extends Media {
 			Date releasedDate = res.getDate("releasedDate");
 			String filmType = res.getString("filmType");
 
-			return new DVD(id, title, type, price, value, quantity, category, discType, director, runtime, studio,
+			DVD dvd = new DVD(id, title, type, price, value, quantity, category, discType, director, runtime, studio,
 					subtitles, releasedDate, filmType);
+			dvd.imageURL = imageURL;
+			return dvd;
 
 		} else {
 			throw new SQLException();

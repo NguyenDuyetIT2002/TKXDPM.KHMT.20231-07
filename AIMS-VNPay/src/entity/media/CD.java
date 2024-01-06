@@ -88,13 +88,16 @@ public class CD extends Media {
             int price = res.getInt("price");
             int value = res.getInt("value");
             String category = res.getString("category");
+            String imageURL = res.getString("imageURL");
             int quantity = res.getInt("quantity");
             String artist = res.getString("artist");
             String recordLabel = res.getString("recordLabel");
             String musicType = res.getString("musicType");
             Date releasedDate = res.getDate("releasedDate");
-            return new CD(id, title, category, price, value, quantity, type, artist, recordLabel, musicType,
+            CD cd = new CD(id, title, category, price, value, quantity, type, artist, recordLabel, musicType,
                     releasedDate);
+            cd.imageURL = imageURL;
+            return cd;
         } else {
             throw new SQLException();
         }
