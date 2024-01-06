@@ -278,10 +278,20 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         label.setTextAlignment(TextAlignment.RIGHT);
         menuItem.setGraphic(label);
         menuItem.setOnAction(e -> {
-            List filterItem = FilterHandler.handleFilter(homeItems, text);
-            homeSearchItems = filterItem;
-            setNumOfPage(filterItem);
-            addMediaHome(filterItem);
+            try {
+                List medium = getBController().handleFilter(text);
+                this.homeSearchItems = new ArrayList<>();
+                for (Object object : medium) {
+                    Media media = (Media) object;
+                    MediaHandler m1 = new MediaHandler(Configs.HOME_MEDIA_PATH, media, this);
+                    this.homeSearchItems.add(m1);
+                }
+            } catch (SQLException | IOException ex) {
+                LOGGER.info("Errors occured: " + ex.getMessage());
+                ex.printStackTrace();
+            }
+            setNumOfPage(homeSearchItems);
+            addMediaHome(homeSearchItems);
         });
         menuButton.getItems().add(position, menuItem);
     }
@@ -293,7 +303,18 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     public void handleSearch() {
         String text = textFieldSearch.getText();
-        homeSearchItems = SearchHandler.handleSearch(homeItems, text);
+        try {
+            List medium = getBController().searchMedia(text);
+            this.homeSearchItems = new ArrayList<>();
+            for (Object object : medium) {
+                Media media = (Media) object;
+                MediaHandler m1 = new MediaHandler(Configs.HOME_MEDIA_PATH, media, this);
+                this.homeSearchItems.add(m1);
+            }
+        } catch (SQLException | IOException e) {
+            LOGGER.info("Errors occured: " + e.getMessage());
+            e.printStackTrace();
+        }
         addMediaHome(homeSearchItems);
         setNumOfPage(homeSearchItems);
     }
