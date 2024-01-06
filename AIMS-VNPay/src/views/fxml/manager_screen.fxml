@@ -478,6 +478,125 @@
                            text="Quantity" />
                      </columns>
                   </TableView>
+                  <Label fx:id="labelDvdId" alignment="CENTER" layoutX="27.0" layoutY="400.0"
+                     prefHeight="20.0" prefWidth="59.0" text="ID :" visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dvdId" layoutX="94.0" layoutY="397.0" visible="false" />
+                  <Label fx:id="labelDvdTitle" alignment="CENTER" layoutX="21.0" layoutY="448.0"
+                     prefHeight="20.0" prefWidth="65.0" text="Title :" visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dvdTitle" layoutX="94.0" layoutY="445.0" visible="false" />
+                  <Label fx:id="labelDvdValue" alignment="CENTER" layoutX="21.0" layoutY="509.0"
+                     prefHeight="20.0" prefWidth="65.0" text="Value :" visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dvdValue" layoutX="95.0" layoutY="506.0" visible="false" />
+                  <Label fx:id="labelDvdPrice" alignment="CENTER" layoutX="21.0" layoutY="559.0"
+                     prefHeight="20.0" prefWidth="65.0" text="Price :" visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dvdPrice" layoutX="95.0" layoutY="556.0" visible="false" />
+                  <Label fx:id="labelDvdQuantity" alignment="CENTER" layoutX="2.0" layoutY="608.0"
+                     prefHeight="20.0" prefWidth="84.0" text="Quantity :" visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dvdQuantity" layoutX="95.0" layoutY="605.0" visible="false" />
+                  <Label fx:id="labelDvdDiscType" alignment="CENTER" layoutX="330.0" layoutY="400.0"
+                     prefHeight="20.0" prefWidth="59.0" text="Disc Type :" visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dvdDiscType" layoutX="409.0" layoutY="397.0" visible="false" />
+                  <Label fx:id="labelDvdDirector" alignment="CENTER" layoutX="316.0" layoutY="448.0"
+                     prefHeight="20.0" prefWidth="84.0" text="Director :" visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dvdDirector" layoutX="409.0" layoutY="446.0" prefWidth="150.0"
+                     visible="false"></TextField>
+                  <Label fx:id="labelDvdRuntime" alignment="CENTER" layoutX="325.0"
+                     layoutY="510.0" prefHeight="20.0" prefWidth="76.0" text="Runtime :"
+                     visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dvdRuntime" layoutX="409.0" layoutY="507.0" visible="false" />
+                  <Label fx:id="labelDvdReleaseDate" alignment="CENTER" layoutX="306.0"
+                     layoutY="559.0"
+                     prefHeight="20.0" prefWidth="95.0" text="Release Date :" visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="dvdReleaseDate" layoutX="409.0" layoutY="557.0"
+                     prefHeight="25.0"
+                     prefWidth="149.0" visible="false" />
+                  <Label fx:id="labelDvdStudio" alignment="CENTER" layoutX="294.0" layoutY="608.0"
+                     prefHeight="20.0" prefWidth="107.0" text="Studio :" visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dvdStudio" layoutX="409.0" layoutY="605.0" visible="false" />
+                  <Label fx:id="labelDvdSubtitle" alignment="CENTER" layoutX="603.0"
+                     layoutY="401.0" prefHeight="20.0" prefWidth="84.0" text="Subtitle :"
+                     visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dvdSubtitle" layoutX="695.0" layoutY="398.0" visible="false" />
+
+                  <Label fx:id="labelDvdFilmType" alignment="CENTER" layoutX="603.0"
+                     layoutY="450.0" prefHeight="20.0" prefWidth="84.0" text="Film Type :"
+                     visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dvdFilmType" layoutX="695.0" layoutY="447.0" visible="false" />
+
+                  <Label fx:id="labelDvdCategory" alignment="CENTER" layoutX="603.0"
+                     layoutY="499.0" prefHeight="20.0" prefWidth="84.0" text="Category :"
+                     visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dvdCategory" layoutX="695.0" layoutY="498.0" visible="false" />
+                  <Button layoutX="931.0" layoutY="392.0" mnemonicParsing="false"
+                     onAction="#createDVD" prefHeight="25.0" prefWidth="95.0" text="CREATE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="931.0" layoutY="459.0" mnemonicParsing="false"
+                     onAction="#updateDVD" prefHeight="25.0" prefWidth="95.0" text="UPDATE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="931.0" layoutY="529.0" mnemonicParsing="false"
+                     onAction="#deleteDVD" prefHeight="25.0" prefWidth="95.0" text="DELETE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </children>
