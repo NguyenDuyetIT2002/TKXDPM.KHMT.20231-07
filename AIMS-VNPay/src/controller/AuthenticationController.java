@@ -31,7 +31,7 @@ public class AuthenticationController extends BaseController {
     }
 
     public User authenticate(String email, String encryptedPassword) throws SQLException {
-        String sql = "SELECT * FROM User " +
+        String sql = "SELECT * FROM Admin " +
                 "WHERE email = '" + email + "' AND encrypted_password = '" + encryptedPassword + "'";
         LOGGER.info(sql);
         Statement stm = AIMSDB.getConnection().createStatement();

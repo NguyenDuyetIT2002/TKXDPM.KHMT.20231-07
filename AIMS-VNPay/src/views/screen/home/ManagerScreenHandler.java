@@ -4,6 +4,7 @@ import controller.ManagerHomeController;
 import entity.media.Book;
 import entity.media.CD;
 import entity.media.Media;
+import entity.user.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,6 +39,9 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	public static Logger LOGGER = Utils.getLogger(LoginScreenHandler.class.getName());
 
 	@FXML
+	private Button userBtn;
+
+	@FXML
 	private Button homeBtn;
 
 	@FXML
@@ -60,6 +64,9 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 
 	@FXML
 	private AnchorPane dvdForm;
+
+	@FXML
+	private AnchorPane userForm;
 
 	// Media Table
 
@@ -157,7 +164,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 
 	@FXML
 	private Label labelCdId, labelCdTitle, labelCdCategory, labelCdPrice, labelCdValue, labelCdQuantity,
-	            labelCdArtist, labelCdRecordLabel, labelCdReleasedDate, labelCdMusicType;
+			labelCdArtist, labelCdRecordLabel, labelCdReleasedDate, labelCdMusicType;
 
 	@FXML
 	private TextField cdId, cdTitle, cdCategory, cdPrice, cdValue, cdQuantity, cdArtist, cdRecordLabel, cdMusicType;
@@ -171,6 +178,21 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	@FXML
 	private Label labelBookId, labelBookTitle, labelBookValue, labelBookPrice, labelBookQuantity, labelBookAuthor,
 			labelBookCover, labelBookPublisher, labelBookPubDate, labelBookPages, labelBookLanguage, labelBookCategory;
+
+	@FXML
+	private  TableView<User> userTableView;
+	@FXML
+	private TableColumn<User, Integer> userIDCol;
+	@FXML
+	private TableColumn<User, String> userNameCol, userAddressCol, userPhoneNumberCol, userEmailCol;
+	@FXML
+	private TextField userAddressField, userEmailField, userPhoneNumberField, userNameField;
+	@FXML
+	private Label userLabelForm;
+	@FXML
+	private Button saveCreateUserBtn, saveUpdateUserBtn, banUserBtn, createUserBtn, updateUserBtn, deleteUserBtn;
+	@FXML
+	private AnchorPane subUserForm;
 
 	public ManagerHomeController getBController() {
 		return (ManagerHomeController) super.getBController();
@@ -194,6 +216,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 			bookForm.setVisible(false);
 			cdForm.setVisible(false);
 			dvdForm.setVisible(false);
+			userForm.setVisible(false);
 			showAllMedia();
 			displayTotalMedia();
 		} else if (e.getSource() == bookBtn) {
@@ -201,18 +224,28 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 			bookForm.setVisible(true);
 			cdForm.setVisible(false);
 			dvdForm.setVisible(false);
+			userForm.setVisible(false);
 			showAllBook();
 		} else if (e.getSource() == cdBtn) {
 			homeForm.setVisible(false);
 			bookForm.setVisible(false);
 			cdForm.setVisible(true);
 			dvdForm.setVisible(false);
+			userForm.setVisible(false);
 			showAllCD();
 		} else if (e.getSource() == dvdBtn) {
 			homeForm.setVisible(false);
 			bookForm.setVisible(false);
 			cdForm.setVisible(false);
 			dvdForm.setVisible(true);
+			userForm.setVisible(false);
+		}else if (e.getSource() == userBtn) {
+			homeForm.setVisible(false);
+			bookForm.setVisible(false);
+			cdForm.setVisible(false);
+			dvdForm.setVisible(false);
+			userForm.setVisible(true);
+			showAllUser();
 		}
 	}
 
@@ -307,87 +340,110 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	}
 
 	public void showCDFields() {
-	    CD selectedCD = cdTableView.getSelectionModel().getSelectedItem();
-	    if (selectedCD != null) {
-	        cdId.setText(String.valueOf(selectedCD.getId()));
-	        cdTitle.setText(selectedCD.getTitle());
-	        cdCategory.setText(selectedCD.getCategory());
-	        cdPrice.setText(String.valueOf(selectedCD.getPrice()));
-	        cdValue.setText(String.valueOf(selectedCD.getValue()));
-	        try {
-	            cdQuantity.setText(String.valueOf(selectedCD.getQuantity()));
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	        cdArtist.setText(selectedCD.getArtist());
-	        cdRecordLabel.setText(selectedCD.getRecordLabel());
-	        cdMusicType.setText(selectedCD.getMusicType());
-	        // Đối với cdReleasedDate, bạn cần chuyển đổi ngày từ java.sql.Date hoặc java.util.Date sang LocalDate
-	        // Ví dụ: cdReleasedDate.setValue(selectedCD.getReleasedDate().toLocalDate());
-	    }
+		CD selectedCD = cdTableView.getSelectionModel().getSelectedItem();
+		if (selectedCD != null) {
+			cdId.setText(String.valueOf(selectedCD.getId()));
+			cdTitle.setText(selectedCD.getTitle());
+			cdCategory.setText(selectedCD.getCategory());
+			cdPrice.setText(String.valueOf(selectedCD.getPrice()));
+			cdValue.setText(String.valueOf(selectedCD.getValue()));
+			try {
+				cdQuantity.setText(String.valueOf(selectedCD.getQuantity()));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			cdArtist.setText(selectedCD.getArtist());
+			cdRecordLabel.setText(selectedCD.getRecordLabel());
+			cdMusicType.setText(selectedCD.getMusicType());
+			// Đối với cdReleasedDate, bạn cần chuyển đổi ngày từ java.sql.Date hoặc java.util.Date sang LocalDate
+			// Ví dụ: cdReleasedDate.setValue(selectedCD.getReleasedDate().toLocalDate());
+		}
 
-	    cdId.setVisible(true);
-	    cdTitle.setVisible(true);
-	    cdCategory.setVisible(true);
-	    cdPrice.setVisible(true);
-	    cdValue.setVisible(true);
-	    cdQuantity.setVisible(true);
-	    cdArtist.setVisible(true);
-	    cdRecordLabel.setVisible(true);
-	    cdMusicType.setVisible(true);
-	    cdReleasedDate.setVisible(true);
+		cdId.setVisible(true);
+		cdTitle.setVisible(true);
+		cdCategory.setVisible(true);
+		cdPrice.setVisible(true);
+		cdValue.setVisible(true);
+		cdQuantity.setVisible(true);
+		cdArtist.setVisible(true);
+		cdRecordLabel.setVisible(true);
+		cdMusicType.setVisible(true);
+		cdReleasedDate.setVisible(true);
 
-	    labelCdId.setVisible(true);
-	    labelCdTitle.setVisible(true);
-	    labelCdCategory.setVisible(true);
-	    labelCdPrice.setVisible(true);
-	    labelCdValue.setVisible(true);
-	    labelCdQuantity.setVisible(true);
-	    labelCdArtist.setVisible(true);
-	    labelCdRecordLabel.setVisible(true);
-	    labelCdMusicType.setVisible(true);
-	    labelCdReleasedDate.setVisible(true);
+		labelCdId.setVisible(true);
+		labelCdTitle.setVisible(true);
+		labelCdCategory.setVisible(true);
+		labelCdPrice.setVisible(true);
+		labelCdValue.setVisible(true);
+		labelCdQuantity.setVisible(true);
+		labelCdArtist.setVisible(true);
+		labelCdRecordLabel.setVisible(true);
+		labelCdMusicType.setVisible(true);
+		labelCdReleasedDate.setVisible(true);
 
-	    isCDInfoDisplayed = true;
+		isCDInfoDisplayed = true;
 	}
 
 	public void hideCDFields() {
-	    cdId.clear();
-	    cdTitle.clear();
-	    cdCategory.clear();
-	    cdPrice.clear();
-	    cdValue.clear();
-	    cdQuantity.clear();
-	    cdArtist.clear();
-	    cdRecordLabel.clear();
-	    cdMusicType.clear();
-	    cdReleasedDate.getEditor().clear(); // Clear the date picker text field
+		cdId.clear();
+		cdTitle.clear();
+		cdCategory.clear();
+		cdPrice.clear();
+		cdValue.clear();
+		cdQuantity.clear();
+		cdArtist.clear();
+		cdRecordLabel.clear();
+		cdMusicType.clear();
+		cdReleasedDate.getEditor().clear(); // Clear the date picker text field
 
-	    cdId.setVisible(false);
-	    cdTitle.setVisible(false);
-	    cdCategory.setVisible(false);
-	    cdPrice.setVisible(false);
-	    cdValue.setVisible(false);
-	    cdQuantity.setVisible(false);
-	    cdArtist.setVisible(false);
-	    cdRecordLabel.setVisible(false);
-	    cdMusicType.setVisible(false);
-	    cdReleasedDate.setVisible(false);
+		cdId.setVisible(false);
+		cdTitle.setVisible(false);
+		cdCategory.setVisible(false);
+		cdPrice.setVisible(false);
+		cdValue.setVisible(false);
+		cdQuantity.setVisible(false);
+		cdArtist.setVisible(false);
+		cdRecordLabel.setVisible(false);
+		cdMusicType.setVisible(false);
+		cdReleasedDate.setVisible(false);
 
-	    labelCdId.setVisible(false);
-	    labelCdTitle.setVisible(false);
-	    labelCdCategory.setVisible(false);
-	    labelCdPrice.setVisible(false);
-	    labelCdValue.setVisible(false);
-	    labelCdQuantity.setVisible(false);
-	    labelCdArtist.setVisible(false);
-	    labelCdRecordLabel.setVisible(false);
-	    labelCdMusicType.setVisible(false);
-	    labelCdReleasedDate.setVisible(false);
+		labelCdId.setVisible(false);
+		labelCdTitle.setVisible(false);
+		labelCdCategory.setVisible(false);
+		labelCdPrice.setVisible(false);
+		labelCdValue.setVisible(false);
+		labelCdQuantity.setVisible(false);
+		labelCdArtist.setVisible(false);
+		labelCdRecordLabel.setVisible(false);
+		labelCdMusicType.setVisible(false);
+		labelCdReleasedDate.setVisible(false);
 
-	    isCDInfoDisplayed = false;
+		isCDInfoDisplayed = false;
 	}
 
+	public void showAllUser() throws SQLException{
+		List<User> listUser = getBController().getAllUser();
+		userIDCol.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
+		userNameCol.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
+		userEmailCol.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
+		userAddressCol.setCellValueFactory(new PropertyValueFactory<User, String>("address"));
+		userPhoneNumberCol.setCellValueFactory(new PropertyValueFactory<User, String>("phone"));
+		userTableView.getItems().setAll(listUser);
+		subUserForm.setVisible(false);
+		userTableView.setRowFactory(tv -> new TableRow<User>() {
+			@Override
+			public void updateItem(User item, boolean empty) {
+				super.updateItem(item, empty) ;
+				if (item == null) {
+					setStyle("");
+				} else if (item.getBan()) {
+					setStyle("-fx-background-color: red;");
+				} else {
+					setStyle("");
+				}
+			}
+		});
+	}
 
 	public void showAllMedia() throws SQLException {
 		List<Media> listMedia = getBController().getAllMedia();
@@ -486,7 +542,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 					int bookQuantityValue = safeParseInt(bookQuantity.getText());
 					int bookPagesValue = safeParseInt(bookPages.getText());
 					java.sql.Date sqlPubDate = java.sql.Date.valueOf(bookPubDate.getValue()); // Chuyển LocalDate thành
-																								// java.sql.Date
+					// java.sql.Date
 
 					// Gọi phương thức updateBook với các giá trị đã được chuyển đổi
 					getBController().updateBook(selectedBook.getId(), bookTitle.getText(), bookCategory.getText(),
@@ -507,7 +563,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 			}
 	}
 
-	
+
 
 	public void deleteBook() throws SQLException {
 		Book selectedBook = bookTableView.getSelectionModel().getSelectedItem();
@@ -546,110 +602,110 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 		cdReleasedCol.setCellValueFactory(new PropertyValueFactory<CD, Date>("releasedDate"));
 		cdTableView.getItems().setAll(listCD);
 	}
-	
-	public void createCD(ActionEvent event) throws SQLException {
-	    if (!isCDInfoDisplayed) {
-	        // Display information (first click)
-	        showCDFields();
-	        isCDInfoDisplayed = true;
-	    } else {
-	        // Create CD (second click)
-	        try {
-	            int cdIdValue = safeParseInt(cdId.getText());
-	            int cdPriceValue = safeParseInt(cdPrice.getText());
-	            int cdValueValue = safeParseInt(cdValue.getText());
-	            int cdQuantityValue = safeParseInt(cdQuantity.getText());
-	            String imageUrl = "assets/images/cd/cd10.jpg";
-	            
-	            getBController().createCD(
-	                cdIdValue,
-	                cdTitle.getText(),
-	                cdCategory.getText(),
-	                cdPriceValue,
-	                cdValueValue,
-	                cdQuantityValue,
-	                "cd",
-	                cdArtist.getText(),
-	                cdRecordLabel.getText(),
-	                cdMusicType.getText(),
-	                java.sql.Date.valueOf(cdReleasedDate.getValue()),
-	                imageUrl
-	            );
 
-	            hideCDFields();
-	            showAllCD();
-	            isCDInfoDisplayed = false;
-	        } catch (NumberFormatException e) {
-	            e.printStackTrace();
-	        }
-	    }
+	public void createCD(ActionEvent event) throws SQLException {
+		if (!isCDInfoDisplayed) {
+			// Display information (first click)
+			showCDFields();
+			isCDInfoDisplayed = true;
+		} else {
+			// Create CD (second click)
+			try {
+				int cdIdValue = safeParseInt(cdId.getText());
+				int cdPriceValue = safeParseInt(cdPrice.getText());
+				int cdValueValue = safeParseInt(cdValue.getText());
+				int cdQuantityValue = safeParseInt(cdQuantity.getText());
+				String imageUrl = "assets/images/cd/cd10.jpg";
+
+				getBController().createCD(
+						cdIdValue,
+						cdTitle.getText(),
+						cdCategory.getText(),
+						cdPriceValue,
+						cdValueValue,
+						cdQuantityValue,
+						"cd",
+						cdArtist.getText(),
+						cdRecordLabel.getText(),
+						cdMusicType.getText(),
+						java.sql.Date.valueOf(cdReleasedDate.getValue()),
+						imageUrl
+				);
+
+				hideCDFields();
+				showAllCD();
+				isCDInfoDisplayed = false;
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void updateCD() throws SQLException {
-	    CD selectedCD = cdTableView.getSelectionModel().getSelectedItem();
+		CD selectedCD = cdTableView.getSelectionModel().getSelectedItem();
 
-	    if (selectedCD == null) {
-	        showAlert(Alert.AlertType.WARNING, "No Selection", "No CD Selected", "Please select a CD in the table.");
-	        return;
-	    }
+		if (selectedCD == null) {
+			showAlert(Alert.AlertType.WARNING, "No Selection", "No CD Selected", "Please select a CD in the table.");
+			return;
+		}
 
-	    try {
-	        if (!isCDInfoDisplayed) {
-	            showCDFields();
-	            isCDInfoDisplayed = true;
-	        } else {
-	            int cdPriceValue = safeParseInt(cdPrice.getText());
-	            int cdValueValue = safeParseInt(cdValue.getText());
-	            int cdQuantityValue = safeParseInt(cdQuantity.getText());
+		try {
+			if (!isCDInfoDisplayed) {
+				showCDFields();
+				isCDInfoDisplayed = true;
+			} else {
+				int cdPriceValue = safeParseInt(cdPrice.getText());
+				int cdValueValue = safeParseInt(cdValue.getText());
+				int cdQuantityValue = safeParseInt(cdQuantity.getText());
 
-	            java.sql.Date sqlReleasedDate = java.sql.Date.valueOf(cdReleasedDate.getValue());
+				java.sql.Date sqlReleasedDate = java.sql.Date.valueOf(cdReleasedDate.getValue());
 
-	            getBController().updateCD(
-	                selectedCD.getId(),
-	                cdTitle.getText(),
-	                cdCategory.getText(),
-	                cdPriceValue,
-	                cdValueValue,
-	                cdQuantityValue,
-	                "cd",
-	                cdArtist.getText(),
-	                cdRecordLabel.getText(),
-	                cdMusicType.getText(),
-	                sqlReleasedDate
-	            );
+				getBController().updateCD(
+						selectedCD.getId(),
+						cdTitle.getText(),
+						cdCategory.getText(),
+						cdPriceValue,
+						cdValueValue,
+						cdQuantityValue,
+						"cd",
+						cdArtist.getText(),
+						cdRecordLabel.getText(),
+						cdMusicType.getText(),
+						sqlReleasedDate
+				);
 
-	            hideCDFields();
-	            showAllCD();
-	            isCDInfoDisplayed = false;
-	        }
-	    } catch (NumberFormatException e) {
-	        showAlert(Alert.AlertType.ERROR, "Invalid Input", "Input Error", "Please enter valid numeric values.");
-	        e.printStackTrace();
-	    }
+				hideCDFields();
+				showAllCD();
+				isCDInfoDisplayed = false;
+			}
+		} catch (NumberFormatException e) {
+			showAlert(Alert.AlertType.ERROR, "Invalid Input", "Input Error", "Please enter valid numeric values.");
+			e.printStackTrace();
+		}
 	}
 
 	public void deleteCD() throws SQLException {
-	    CD selectedCD = cdTableView.getSelectionModel().getSelectedItem();
+		CD selectedCD = cdTableView.getSelectionModel().getSelectedItem();
 
-	    if (selectedCD == null) {
-	        showAlert(Alert.AlertType.WARNING, "No Selection", "No CD Selected", "Please select a CD in the table.");
-	        return;
-	    }
+		if (selectedCD == null) {
+			showAlert(Alert.AlertType.WARNING, "No Selection", "No CD Selected", "Please select a CD in the table.");
+			return;
+		}
 
-	    Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this CD?", ButtonType.YES, ButtonType.NO);
-	    Optional<ButtonType> result = confirmAlert.showAndWait();
+		Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this CD?", ButtonType.YES, ButtonType.NO);
+		Optional<ButtonType> result = confirmAlert.showAndWait();
 
-	    if (result.get() == ButtonType.YES) {
-	        try {
-	            getBController().deleteCD(selectedCD.getId());
-	            showAllCD();
-	            showAlert(Alert.AlertType.INFORMATION, "Deletion Successful", "CD Deleted", "CD has been deleted successfully.");
-	        } catch (SQLException ex) {
-	            showAlert(Alert.AlertType.ERROR, "Deletion Failed", "Error Deleting CD", "There was an error deleting the CD.");
-	        }
-	    }
+		if (result.get() == ButtonType.YES) {
+			try {
+				getBController().deleteCD(selectedCD.getId());
+				showAllCD();
+				showAlert(Alert.AlertType.INFORMATION, "Deletion Successful", "CD Deleted", "CD has been deleted successfully.");
+			} catch (SQLException ex) {
+				showAlert(Alert.AlertType.ERROR, "Deletion Failed", "Error Deleting CD", "There was an error deleting the CD.");
+			}
+		}
 	}
-	
+
 	public void resetBookData() {
 		bookId.clear();
 		bookTitle.clear();
@@ -674,6 +730,78 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 		totalDVD.setText(String.valueOf(totalDVDCount));
 	}
 
+	public void setCreateUserBtn() {
+		userLabelForm.setText("Create User");
+		subUserForm.setVisible(true);
+		saveUpdateUserBtn.setVisible(false);
+		saveCreateUserBtn.setVisible(true);
+
+		userNameField.setText("");
+		userAddressField.setText("");
+		userPhoneNumberField.setText("");
+		userEmailField.setText("");
+	}
+
+	public void setUpdateUserBtn() {
+		User selectedUser = userTableView.getSelectionModel().getSelectedItem();
+		if (selectedUser != null) {
+			userLabelForm.setText("Edit User");
+			subUserForm.setVisible(true);
+			saveUpdateUserBtn.setVisible(true);
+			saveCreateUserBtn.setVisible(false);
+
+			userNameField.setText(selectedUser.getName());
+			userAddressField.setText(selectedUser.getAddress());
+			userPhoneNumberField.setText(selectedUser.getPhone());
+			userEmailField.setText(selectedUser.getEmail());
+		} else {
+			subUserForm.setVisible(false);
+		}
+	}
+
+	public void setBanUserBtn() throws SQLException {
+		subUserForm.setVisible(false);
+		User selectedUser = userTableView.getSelectionModel().getSelectedItem();
+		if (selectedUser != null) {
+			getBController().banUser(selectedUser.getId(), selectedUser.getBan());
+			showAllUser();
+		}
+	}
+
+	public void setDeleteUserBtn() throws SQLException {
+		subUserForm.setVisible(false);
+		User selectedUser = userTableView.getSelectionModel().getSelectedItem();
+		if (selectedUser != null) {
+			getBController().deleteUser(selectedUser.getId());
+			showAllUser();
+		}
+	}
+
+	public void setSaveCreateUserBtn() throws SQLException {
+		String name = userNameField.getText();
+		String address = userAddressField.getText();
+		String phone = userPhoneNumberField.getText();
+		String email = userEmailField.getText();
+
+		getBController().createUser(name, email, address, phone);
+		showAllUser();
+	}
+
+	public void setSaveUpdateUserBtn() throws SQLException{
+		User selectedUser = userTableView.getSelectionModel().getSelectedItem();
+		if (selectedUser != null) {
+			int id = selectedUser.getId();
+			String name = userNameField.getText();
+			String address = userAddressField.getText();
+			String phone = userPhoneNumberField.getText();
+			String email = userEmailField.getText();
+
+			getBController().updateUser(id, name, email, address, phone);
+			showAllUser();
+		} else {
+			subUserForm.setVisible(false);
+		}
+	}
 	@FXML
 	void logout() throws IOException, InterruptedException, SQLException {
 		this.homeScreenHandler.show();
