@@ -3,6 +3,7 @@ package views.screen.manager;
 import controller.ManagerHomeController;
 import entity.media.Book;
 import entity.media.CD;
+import entity.media.DVD;
 import entity.media.Media;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 import java.util.Optional;
+import java.text.SimpleDateFormat;
+
 
 import static java.lang.Integer.parseInt;
 
@@ -174,6 +177,19 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	private Label labelBookId, labelBookTitle, labelBookValue, labelBookPrice, labelBookQuantity, labelBookAuthor,
 			labelBookCover, labelBookPublisher, labelBookPubDate, labelBookPages, labelBookLanguage, labelBookCategory;
 
+	@FXML
+	private TableColumn<DVD, Integer> dvdIDCol, dvdValueCol, dvdPriceCol, dvdQuantityCol, dvdRuntimeCol;
+
+	@FXML
+	private TableColumn<DVD, String> dvdTypeCol, dvdTitleCol, dvdDirectorCol, dvdStudioCol, dvdSubtitleCol, dvdFilmTypeCol;
+
+	@FXML
+	private TableColumn<DVD, Date> dvdReleaseCol;
+
+	@FXML
+	private TableView<DVD> dvdTableView;
+
+
 	public ManagerHomeController getBController() {
 		return (ManagerHomeController) super.getBController();
 	}
@@ -215,6 +231,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 			bookForm.setVisible(false);
 			cdForm.setVisible(false);
 			dvdForm.setVisible(true);
+			showAllDVD();
 		}
 	}
 
@@ -659,246 +676,247 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 		bookPages.clear();
 		bookLanguage.clear();
 	}
+
 	// DVD
 	public void showAllDVD() throws SQLException {
-	    List<DVD> listDVD = getBController().getAllDVD();
-	    dvdIDCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("id"));
-	    dvdTypeCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("type"));
-	    dvdTitleCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("title"));
-	    dvdDirectorCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("director"));
-	    dvdRuntimeCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("runtime"));
-	    dvdStudioCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("studio"));
-	    dvdSubtitleCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("subtitles"));
-	    dvdReleaseCol.setCellValueFactory(new PropertyValueFactory<DVD, Date>("releasedDate"));
-	    dvdFilmTypeCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("filmType"));
-	    dvdValueCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("value"));
-	    dvdPriceCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("price"));
-	    dvdQuantityCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("quantity"));
-	    dvdTableView.getItems().setAll(listDVD);
+		List<DVD> listDVD = getBController().getAllDVD();
+		dvdIDCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("id"));
+		dvdTypeCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("type"));
+		dvdTitleCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("title"));
+		dvdDirectorCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("director"));
+		dvdRuntimeCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("runtime"));
+		dvdStudioCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("studio"));
+		dvdSubtitleCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("subtitles"));
+		dvdReleaseCol.setCellValueFactory(new PropertyValueFactory<DVD, Date>("releasedDate"));
+		dvdFilmTypeCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("filmType"));
+		dvdValueCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("value"));
+		dvdPriceCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("price"));
+		dvdQuantityCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("quantity"));
+		dvdTableView.getItems().setAll(listDVD);
 	}
-	
-    @FXML
-    private Label labelDvdId, labelDvdTitle, labelDvdCategory, labelDvdValue, labelDvdPrice, labelDvdQuantity, 
-                  labelDvdDiscType, labelDvdDirector, labelDvdRuntime, labelDvdReleaseDate, 
-                  labelDvdStudio, labelDvdSubtitle, labelDvdFilmType;
 
-    // DVD TextFields and DatePicker
-    @FXML
-    private TextField dvdId, dvdTitle, dvdCategory, dvdValue, dvdPrice, dvdQuantity, dvdDiscType, 
-                      dvdDirector, dvdRuntime, dvdStudio, dvdSubtitle, dvdFilmType;
-    
-    @FXML
-    private DatePicker dvdReleaseDate;
-	
+	@FXML
+	private Label labelDvdId, labelDvdTitle, labelDvdCategory, labelDvdValue, labelDvdPrice, labelDvdQuantity,
+			labelDvdDiscType, labelDvdDirector, labelDvdRuntime, labelDvdReleaseDate,
+			labelDvdStudio, labelDvdSubtitle, labelDvdFilmType;
+
+	// DVD TextFields and DatePicker
+	@FXML
+	private TextField dvdId, dvdTitle, dvdCategory, dvdValue, dvdPrice, dvdQuantity, dvdDiscType,
+			dvdDirector, dvdRuntime, dvdStudio, dvdSubtitle, dvdFilmType;
+
+	@FXML
+	private DatePicker dvdReleaseDate;
+
 	public void showDVDFields() throws SQLException {
-	    DVD selectedDVD = dvdTableView.getSelectionModel().getSelectedItem();
-	    if (selectedDVD != null) {
-	        dvdId.setText(String.valueOf(selectedDVD.getId()));
-	        dvdTitle.setText(selectedDVD.getTitle());
-	        dvdCategory.setText(selectedDVD.getCategory());
-	        dvdValue.setText(String.valueOf(selectedDVD.getValue()));
-	        dvdPrice.setText(String.valueOf(selectedDVD.getPrice()));
-	        dvdQuantity.setText(String.valueOf(selectedDVD.getQuantity()));
-	        dvdDiscType.setText(selectedDVD.getDiscType());
-	        dvdDirector.setText(selectedDVD.getDirector());
-	        dvdRuntime.setText(String.valueOf(selectedDVD.getRuntime()));
-	        dvdStudio.setText(selectedDVD.getStudio());
-	        dvdSubtitle.setText(selectedDVD.getSubtitles());
-	        dvdFilmType.setText(selectedDVD.getFilmType());
-	    }
+		DVD selectedDVD = dvdTableView.getSelectionModel().getSelectedItem();
+		if (selectedDVD != null) {
+			dvdId.setText(String.valueOf(selectedDVD.getId()));
+			dvdTitle.setText(selectedDVD.getTitle());
+			dvdCategory.setText(selectedDVD.getCategory());
+			dvdValue.setText(String.valueOf(selectedDVD.getValue()));
+			dvdPrice.setText(String.valueOf(selectedDVD.getPrice()));
+			dvdQuantity.setText(String.valueOf(selectedDVD.getQuantity()));
+			dvdDiscType.setText(selectedDVD.getDiscType());
+			dvdDirector.setText(selectedDVD.getDirector());
+			dvdRuntime.setText(String.valueOf(selectedDVD.getRuntime()));
+			dvdStudio.setText(selectedDVD.getStudio());
+			dvdSubtitle.setText(selectedDVD.getSubtitles());
+			dvdFilmType.setText(selectedDVD.getFilmType());
+		}
 
-	    dvdId.setVisible(true);
-	    dvdTitle.setVisible(true);
-	    dvdValue.setVisible(true);
-	    dvdPrice.setVisible(true);
-	    dvdQuantity.setVisible(true);
-	    dvdDiscType.setVisible(true);
-	    dvdDirector.setVisible(true);
-	    dvdRuntime.setVisible(true);
-	    dvdReleaseDate.setVisible(true);
-	    dvdStudio.setVisible(true);
-	    dvdSubtitle.setVisible(true);
-	    dvdFilmType.setVisible(true);
-	    dvdCategory.setVisible(true);
+		dvdId.setVisible(true);
+		dvdTitle.setVisible(true);
+		dvdValue.setVisible(true);
+		dvdPrice.setVisible(true);
+		dvdQuantity.setVisible(true);
+		dvdDiscType.setVisible(true);
+		dvdDirector.setVisible(true);
+		dvdRuntime.setVisible(true);
+		dvdReleaseDate.setVisible(true);
+		dvdStudio.setVisible(true);
+		dvdSubtitle.setVisible(true);
+		dvdFilmType.setVisible(true);
+		dvdCategory.setVisible(true);
 
-	    labelDvdId.setVisible(true);
-	    labelDvdTitle.setVisible(true);
-	    labelDvdValue.setVisible(true);
-	    labelDvdPrice.setVisible(true);
-	    labelDvdQuantity.setVisible(true);
-	    labelDvdDiscType.setVisible(true);
-	    labelDvdDirector.setVisible(true);
-	    labelDvdRuntime.setVisible(true);
-	    labelDvdReleaseDate.setVisible(true);
-	    labelDvdStudio.setVisible(true);
-	    labelDvdSubtitle.setVisible(true);
-	    labelDvdFilmType.setVisible(true);
-	    labelDvdCategory.setVisible(true);
+		labelDvdId.setVisible(true);
+		labelDvdTitle.setVisible(true);
+		labelDvdValue.setVisible(true);
+		labelDvdPrice.setVisible(true);
+		labelDvdQuantity.setVisible(true);
+		labelDvdDiscType.setVisible(true);
+		labelDvdDirector.setVisible(true);
+		labelDvdRuntime.setVisible(true);
+		labelDvdReleaseDate.setVisible(true);
+		labelDvdStudio.setVisible(true);
+		labelDvdSubtitle.setVisible(true);
+		labelDvdFilmType.setVisible(true);
+		labelDvdCategory.setVisible(true);
 	}
-	
+
 	public void hideDVDFields() {
 		dvdId.clear();
-	    dvdTitle.clear();
-	    dvdCategory.clear();
-	    dvdValue.clear();
-	    dvdPrice.clear();
-	    dvdQuantity.clear();
-	    dvdDiscType.clear();
-	    dvdDirector.clear();
-	    dvdRuntime.clear();
-	    dvdStudio.clear();
-	    dvdSubtitle.clear();
-	    dvdFilmType.clear();
-	    dvdReleaseDate.getEditor().clear();
-	    // Hide TextFields
-	    dvdId.setVisible(false);
-	    dvdTitle.setVisible(false);
-	    dvdCategory.setVisible(false);
-	    dvdValue.setVisible(false);
-	    dvdPrice.setVisible(false);
-	    dvdQuantity.setVisible(false);
-	    dvdDiscType.setVisible(false);
-	    dvdDirector.setVisible(false);
-	    dvdRuntime.setVisible(false);
-	    dvdStudio.setVisible(false);
-	    dvdSubtitle.setVisible(false);
-	    dvdFilmType.setVisible(false);
+		dvdTitle.clear();
+		dvdCategory.clear();
+		dvdValue.clear();
+		dvdPrice.clear();
+		dvdQuantity.clear();
+		dvdDiscType.clear();
+		dvdDirector.clear();
+		dvdRuntime.clear();
+		dvdStudio.clear();
+		dvdSubtitle.clear();
+		dvdFilmType.clear();
+		dvdReleaseDate.getEditor().clear();
+		// Hide TextFields
+		dvdId.setVisible(false);
+		dvdTitle.setVisible(false);
+		dvdCategory.setVisible(false);
+		dvdValue.setVisible(false);
+		dvdPrice.setVisible(false);
+		dvdQuantity.setVisible(false);
+		dvdDiscType.setVisible(false);
+		dvdDirector.setVisible(false);
+		dvdRuntime.setVisible(false);
+		dvdStudio.setVisible(false);
+		dvdSubtitle.setVisible(false);
+		dvdFilmType.setVisible(false);
 
-	    // Hide DatePickers
-	    dvdReleaseDate.setVisible(false);
+		// Hide DatePickers
+		dvdReleaseDate.setVisible(false);
 
-	    // Hide Labels
-	    labelDvdId.setVisible(false);
-	    labelDvdTitle.setVisible(false);
-	    labelDvdCategory.setVisible(false);
-	    labelDvdValue.setVisible(false);
-	    labelDvdPrice.setVisible(false);
-	    labelDvdQuantity.setVisible(false);
-	    labelDvdDiscType.setVisible(false);
-	    labelDvdDirector.setVisible(false);
-	    labelDvdRuntime.setVisible(false);
-	    labelDvdReleaseDate.setVisible(false);
-	    labelDvdStudio.setVisible(false);
-	    labelDvdSubtitle.setVisible(false);
-	    labelDvdFilmType.setVisible(false);
-	    isDVDInfoDisplayed = false;
+		// Hide Labels
+		labelDvdId.setVisible(false);
+		labelDvdTitle.setVisible(false);
+		labelDvdCategory.setVisible(false);
+		labelDvdValue.setVisible(false);
+		labelDvdPrice.setVisible(false);
+		labelDvdQuantity.setVisible(false);
+		labelDvdDiscType.setVisible(false);
+		labelDvdDirector.setVisible(false);
+		labelDvdRuntime.setVisible(false);
+		labelDvdReleaseDate.setVisible(false);
+		labelDvdStudio.setVisible(false);
+		labelDvdSubtitle.setVisible(false);
+		labelDvdFilmType.setVisible(false);
+		isDVDInfoDisplayed = false;
 	}
 
 
-	
+
 	public void createDVD(ActionEvent event) throws SQLException {
-	    if (!isDVDInfoDisplayed) {
-	        // Display information (first click)
-	    	showDVDFields();
-	        isDVDInfoDisplayed = true;
-	    } else {
-	        // Create DVD (second click)
-	        try {
-	            int dvdIdValue = safeParseInt(dvdId.getText());
-	            int dvdPriceValue = safeParseInt(dvdPrice.getText());
-	            int dvdValueValue = safeParseInt(dvdValue.getText());
-	            int dvdQuantityValue = safeParseInt(dvdQuantity.getText());
-	            int dvdRuntimeValue = safeParseInt(dvdRuntime.getText()); // Assuming runtime is an integer
-	            String imageUrl = "assets/images/dvd/dvd10.jpg"; // Example image URL
+		if (!isDVDInfoDisplayed) {
+			// Display information (first click)
+			showDVDFields();
+			isDVDInfoDisplayed = true;
+		} else {
+			// Create DVD (second click)
+			try {
+				int dvdIdValue = safeParseInt(dvdId.getText());
+				int dvdPriceValue = safeParseInt(dvdPrice.getText());
+				int dvdValueValue = safeParseInt(dvdValue.getText());
+				int dvdQuantityValue = safeParseInt(dvdQuantity.getText());
+				int dvdRuntimeValue = safeParseInt(dvdRuntime.getText()); // Assuming runtime is an integer
+				String imageUrl = "assets/images/dvd/dvd10.jpg"; // Example image URL
 
-	            // Adjust the method call as per the signature
-	            getBController().createDVD(
-	                    dvdIdValue,
-	                    dvdTitle.getText(),
-	                    dvdCategory.getText(),
-	                    dvdPriceValue,
-	                    dvdValueValue,
-	                    dvdQuantityValue,
-	                    "dvd", // Assuming this is the type
-	                    dvdDiscType.getText(), // Using dvdDiscType for discType
-	                    dvdDirector.getText(),
-	                    dvdRuntimeValue,
-	                    dvdStudio.getText(),
-	                    dvdSubtitle.getText(),
-	                    java.sql.Date.valueOf(dvdReleaseDate.getValue()),
-	                    dvdFilmType.getText(), // Using dvdFilmType for filmType
-	                    imageUrl
-	            );
+				// Adjust the method call as per the signature
+				getBController().createDVD(
+						dvdIdValue,
+						dvdTitle.getText(),
+						dvdCategory.getText(),
+						dvdPriceValue,
+						dvdValueValue,
+						dvdQuantityValue,
+						"dvd", // Assuming this is the type
+						dvdDiscType.getText(), // Using dvdDiscType for discType
+						dvdDirector.getText(),
+						dvdRuntimeValue,
+						dvdStudio.getText(),
+						dvdSubtitle.getText(),
+						java.sql.Date.valueOf(dvdReleaseDate.getValue()),
+						dvdFilmType.getText(), // Using dvdFilmType for filmType
+						imageUrl
+				);
 
-	            hideDVDFields();
-	            showAllDVD(); // Assuming a method to refresh or show all DVDs
-	        } catch (NumberFormatException e) {
-	        	Utils.showAlert(Alert.AlertType.ERROR, "Invalid Input", "Input Error", "Please enter valid numeric values.");
-	            e.printStackTrace();
-	        }
-	    }
+				hideDVDFields();
+				showAllDVD(); // Assuming a method to refresh or show all DVDs
+			} catch (NumberFormatException e) {
+				Utils.showAlert(Alert.AlertType.ERROR, "Invalid Input", "Input Error", "Please enter valid numeric values.");
+				e.printStackTrace();
+			}
+		}
 	}
 
 
 	public void updateDVD() throws SQLException {
-	    DVD selectedDVD = dvdTableView.getSelectionModel().getSelectedItem();
+		DVD selectedDVD = dvdTableView.getSelectionModel().getSelectedItem();
 
-	    if (selectedDVD == null) {
-	        Utils.showAlert(Alert.AlertType.WARNING, "No Selection", "No DVD Selected", "Please select a DVD in the table.");
-	        return;
-	    }
+		if (selectedDVD == null) {
+			Utils.showAlert(Alert.AlertType.WARNING, "No Selection", "No DVD Selected", "Please select a DVD in the table.");
+			return;
+		}
 
-	    try {
-	        if (!isDVDInfoDisplayed) {
-	            showDVDFields();
-	            isDVDInfoDisplayed = true;
-	        } else {
-	            int dvdPriceValue = safeParseInt(dvdPrice.getText());
-	            int dvdValueValue = safeParseInt(dvdValue.getText());
-	            int dvdQuantityValue = safeParseInt(dvdQuantity.getText());
-	            int dvdRuntimeValue = safeParseInt(dvdRuntime.getText()); // Assuming runtime is an integer
+		try {
+			if (!isDVDInfoDisplayed) {
+				showDVDFields();
+				isDVDInfoDisplayed = true;
+			} else {
+				int dvdPriceValue = safeParseInt(dvdPrice.getText());
+				int dvdValueValue = safeParseInt(dvdValue.getText());
+				int dvdQuantityValue = safeParseInt(dvdQuantity.getText());
+				int dvdRuntimeValue = safeParseInt(dvdRuntime.getText()); // Assuming runtime is an integer
 
-	            java.sql.Date sqlReleaseDate = java.sql.Date.valueOf(dvdReleaseDate.getValue());
+				java.sql.Date sqlReleaseDate = java.sql.Date.valueOf(dvdReleaseDate.getValue());
 
-	            getBController().updateDVD(
-	                    selectedDVD.getId(),
-	                    dvdTitle.getText(),
-	                    dvdCategory.getText(),
-	                    dvdPriceValue,
-	                    dvdValueValue,
-	                    dvdQuantityValue,
-	                    "dvd", // Assuming this is the type
-	                    dvdDiscType.getText(),
-	                    dvdDirector.getText(),
-	                    dvdRuntimeValue,
-	                    dvdStudio.getText(),
-	                    dvdSubtitle.getText(),
-	                    sqlReleaseDate,
-	                    dvdFilmType.getText() // Assuming film type is a field in DVD
-	            );
+				getBController().updateDVD(
+						selectedDVD.getId(),
+						dvdTitle.getText(),
+						dvdCategory.getText(),
+						dvdPriceValue,
+						dvdValueValue,
+						dvdQuantityValue,
+						"dvd", // Assuming this is the type
+						dvdDiscType.getText(),
+						dvdDirector.getText(),
+						dvdRuntimeValue,
+						dvdStudio.getText(),
+						dvdSubtitle.getText(),
+						sqlReleaseDate,
+						dvdFilmType.getText() // Assuming film type is a field in DVD
+				);
 
-	            hideDVDFields();
-	            showAllDVD();
-	            isDVDInfoDisplayed = false;
-	        }
-	    } catch (NumberFormatException e) {
-	        Utils.showAlert(Alert.AlertType.ERROR, "Invalid Input", "Input Error", "Please enter valid numeric values.");
-	        e.printStackTrace();
-	    }
+				hideDVDFields();
+				showAllDVD();
+				isDVDInfoDisplayed = false;
+			}
+		} catch (NumberFormatException e) {
+			Utils.showAlert(Alert.AlertType.ERROR, "Invalid Input", "Input Error", "Please enter valid numeric values.");
+			e.printStackTrace();
+		}
 	}
 
-	
+
 	public void deleteDVD() throws SQLException {
-	    DVD selectedDVD = dvdTableView.getSelectionModel().getSelectedItem();
+		DVD selectedDVD = dvdTableView.getSelectionModel().getSelectedItem();
 
-	    if (selectedDVD == null) {
-	        Utils.showAlert(Alert.AlertType.WARNING, "No Selection", "No DVD Selected", "Please select a DVD in the table.");
-	        return;
-	    }
+		if (selectedDVD == null) {
+			Utils.showAlert(Alert.AlertType.WARNING, "No Selection", "No DVD Selected", "Please select a DVD in the table.");
+			return;
+		}
 
-	    Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this DVD?", ButtonType.YES, ButtonType.NO);
-	    Optional<ButtonType> result = confirmAlert.showAndWait();
+		Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this DVD?", ButtonType.YES, ButtonType.NO);
+		Optional<ButtonType> result = confirmAlert.showAndWait();
 
-	    if (result.isPresent() && result.get() == ButtonType.YES) {
-	        try {
-	            getBController().deleteDVD(selectedDVD.getId());
-	            showAllDVD(); // Assuming this method refreshes the DVD list
-	            Utils.showAlert(Alert.AlertType.INFORMATION, "Deletion Successful", "DVD Deleted", "DVD has been deleted successfully.");
-	        } catch (SQLException ex) {
-	            Utils.showAlert(Alert.AlertType.ERROR, "Deletion Failed", "Error Deleting DVD", "There was an error deleting the DVD.");
-	            ex.printStackTrace();
-	        }
-	    }
+		if (result.isPresent() && result.get() == ButtonType.YES) {
+			try {
+				getBController().deleteDVD(selectedDVD.getId());
+				showAllDVD(); // Assuming this method refreshes the DVD list
+				Utils.showAlert(Alert.AlertType.INFORMATION, "Deletion Successful", "DVD Deleted", "DVD has been deleted successfully.");
+			} catch (SQLException ex) {
+				Utils.showAlert(Alert.AlertType.ERROR, "Deletion Failed", "Error Deleting DVD", "There was an error deleting the DVD.");
+				ex.printStackTrace();
+			}
+		}
 	}
 
 	public void displayTotalMedia() throws SQLException {
