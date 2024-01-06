@@ -1,4 +1,4 @@
-package views.screen.home;
+package views.screen.manager;
 
 import controller.ManagerHomeController;
 import entity.media.Book;
@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
+import views.screen.home.LoginScreenHandler;
 
 import java.io.IOException;
 import java.net.URL;
@@ -234,13 +235,6 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 		}
 	}
 
-	private void showAlert(Alert.AlertType alertType, String title, String header, String content) {
-		Alert alert = new Alert(alertType);
-		alert.setTitle(title);
-		alert.setHeaderText(header);
-		alert.setContentText(content);
-		alert.showAndWait();
-	}
 
 	private void setupTableViewSelection() {
 		bookTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -487,7 +481,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 
 		// Check if a book is selected
 		if (selectedBook == null) {
-			showAlert(Alert.AlertType.WARNING, "No Selection", "No Book Selected",
+			Utils.showAlert(Alert.AlertType.WARNING, "No Selection", "No Book Selected",
 					"Please select a book in the table.");
 			return;
 		} else
@@ -520,7 +514,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 				}
 			} catch (NumberFormatException e) {
 				// Handle number format exception (e.g., show an alert)
-				showAlert(Alert.AlertType.ERROR, "Invalid Input", "Input Error", "Please enter valid numeric values.");
+				Utils.showAlert(Alert.AlertType.ERROR, "Invalid Input", "Input Error", "Please enter valid numeric values.");
 				e.printStackTrace(); // Log the exception for debugging
 			}
 	}
@@ -530,7 +524,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	public void deleteBook() throws SQLException {
 		Book selectedBook = bookTableView.getSelectionModel().getSelectedItem();
 		if (selectedBook == null) {
-			showAlert(Alert.AlertType.WARNING, "No Selection", "No Book Selected",
+			Utils.showAlert(Alert.AlertType.WARNING, "No Selection", "No Book Selected",
 					"Please select a book in the table.");
 			return;
 		}
@@ -541,10 +535,10 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 			try {
 				getBController().deleteBook(selectedBook.getId());
 				showAllBook();
-				showAlert(Alert.AlertType.INFORMATION, "Deletion Successful", "Book Deleted",
+				Utils.showAlert(Alert.AlertType.INFORMATION, "Deletion Successful", "Book Deleted",
 						"Book has been deleted successfully.");
 			} catch (SQLException ex) {
-				showAlert(Alert.AlertType.ERROR, "Deletion Failed", "Error Deleting Book",
+				Utils.showAlert(Alert.AlertType.ERROR, "Deletion Failed", "Error Deleting Book",
 						"There was an error deleting the book.");
 			}
 		}
@@ -607,7 +601,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 		CD selectedCD = cdTableView.getSelectionModel().getSelectedItem();
 
 		if (selectedCD == null) {
-			showAlert(Alert.AlertType.WARNING, "No Selection", "No CD Selected", "Please select a CD in the table.");
+			Utils.showAlert(Alert.AlertType.WARNING, "No Selection", "No CD Selected", "Please select a CD in the table.");
 			return;
 		}
 
@@ -641,7 +635,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 				isCDInfoDisplayed = false;
 			}
 		} catch (NumberFormatException e) {
-			showAlert(Alert.AlertType.ERROR, "Invalid Input", "Input Error", "Please enter valid numeric values.");
+			Utils.showAlert(Alert.AlertType.ERROR, "Invalid Input", "Input Error", "Please enter valid numeric values.");
 			e.printStackTrace();
 		}
 	}
@@ -650,7 +644,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 		CD selectedCD = cdTableView.getSelectionModel().getSelectedItem();
 
 		if (selectedCD == null) {
-			showAlert(Alert.AlertType.WARNING, "No Selection", "No CD Selected", "Please select a CD in the table.");
+			Utils.showAlert(Alert.AlertType.WARNING, "No Selection", "No CD Selected", "Please select a CD in the table.");
 			return;
 		}
 
@@ -661,9 +655,9 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 			try {
 				getBController().deleteCD(selectedCD.getId());
 				showAllCD();
-				showAlert(Alert.AlertType.INFORMATION, "Deletion Successful", "CD Deleted", "CD has been deleted successfully.");
+				Utils.showAlert(Alert.AlertType.INFORMATION, "Deletion Successful", "CD Deleted", "CD has been deleted successfully.");
 			} catch (SQLException ex) {
-				showAlert(Alert.AlertType.ERROR, "Deletion Failed", "Error Deleting CD", "There was an error deleting the CD.");
+				Utils.showAlert(Alert.AlertType.ERROR, "Deletion Failed", "Error Deleting CD", "There was an error deleting the CD.");
 			}
 		}
 	}
@@ -847,6 +841,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	            hideDVDFields();
 	            showAllDVD(); // Assuming a method to refresh or show all DVDs
 	        } catch (NumberFormatException e) {
+	        	Utils.showAlert(Alert.AlertType.ERROR, "Invalid Input", "Input Error", "Please enter valid numeric values.");
 	            e.printStackTrace();
 	        }
 	    }
@@ -857,7 +852,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	    DVD selectedDVD = dvdTableView.getSelectionModel().getSelectedItem();
 
 	    if (selectedDVD == null) {
-	        showAlert(Alert.AlertType.WARNING, "No Selection", "No DVD Selected", "Please select a DVD in the table.");
+	        Utils.showAlert(Alert.AlertType.WARNING, "No Selection", "No DVD Selected", "Please select a DVD in the table.");
 	        return;
 	    }
 
@@ -895,7 +890,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	            isDVDInfoDisplayed = false;
 	        }
 	    } catch (NumberFormatException e) {
-	        showAlert(Alert.AlertType.ERROR, "Invalid Input", "Input Error", "Please enter valid numeric values.");
+	        Utils.showAlert(Alert.AlertType.ERROR, "Invalid Input", "Input Error", "Please enter valid numeric values.");
 	        e.printStackTrace();
 	    }
 	}
@@ -905,7 +900,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	    DVD selectedDVD = dvdTableView.getSelectionModel().getSelectedItem();
 
 	    if (selectedDVD == null) {
-	        showAlert(Alert.AlertType.WARNING, "No Selection", "No DVD Selected", "Please select a DVD in the table.");
+	        Utils.showAlert(Alert.AlertType.WARNING, "No Selection", "No DVD Selected", "Please select a DVD in the table.");
 	        return;
 	    }
 
@@ -916,9 +911,9 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	        try {
 	            getBController().deleteDVD(selectedDVD.getId());
 	            showAllDVD(); // Assuming this method refreshes the DVD list
-	            showAlert(Alert.AlertType.INFORMATION, "Deletion Successful", "DVD Deleted", "DVD has been deleted successfully.");
+	            Utils.showAlert(Alert.AlertType.INFORMATION, "Deletion Successful", "DVD Deleted", "DVD has been deleted successfully.");
 	        } catch (SQLException ex) {
-	            showAlert(Alert.AlertType.ERROR, "Deletion Failed", "Error Deleting DVD", "There was an error deleting the DVD.");
+	            Utils.showAlert(Alert.AlertType.ERROR, "Deletion Failed", "Error Deleting DVD", "There was an error deleting the DVD.");
 	            ex.printStackTrace();
 	        }
 	    }
