@@ -3,6 +3,7 @@ package views.screen.home;
 import controller.ManagerHomeController;
 import entity.media.Book;
 import entity.media.CD;
+import entity.media.DVD;
 import entity.media.Media;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -174,6 +175,19 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	private Label labelBookId, labelBookTitle, labelBookValue, labelBookPrice, labelBookQuantity, labelBookAuthor,
 			labelBookCover, labelBookPublisher, labelBookPubDate, labelBookPages, labelBookLanguage, labelBookCategory;
 
+	@FXML
+	private TableColumn<DVD, Integer> dvdIDCol, dvdValueCol, dvdPriceCol, dvdQuantityCol, dvdRuntimeCol;
+
+	@FXML
+	private TableColumn<DVD, String> dvdTypeCol, dvdTitleCol, dvdDirectorCol, dvdStudioCol, dvdSubtitleCol, dvdFilmTypeCol;
+	
+	@FXML
+	private TableColumn<DVD, Date> dvdReleaseCol;
+	
+	@FXML
+	private TableView<DVD> dvdTableView;
+
+	
 	public ManagerHomeController getBController() {
 		return (ManagerHomeController) super.getBController();
 	}
@@ -215,6 +229,7 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 			bookForm.setVisible(false);
 			cdForm.setVisible(false);
 			dvdForm.setVisible(true);
+			showAllDVD();
 		}
 	}
 
@@ -667,6 +682,35 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 		bookLanguage.clear();
 	}
 
+	// DVD
+	public void showAllDVD() throws SQLException {
+	    List<DVD> listDVD = getBController().getAllDVD();
+	    dvdIDCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("id"));
+	    dvdTypeCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("type"));
+	    dvdTitleCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("title"));
+	    dvdDirectorCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("director"));
+	    dvdRuntimeCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("runtime"));
+	    dvdStudioCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("studio"));
+	    dvdSubtitleCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("subtitles"));
+	    dvdReleaseCol.setCellValueFactory(new PropertyValueFactory<DVD, Date>("releasedDate"));
+	    dvdFilmTypeCol.setCellValueFactory(new PropertyValueFactory<DVD, String>("filmType"));
+	    dvdValueCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("value"));
+	    dvdPriceCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("price"));
+	    dvdQuantityCol.setCellValueFactory(new PropertyValueFactory<DVD, Integer>("quantity"));
+	    dvdTableView.getItems().setAll(listDVD);
+	}
+	
+	public void createDVD() {
+		
+	}
+	
+	public void updateDVD() {
+		
+	}
+	
+	public void deleteDVD() {
+		
+	}	
 	public void displayTotalMedia() throws SQLException {
 		int totalBookCount = getBController().getCountMedia("book");
 		int totalCDCount = getBController().getCountMedia("cd");
