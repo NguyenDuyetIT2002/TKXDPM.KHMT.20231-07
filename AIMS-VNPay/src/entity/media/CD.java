@@ -141,8 +141,8 @@ public class CD extends Media {
 
         try {
             Statement stm = AIMSDB.getConnection().createStatement();
-            stm.executeUpdate(deleteMediaSql);
             stm.executeUpdate(deleteCdSql);
+            stm.executeUpdate(deleteMediaSql);
         } catch (Exception e) {
             e.printStackTrace();
         }
