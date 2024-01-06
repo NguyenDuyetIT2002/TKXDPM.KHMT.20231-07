@@ -173,7 +173,7 @@ public class DVD extends Media {
 		if (res.next()) {
 
 			// from media table
-			String title = "";
+            String title = res.getString("title");
 			String type = res.getString("type");
 			int price = res.getInt("price");
 			int value = res.getInt("value");
@@ -189,7 +189,7 @@ public class DVD extends Media {
 			Date releasedDate = res.getDate("releasedDate");
 			String filmType = res.getString("filmType");
 
-			return new DVD(id, title, category, price, value, quantity, type, discType, director, runtime, studio,
+			return new DVD(id, title, type, price, value, quantity, category, discType, director, runtime, studio,
 					subtitles, releasedDate, filmType);
 
 		} else {
@@ -251,7 +251,7 @@ public class DVD extends Media {
 	        e.printStackTrace();
 	    }
 	}
-
+	
 	/**
 	 * @return List
 	 */
@@ -263,7 +263,7 @@ public class DVD extends Media {
 	    Statement stm = AIMSDB.getConnection().createStatement();
 	    ResultSet res = stm.executeQuery(sql);
 	    
-	    ArrayList mediaList = new ArrayList<>();
+	    ArrayList DVDList = new ArrayList<>();
 	    
 	    while (res.next()) {
 	        // from Media table
@@ -287,10 +287,10 @@ public class DVD extends Media {
 	        DVD dvd = new DVD(id, title, category, price, value, quantity, type, discType, director, runtime, studio,
 	                          subtitles, releasedDate, filmType);
 
-	        mediaList.add(dvd);
+	        DVDList.add(dvd);
 	    }
 	    
-	    return mediaList;
+	    return DVDList;
 	}
 
 }

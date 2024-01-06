@@ -283,6 +283,14 @@
                   </ComboBox>
                   <DatePicker fx:id="bookPubDate" layoutX="409.0" layoutY="557.0" prefHeight="25.0"
                      prefWidth="149.0" visible="false" />
+                  <Label fx:id="labelBookCategory" alignment="CENTER" layoutX="603.0"
+                     layoutY="450.0" prefHeight="20.0" prefWidth="84.0" text="Category :"
+                     visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="bookCategory" layoutX="695.0" layoutY="447.0" visible="false" />
                   <Button layoutX="931.0" layoutY="392.0" mnemonicParsing="false"
                      onAction="#createBook" prefHeight="25.0" prefWidth="95.0" text="CREATE">
                      <font>
@@ -297,20 +305,6 @@
                   </Button>
                   <Button layoutX="931.0" layoutY="529.0" mnemonicParsing="false"
                      onAction="#deleteBook" prefHeight="25.0" prefWidth="95.0" text="DELETE">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="labelBookCategory" alignment="CENTER" layoutX="603.0"
-                     layoutY="450.0" prefHeight="20.0" prefWidth="84.0" text="Category :"
-                     visible="false">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="bookCategory" layoutX="695.0" layoutY="447.0" visible="false" />
-                  <Button layoutX="931.0" layoutY="601.0" mnemonicParsing="false"
-                     onAction="#resetBookData" prefHeight="25.0" prefWidth="95.0" text="RESET ">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -464,7 +458,7 @@
                AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="9.0"
                AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="9.0">
                <children>
-                  <TableView fx:id="dvdTableView" layoutX="12.0" layoutY="12.0" prefHeight="666.0"
+                  <TableView fx:id="dvdTableView" layoutX="12.0" layoutY="12.0" prefHeight="360.0"
                      prefWidth="1089.0">
                      <columns>
                         <TableColumn fx:id="dvdIDCol" prefWidth="81.0" text="DVD ID" />
