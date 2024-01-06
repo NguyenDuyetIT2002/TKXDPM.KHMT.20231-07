@@ -21,4 +21,11 @@ public class HomeController extends BaseController {
         return new Media().getAllMedia();
     }
 
+    public List searchMedia(String searchText) throws SQLException {
+        return new Media().searchMedia(searchText);
+    }
+
+    public List handleFilter(String filterType) throws SQLException {
+        return new Media().getMediaByType(filterType);
+    }
 }

@@ -137,6 +137,44 @@ public class Media {
                 + "where id=" + id + ";");
     }
 
+    public List searchMedia(String searchText) throws SQLException {
+        Statement stm = AIMSDB.getConnection().createStatement();
+        ResultSet res = stm.executeQuery("SELECT * FROM Media WHERE Media.title LIKE '%" + searchText + "%'");
+        ArrayList medium = new ArrayList<>();
+        while (res.next()) {
+            Media media = new Media()
+                    .setId(res.getInt("id"))
+                    .setTitle(res.getString("title"))
+                    .setQuantity(res.getInt("quantity"))
+                    .setCategory(res.getString("category"))
+                    .setMediaURL(res.getString("imageUrl"))
+                    .setPrice(res.getInt("price"))
+                    .setValue(res.getInt("value"))
+                    .setType(res.getString("type"));
+            medium.add(media);
+        }
+        return medium;
+    }
+    public List getMediaByType(String type) throws SQLException {
+        Statement stm = AIMSDB.getConnection().createStatement();
+        ResultSet res = stm.executeQuery("SELECT * FROM Media WHERE Media.type = '" + type.toLowerCase() + "'");
+        ArrayList medium = new ArrayList<>();
+        while (res.next()) {
+            Media media = new Media()
+                    .setId(res.getInt("id"))
+                    .setTitle(res.getString("title"))
+                    .setQuantity(res.getInt("quantity"))
+                    .setCategory(res.getString("category"))
+                    .setMediaURL(res.getString("imageUrl"))
+                    .setPrice(res.getInt("price"))
+                    .setValue(res.getInt("value"))
+                    .setType(res.getString("type"));
+            medium.add(media);
+        }
+        LOGGER.info("Media" + medium.size());
+        return medium;
+    }
+
     public int getCountMedia(String type) throws SQLException {
         int countData = 0;
         Statement stm = AIMSDB.getConnection().createStatement();
