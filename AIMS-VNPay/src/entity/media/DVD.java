@@ -166,7 +166,7 @@ public class DVD extends Media {
 	 */
 	@Override
 	public DVD getMediaById(int id) throws SQLException {
-		String sql = "SELECT * FROM " + "aims.DVD " + "INNER JOIN aims.Media " + "ON Media.id = DVD.id "
+		String sql = "SELECT * FROM " + "DVD " + "INNER JOIN Media " + "ON Media.id = DVD.id "
 				+ "where Media.id = " + id + ";";
 		Statement stm = AIMSDB.getConnection().createStatement();
 		ResultSet res = stm.executeQuery(sql);
@@ -179,7 +179,6 @@ public class DVD extends Media {
 			int value = res.getInt("value");
 			String category = res.getString("category");
 			int quantity = res.getInt("quantity");
-
 			// from DVD table
 			String discType = res.getString("discType");
 			String director = res.getString("director");
