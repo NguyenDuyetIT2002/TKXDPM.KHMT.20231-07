@@ -10,6 +10,7 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.cart.CartScreenHandler;
+import views.screen.manager.ManagerScreenHandler;
 import views.screen.popup.PopupScreen;
 
 import java.io.File;
