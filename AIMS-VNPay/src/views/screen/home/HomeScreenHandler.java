@@ -28,6 +28,7 @@ import views.screen.cart.CartScreenHandler;
 import views.screen.mediaDetail.BookScreenHandler;
 import views.screen.mediaDetail.CDScreenHandler;
 import views.screen.mediaDetail.DVDScreenHandler;
+import views.screen.popup.PopupScreen;
 
 import java.io.File;
 import java.io.IOException;
@@ -305,18 +306,25 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         String text = textFieldSearch.getText();
         try {
             List medium = getBController().searchMedia(text);
-            this.homeSearchItems = new ArrayList<>();
-            for (Object object : medium) {
-                Media media = (Media) object;
-                MediaHandler m1 = new MediaHandler(Configs.HOME_MEDIA_PATH, media, this);
-                this.homeSearchItems.add(m1);
+            if(medium.size() == 0) {
+                PopupScreen.error("Không tìm thấy sản phẩm");
+                addMediaHome(homeItems);
+                setNumOfPage(homeItems);
+            }  else {
+                this.homeSearchItems = new ArrayList<>();
+                for (Object object : medium) {
+                    Media media = (Media) object;
+                    MediaHandler m1 = new MediaHandler(Configs.HOME_MEDIA_PATH, media, this);
+                    this.homeSearchItems.add(m1);
+                }
+                addMediaHome(homeSearchItems);
+                setNumOfPage(homeSearchItems);
             }
         } catch (SQLException | IOException e) {
             LOGGER.info("Errors occured: " + e.getMessage());
             e.printStackTrace();
         }
-        addMediaHome(homeSearchItems);
-        setNumOfPage(homeSearchItems);
+
     }
 
     private void sortByAscendingPrice(int position, String text, MenuButton menuButton) {
