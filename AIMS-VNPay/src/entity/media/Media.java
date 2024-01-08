@@ -1,6 +1,7 @@
 package entity.media;
 
 import entity.db.AIMSDB;
+import javafx.scene.layout.VBox;
 import utils.Utils;
 
 import java.sql.ResultSet;
@@ -8,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -183,6 +185,38 @@ public class Media {
             countData = res.getInt("COUNT(id)");
         }
         return countData;
+    }
+    
+    public void getDetailScreen(VBox vboxDetail) {
+    	if (Objects.equals(getType(), "book")) {
+			try {
+				Book book = new Book().getMediaById(getId());
+				book.getDetail(vboxDetail);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+    	if (Objects.equals(getType(), "cd")) {
+			try {
+				CD cd = new CD().getMediaById(getId());
+				cd.getDetail(vboxDetail);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+    	if (Objects.equals(getType(), "dvd")) {
+			try {
+				DVD dvd = new DVD().getMediaById(getId());
+				dvd.getDetail(vboxDetail);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
     }
 
     /**

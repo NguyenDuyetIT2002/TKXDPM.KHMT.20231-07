@@ -28,6 +28,7 @@ import views.screen.cart.CartScreenHandler;
 import views.screen.mediaDetail.BookScreenHandler;
 import views.screen.mediaDetail.CDScreenHandler;
 import views.screen.mediaDetail.DVDScreenHandler;
+import views.screen.mediaDetail.MediaScreenHandler;
 import views.screen.popup.PopupScreen;
 
 import java.io.File;
@@ -193,7 +194,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             handleSearch();
         });
     }
-    public void openBookDetail(Book book) {
+    /*public void openBookDetail(Book book) {
         BookScreenHandler bookScreen;
         try {
             LOGGER.info("User clicked to view book");
@@ -229,6 +230,18 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             cdScreen.requestToViewCD(this);
         } catch (IOException | SQLException e1) {
             throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
+        }
+    }*/
+    
+    public void openMediaDetail(Media media) {
+    	MediaScreenHandler mediaScreen;
+        try {
+            mediaScreen = new MediaScreenHandler(this.stage, Configs.MEDIA_DETAIL_PATH, media);
+            mediaScreen.setHomeScreenHandler(this);
+            //bookScreen.setBController(new ViewCartController());
+            mediaScreen.requestToView(this);
+        } catch (IOException | SQLException e1) {
+            e1.printStackTrace();
         }
     }
 
