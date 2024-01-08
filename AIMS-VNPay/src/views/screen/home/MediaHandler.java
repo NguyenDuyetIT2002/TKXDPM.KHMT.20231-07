@@ -85,7 +85,8 @@ public class MediaHandler extends FXMLScreenHandler {
         });
         viewBtn.setOnMouseClicked(event -> {
         	//System.out.print(media.getType());
-        	if (Objects.equals(media.getType(), "book")) {
+        	home.openMediaDetail(media);
+        	/*if (Objects.equals(media.getType(), "book")) {
         		System.out.println("book");
         		try {
 					Book book = new Book().getMediaById(this.media.getId());
@@ -114,7 +115,7 @@ public class MediaHandler extends FXMLScreenHandler {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-        	}
+        	}*/
         });
         setMediaInfo();
     }

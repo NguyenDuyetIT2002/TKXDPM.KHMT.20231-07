@@ -1,8 +1,16 @@
 package entity.media;
 
 import entity.db.AIMSDB;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import utils.Utils;
 
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -348,5 +356,55 @@ public class Book extends Media {
                 ", language='" + language + "'" +
                 ", bookCategory='" + bookCategory + "'" +
                 "}";
+    }
+    
+    public void getDetail(VBox vboxDetail) {
+    	File file = new File(getImageURL());
+        Image image = new Image(file.toURI().toString());
+        ImageView bookImageView = new ImageView();
+        bookImageView.setImage(image);
+        bookImageView.setPreserveRatio(true);
+        bookImageView.setFitWidth(400);
+        //bookImageView.setTranslateX(400);
+        
+        Label bookTitle = new Label(getTitle());
+        bookTitle.setFont(Font.font(40));
+        
+        Label bookAuthor = new Label("Author: " + getAuthor());
+        bookAuthor.setFont(Font.font(20));
+                
+        Label bookPublisher = new Label("Publisher: " + getPublisher());
+        bookPublisher.setFont(Font.font(20));
+        
+        Label bookPublicDate = new Label("Public date: " + getPublishDate().toString());
+        bookPublicDate.setFont(Font.font(20));
+        
+        HBox hbox1 = new HBox(20);
+        hbox1.setAlignment(Pos.CENTER);
+        hbox1.getChildren().add(bookPublisher);
+        hbox1.getChildren().add(bookPublicDate);
+        
+        Label bookLanguage = new Label("Language: " + getLanguage());
+        bookLanguage.setFont(Font.font(20));
+        
+        Label bookCategory = new Label("Category: " + getBookCategory());
+        bookCategory.setFont(Font.font(20));
+        
+        Label bookPageNum = new Label("Number of pages: " + getNumOfPages());
+        bookPageNum.setFont(Font.font(20));    
+        
+        HBox hbox2 = new HBox(20);
+        hbox2.setAlignment(Pos.CENTER);
+        hbox2.getChildren().add(bookCategory);
+        hbox2.getChildren().add(bookPageNum);
+                
+        vboxDetail.setAlignment(Pos.CENTER);
+        vboxDetail.setSpacing(20);
+        vboxDetail.getChildren().add(bookImageView);
+        vboxDetail.getChildren().add(bookTitle);
+        vboxDetail.getChildren().add(bookAuthor);
+        vboxDetail.getChildren().add(hbox1);
+        vboxDetail.getChildren().add(bookLanguage);
+        vboxDetail.getChildren().add(hbox2);
     }
 }
