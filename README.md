@@ -145,3 +145,52 @@
         <br>
     </details>
 </details>
+
+<details>
+    <summary>Capstone Project</summary>
+    <br>
+    <details>
+        <summary>Nguyễn Thế Duyệt</summary>
+        <br>
+        - Assigned tasks:<br>
+          + CRUD Media usecase<br>
+        - Implementation details:<br>
+          - Pull request(s):
+          - Specific implementation details:<br>
+    </details>
+    <details>
+        <summary>Trần Đức Duy</summary>
+        <br>
+        - Assigned tasks:<br>
+          + View Detail Media usecase <br>
+        - Implementation details:<br>
+          - Specific implementation details:<br>
+          - Image:<br>
+    </details>
+     <details>
+        <summary>Đinh Hữu Hải</summary>
+        <br>
+        - Assigned tasks:<br>
+          + Search and filter product<br>
+        - Implementation details:<br>
+          - Specific implementation details:<br>
+    </details>
+    <details>
+        <summary>Phạm Thị Hồng Hạnh</summary>
+        <br>
+        - Assigned tasks:<br>
+          + CRUD for user<br>
+        - Implementation details:<br>
+          - Pull request(s): <br>
+          - Specific implementation details:
+        <br>
+    </details>
+</details>
+
+<details>
+    <Summary>Note for this project</Summary>
+    <br>
+    - Video demo: Demo - FINAL <br>
+    - AIMS_base: group work before week 1, not including personal assigned usecase<br>
+    - AIMS_VNPay: Capstone project source code
+</details>
