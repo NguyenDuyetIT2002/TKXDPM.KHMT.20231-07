@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-public class ManagerHomeController extends BaseController {
+public class CRUDMediaController extends BaseController {
 	public List getAllMedia() throws SQLException {
 		return new Media().getAllMedia();
 	}

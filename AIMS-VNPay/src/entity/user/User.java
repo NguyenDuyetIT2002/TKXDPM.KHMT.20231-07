@@ -60,6 +60,36 @@ public class User {
         }
         return userList;
     }
+    public User authenticate(String email, String encryptedPassword) throws SQLException {
+        String sql = "SELECT * FROM User " +
+                "WHERE email = '" + email + "' AND encrypted_password = '" + encryptedPassword + "'";
+        LOGGER.info(sql);
+        Statement stm = null;
+        ResultSet res = null;
+        try {
+            stm = AIMSDB.getConnection().createStatement();
+            res = stm.executeQuery(sql);
+            if (res.next()) {
+                LOGGER.info("User Name: " + res.getString("name"));
+                return new User(
+                    res.getInt("id"),
+                    res.getString("name"),
+                    res.getString("email"),
+                    res.getString("address"),
+                    res.getString("phone"),
+                    res.getBoolean("ban"),
+                    res.getInt("role"),
+                    res.getString("encrypted_password")
+                );
+            } else {
+                // User not found with the given credentials
+                return null;
+            }
+        } finally {
+            if (res != null) res.close();
+            if (stm != null) stm.close();
+        }
+    }
 
     public void createUser(String name,String email, String address, String phone, int role) {
         String encrypted_password = Utils.md5("123456");

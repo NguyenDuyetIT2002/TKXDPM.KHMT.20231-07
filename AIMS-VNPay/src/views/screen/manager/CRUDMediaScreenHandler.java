@@ -1,6 +1,6 @@
 package views.screen.manager;
 
-import controller.ManagerHomeController;
+import controller.CRUDMediaController;
 import entity.media.Book;
 import entity.media.CD;
 import entity.media.DVD;
@@ -29,9 +29,9 @@ import java.text.SimpleDateFormat;
 
 import static java.lang.Integer.parseInt;
 
-public class ManagerScreenHandler extends BaseScreenHandler implements Initializable {
+public class CRUDMediaScreenHandler extends BaseScreenHandler implements Initializable {
 
-	public ManagerScreenHandler(Stage stage, String screenPath) throws IOException {
+	public CRUDMediaScreenHandler(Stage stage, String screenPath) throws IOException {
 		super(stage, screenPath);
 		// TODO Auto-generated constructor stub
 	}
@@ -190,13 +190,13 @@ public class ManagerScreenHandler extends BaseScreenHandler implements Initializ
 	private TableView<DVD> dvdTableView;
 
 
-	public ManagerHomeController getBController() {
-		return (ManagerHomeController) super.getBController();
+	public CRUDMediaController getBController() {
+		return (CRUDMediaController) super.getBController();
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		setBController(new ManagerHomeController());
+		setBController(new CRUDMediaController());
 		try {
 			showAllMedia();
 			displayTotalMedia();
