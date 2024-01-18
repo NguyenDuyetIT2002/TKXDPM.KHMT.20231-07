@@ -1,6 +1,4 @@
-/common/
 /controller/
-/entity/
-/subsystem/
-/utils/
 /views/
+/entity/
+/utils/

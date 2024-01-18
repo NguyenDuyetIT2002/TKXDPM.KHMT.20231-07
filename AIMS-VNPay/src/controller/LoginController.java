@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-public class AuthenticationController extends BaseController {
+public class LoginController extends BaseController {
 
     private static Logger LOGGER = utils.Utils.getLogger(PlaceOrderController.class.getName());
 
@@ -23,7 +23,7 @@ public class AuthenticationController extends BaseController {
 //        LOGGER.info(Utils.md5(password));
         int role;
         try {
-            User user = this.authenticate(email, Utils.md5(password));
+        	User user = authenticateUser(email, Utils.md5(password));
             role = user.getRole();
             boolean isBan = user.getBan();
             if (isBan) throw new FailLoginDueToBannedException();
@@ -36,29 +36,12 @@ public class AuthenticationController extends BaseController {
         }
         return role;
     }
-
-    public User authenticate(String email, String encryptedPassword) throws SQLException {
-        String sql = "SELECT * FROM User " +
-                "WHERE email = '" + email + "' AND encrypted_password = '" + encryptedPassword + "'";
-        LOGGER.info(sql);
-        Statement stm = AIMSDB.getConnection().createStatement();
-        ResultSet res = stm.executeQuery(sql);
-        if(res.next()) {
-            LOGGER.info("User Name: " + res.getString("name"));
-            return new User(
-                    res.getInt("id"),
-                    res.getString("name"),
-                    res.getString("email"),
-                    res.getString("address"),
-                    res.getString("phone"),
-                    res.getBoolean("ban"),
-                    res.getInt("role"),
-                    res.getString("encrypted_password")
-            );
-        } else {
-            throw new SQLException();
-        }
+    
+    private User authenticateUser(String email, String encryptedPassword) throws SQLException {
+        return new User().authenticate(email, encryptedPassword);
     }
+
+ 
 
 //    public void logout() {
 //        SessionInformation.mainUser = null;

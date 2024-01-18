@@ -1,7 +1,7 @@
 package views.screen.home;
-import controller.ManagerHomeController;
+import controller.CRUDMediaController;
 import controller.MangagerUserScreenController;
-import controller.AuthenticationController;
+import controller.LoginController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -10,7 +10,7 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.cart.CartScreenHandler;
-import views.screen.manager.ManagerScreenHandler;
+import views.screen.manager.CRUDMediaScreenHandler;
 import views.screen.popup.PopupScreen;
 
 import java.io.File;
@@ -36,8 +36,8 @@ public class LoginScreenHandler extends BaseScreenHandler{
         super(stage, screenPath);
     }
 
-    public AuthenticationController getBController() {
-        return (AuthenticationController) super.getBController();
+    public LoginController getBController() {
+        return (LoginController) super.getBController();
     }
 
     @FXML
@@ -54,11 +54,11 @@ public class LoginScreenHandler extends BaseScreenHandler{
                 managerUserScreen.show();
             } else {
                 if (role == 0) {
-                    ManagerScreenHandler managerScreen = new ManagerScreenHandler(this.stage, Configs.MANAGER_SCREEN_PATH);
-                    managerScreen.setScreenTitle("Manager");
-                    managerScreen.setBController(new ManagerHomeController());
-                    managerScreen.setHomeScreenHandler(homeScreenHandler);
-                    managerScreen.show();
+                    CRUDMediaScreenHandler crudMediaScreen = new CRUDMediaScreenHandler(this.stage, Configs.MANAGER_SCREEN_PATH);
+                    crudMediaScreen.setScreenTitle("Manager");
+                    crudMediaScreen.setBController(new CRUDMediaController());
+                    crudMediaScreen.setHomeScreenHandler(homeScreenHandler);
+                    crudMediaScreen.show();
                 }
             }
 
